@@ -29,7 +29,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          python -m pytest --cov=app --cov-report=xml
+          python -m pytest --cov=app --cov-report=xml:coverage.xml
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v3.1.0
@@ -40,3 +40,7 @@ jobs:
           args: >
             -Dsonar.organization=vlad8800
             -Dsonar.projectKey=Vlad8800_QA_1lab
+            -Dsonar.sources=app
+            -Dsonar.tests=tests
+            -Dsonar.python.coverage.reportPaths=coverage.xml
+            -Dsonar.sourceEncoding=UTF-8
