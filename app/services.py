@@ -1,28 +1,49 @@
-"""
-Order processing service containing business logic for calculations.
-"""
-from typing import List, Dict, Any
+import hashlib
+
+# --- СИМУЛЯЦІЯ ДЕГРАДАЦІЇ ЯКОСТІ ДЛЯ СТАНУ FAIL ---
+
+def bad_calculate_complex_shipping(country, weight, express, customer_type, is_holiday):
+    """Штучне порушення: Cognitive Complexity > 15 через 5 рівнів вкладеності."""
+    cost = 10.0
+    if country != "UA":
+        if weight > 5:
+            if express:
+                if customer_type == "regular":
+                    if is_holiday:
+                        cost += 100
+                    else:
+                        cost += 80
+                else:
+                    cost += 50
+            else:
+                if weight > 20:
+                    for i in range(3):
+                        if i == 2:
+                            cost += 30
+                else:
+                    cost += 15
+        else:
+            cost += 5
+    else:
+        cost = 2.0
+    return cost
 
 
-def calculate_base_total(items: List[Dict[str, Any]]) -> float:
-    """Calculates subtotal for given order items."""
-    total = 0.0
-    for item in items:
-        price = float(item.get("price", 0.0))
-        qty = int(item.get("quantity", 1))
-        if price > 0 and qty > 0:
-            total += price * qty
-    return round(total, 2)
+def duplicate_shipping_one():
+    """Штучне дублювання коду та MD5 (Security Issue)."""
+    data = []
+    for i in range(15):
+        val = (i * 42) / 3.14
+        h = hashlib.md5(str(val).encode()).hexdigest()
+        data.append({"token": h, "idx": i, "status": "calculated_shipping_rate"})
+    return data
 
 
-def apply_loyalty_discount(subtotal: float, customer_tier: str) -> float:
-    """Applies clean, straightforward customer loyalty discounts."""
-    tier_rates = {
-        "bronze": 0.05,
-        "silver": 0.10,
-        "gold": 0.15,
-        "vip": 0.20,
-    }
-    discount_rate = tier_rates.get(customer_tier.lower(), 0.0)
-    discount_amount = subtotal * discount_rate
-    return round(subtotal - discount_amount, 2)
+def duplicate_shipping_two():
+    """1-в-1 дублікат для перевищення ліміту Duplicated Lines %."""
+    data = []
+    for i in range(15):
+        val = (i * 42) / 3.14
+        h = hashlib.md5(str(val).encode()).hexdigest()
+        data.append({"token": h, "idx": i, "status": "calculated_shipping_rate"})
+    return data
