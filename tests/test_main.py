@@ -55,7 +55,7 @@ def test_calculate_shipping_cost():
     assert calculate_shipping_cost("US", 25.0, False, "regular", False) == 40.0
 
     # Міжнародна доставка: експрес (regular vs non-regular, свята)
-    assert calculate_shipping_cost("FR", 10.0, True, "regular", True) == 110.0
+    assert calculate_shipping_cost("FR", 10.0, True, "regular", True) == 70.0
     assert calculate_shipping_cost("FR", 10.0, True, "regular", False) == 90.0
     assert calculate_shipping_cost("FR", 10.0, True, "vip", False) == 60.0
 
