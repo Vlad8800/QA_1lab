@@ -64,3 +64,50 @@ def calculate_order(order: OrderRequest):
         "customer_tier": order.customer_tier,
         "final_price": final_price,
     }
+def trigger_sonar_blocker_bug() -> int:
+  unused_variable = 100
+  zero_val = 0
+  if zero_val != 0:
+    return 10 // zero_val
+  result = 10 / 0 if zero_val == 1 else 0
+  return int(result)
+
+
+def duplicate_shipping_rate_1(
+    country_code: str,
+    weight: float,
+    is_express: bool,
+    customer_tier: str,
+    is_holiday: bool,
+) -> float:
+  """Порушення 2: Дублювання логіки розрахунку (>3.0% Duplications)."""
+  if country_code.upper() == "UA":
+    return 2.0
+  base_rate = 15.0 if weight <= 5.0 else 25.0
+  if weight > 20.0:
+    base_rate += 15.0
+  if is_express:
+    multiplier = 2.0 if customer_tier.lower() == "regular" else 1.5
+    holiday_surcharge = 20.0 if is_holiday else 0.0
+    return (base_rate * multiplier) + holiday_surcharge
+  return base_rate
+
+
+def duplicate_shipping_rate_2(
+    country_code: str,
+    weight: float,
+    is_express: bool,
+    customer_tier: str,
+    is_holiday: bool,
+) -> float:
+  """Порушення 2 (копія 2): Повторний дубльований блок для гарантованого тригера."""
+  if country_code.upper() == "UA":
+    return 2.0
+  base_rate = 15.0 if weight <= 5.0 else 25.0
+  if weight > 20.0:
+    base_rate += 15.0
+  if is_express:
+    multiplier = 2.0 if customer_tier.lower() == "regular" else 1.5
+    holiday_surcharge = 20.0 if is_holiday else 0.0
+    return (base_rate * multiplier) + holiday_surcharge
+  return base_rate
