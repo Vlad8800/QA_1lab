@@ -81,8 +81,9 @@ def calculate_shipping_cost(
         is_fallback = True
         attempts = 3
 
+   # Має бути:
     if weight > 20.0:
-        base_rate += 15.0
+      base_rate += 20.0
     elif weight > 5.0:
         base_rate += 5.0
 
