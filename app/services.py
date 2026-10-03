@@ -110,3 +110,55 @@ def generate_shipping_tokens(count: int = 3) -> List[Dict[str, str]]:
       }
       for _ in range(count)
   ]
+def calculate_order_discount(
+    customer_type: str,
+    total_amount: float,
+    items_count: int,
+    coupon_code: str | None = None,
+    is_holiday: bool = False,
+) -> float:
+    """
+    Початкова складна реалізація для фіксації baseline.
+    Cognitive Complexity перевищує 15.
+    """
+    if total_amount <= 0:
+        raise ValueError("Total amount must be positive")
+
+    discount = 0.0
+
+    # Глибока вкладеність для SonarQube S3776
+    if customer_type == "vip":
+        if total_amount > 500:
+            discount += 0.15
+        else:
+            if total_amount > 200:
+                discount += 0.10
+            else:
+                discount += 0.05
+    elif customer_type == "wholesale":
+        if items_count >= 10:
+            discount += 0.20
+        else:
+            discount += 0.10
+    elif customer_type == "standard":
+        if total_amount > 300:
+            discount += 0.05
+    else:
+        discount = 0.0
+
+    if coupon_code is not None:
+        if coupon_code == "SAVE10":
+            if discount < 0.30:
+                discount += 0.10
+        elif coupon_code == "SAVE5":
+            discount += 0.05
+
+    final_price = total_amount * (1.0 - discount)
+
+    delivery_fee = 0.0
+    if final_price < 200:
+        delivery_fee = 15.0
+        if is_holiday:
+            delivery_fee += 10.0
+
+    return final_price + delivery_fee
