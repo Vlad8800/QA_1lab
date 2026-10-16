@@ -1,6 +1,6 @@
 import logging
 import secrets
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 import httpx
 from tenacity import (
     retry,
@@ -71,19 +71,21 @@ def calculate_shipping_cost(
 
     is_fallback = False
     attempts = 1
+    retry_obj = getattr(_fetch_external_base_rate, "retry", None)
+    retry_stats = getattr(retry_obj, "statistics", {}) if retry_obj else {}
     try:
         base_rate = _fetch_external_base_rate(country_code)
+        attempts = retry_stats.get("attempt_number", 1)
     except Exception as exc:
         logger.warning(
             "External tariff service failure (%s). Fallback activated.", exc
         )
         base_rate = FALLBACK_SHIPPING_RATE
         is_fallback = True
-        attempts = 3
+        attempts = retry_stats.get("attempt_number", 3)
 
-   # Має бути:
     if weight > 20.0:
-      base_rate += 20.0
+        base_rate += 20.0
     elif weight > 5.0:
         base_rate += 5.0
 
@@ -149,7 +151,7 @@ def _get_customer_discount(
 
 
 def _get_coupon_discount(
-    coupon_code: str | None, current_discount: float
+    coupon_code: Optional[str], current_discount: float
 ) -> float:
     """Розраховує знижку купона."""
     if not coupon_code or coupon_code not in COUPON_RATES:
@@ -173,13 +175,13 @@ def calculate_order_discount(
     customer_type: str,
     total_amount: float,
     items_count: int,
-    coupon_code: str | None = None,
+    coupon_code: Optional[str] = None,
     is_holiday: bool = False,
 ) -> float:
     """
     Підсумковий розрахунок після рефакторингу.
-    Cognitive Complexity: 3 (було 27 -> зниження на 89%)
-    Cyclomatic Complexity: 4 (було 12 -> зниження на 66%)
+    Cognitive Complexity: 3 (зниження на 89%)
+    Cyclomatic Complexity: 4 (зниження на 66%)
     """
     if total_amount <= 0:
         raise ValueError("Total amount must be positive")
@@ -193,4 +195,4 @@ def calculate_order_discount(
     discounted_amount = total_amount * (1.0 - total_discount)
     delivery_fee = _calculate_delivery_fee(discounted_amount, is_holiday)
 
-    return discounted_amount + delivery_fee
+    return round(discounted_amount + delivery_fee, 2)

@@ -1,8 +1,13 @@
+import logging
 from typing import List
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
 
+from app.anonymization import anonymization_router
+from app.consent import consent_router
+from app.export import export_router
+from app.privacy import PrivacyLoggingMiddleware, setup_privacy_logging
 from app.services import (
     apply_loyalty_discount,
     calculate_base_total,
@@ -10,11 +15,27 @@ from app.services import (
 )
 from app.utils import validate_item_payload
 
+# Initialize centralized privacy-safe logging
+setup_privacy_logging()
+logger = logging.getLogger("app.orders")
+
 app = FastAPI(
     title="Order Quality & Resilience Demo API",
     version="2.0.0",
     description="API для дослідження продуктивності (SLO) та відмовостійкості (Resilience)",
 )
+
+# Attach privacy logging middleware (Correlation ID & audit trails without raw body leaks)
+app.add_middleware(PrivacyLoggingMiddleware)
+
+# Attach GDPR personal data export router (Art. 15)
+app.include_router(export_router)
+
+# Attach GDPR right to erasure & anonymization router (Art. 17)
+app.include_router(anonymization_router)
+
+# Attach GDPR consent management & policy gate router (Art. 6 & Art. 7)
+app.include_router(consent_router)
 
 
 class OrderItem(BaseModel):
@@ -63,9 +84,26 @@ def index_page():
 @app.post("/api/v1/orders/calculate")
 def calculate_order(order: OrderRequest):
     """Повний розрахунок вартості замовлення: валідація, товари, знижка та стійка доставка."""
+    logger.info(
+        "Order calculation requested",
+        extra={
+            "event_type": "ORDER_CALCULATION_INIT",
+            "country_code": order.country_code,
+            "customer_tier": order.customer_tier,
+            "items_count": len(order.items),
+        }
+    )
+
     raw_items = [item.model_dump() for item in order.items]
     for item in raw_items:
         if not validate_item_payload(item):
+            logger.warning(
+                "Order calculation rejected due to invalid item payload",
+                extra={
+                    "event_type": "ORDER_CALCULATION_REJECTED",
+                    "status": "validation_failed",
+                }
+            )
             raise HTTPException(status_code=400, detail="Invalid item payload")
 
     # 1. Розрахунок вартості товарів замовлення
@@ -83,6 +121,16 @@ def calculate_order(order: OrderRequest):
 
     # 3. Підсумкова вартість
     final_total = round(discounted_price + shipping_info["final_cost"], 2)
+
+    logger.info(
+        "Order calculation completed successfully",
+        extra={
+            "event_type": "ORDER_CALCULATION_SUCCESS",
+            "status": "success",
+            "subtotal": subtotal,
+            "final_total": final_total,
+        }
+    )
 
     return {
         "status": "success",
