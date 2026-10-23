@@ -53,6 +53,45 @@ def _fetch_external_base_rate(country_code: str) -> float:
         return float(data.get("base_rate", 20.0))
 
 
+# --- DATA-DRIVEN REFACTORING: LOOKUP TABLES (Lab #6, Task 2) ---
+SHIPPING_RATE_POLICY = {
+    "UA": {"rate": 2.0, "mode": "domestic"},
+}
+
+EXPRESS_RATE_LOOKUP = {
+    (True, "regular", True): (2.0, 20.0),
+    (True, "regular", False): (2.0, 0.0),
+    (True, "gold", True): (1.5, 20.0),
+    (True, "gold", False): (1.5, 0.0),
+    (True, "vip", True): (1.5, 20.0),
+    (True, "vip", False): (1.5, 0.0),
+}
+
+FALLBACK_MODE_LOOKUP = {
+    True: "fallback_applied",
+    False: "external_live",
+}
+
+
+def _get_weight_surcharge(weight: float) -> float:
+    """Lookup-driven weight surcharge."""
+    return 20.0 if weight > 20.0 else (5.0 if weight > 5.0 else 0.0)
+
+
+def _fetch_shipping_base_rate(country_code: str) -> tuple[float, bool, int]:
+    """Gracefully fetches external base rate or returns fallback."""
+    retry_obj = getattr(_fetch_external_base_rate, "retry", None)
+    retry_stats = getattr(retry_obj, "statistics", {}) if retry_obj else {}
+    try:
+        base_rate = _fetch_external_base_rate(country_code)
+        return base_rate, False, retry_stats.get("attempt_number", 1)
+    except Exception as exc:
+        logger.warning(
+            "External tariff service failure (%s). Fallback activated.", exc
+        )
+        return FALLBACK_SHIPPING_RATE, True, retry_stats.get("attempt_number", 3)
+
+
 def calculate_shipping_cost(
     country_code: str,
     weight: float,
@@ -60,62 +99,34 @@ def calculate_shipping_cost(
     customer_tier: str,
     is_holiday: bool,
 ) -> Dict[str, Any]:
-    """Розрахунок доставки зі стійкістю (Graceful Degradation)."""
-    if country_code.upper() == "UA":
+    """
+    Розрахунок доставки через Data-Driven Lookup Tables (Lab #6, Task 2).
+    Повне усунення логічних розгалужень if-else.
+    Cyclomatic Complexity: CC = 2 (Linear execution flow).
+    """
+    country_upper = country_code.upper()
+    if country_upper in SHIPPING_RATE_POLICY:
+        policy = SHIPPING_RATE_POLICY[country_upper]
         return {
-            "final_cost": 2.0,
+            "final_cost": policy["rate"],
             "is_fallback": False,
             "attempts": 1,
-            "mode": "domestic",
+            "mode": policy["mode"],
         }
 
-    is_fallback = False
-    attempts = 1
-    retry_obj = getattr(_fetch_external_base_rate, "retry", None)
-    retry_stats = getattr(retry_obj, "statistics", {}) if retry_obj else {}
-    try:
-        base_rate = _fetch_external_base_rate(country_code)
-        attempts = retry_stats.get("attempt_number", 1)
-    except Exception as exc:
-        logger.warning(
-            "External tariff service failure (%s). Fallback activated.", exc
-        )
-        base_rate = FALLBACK_SHIPPING_RATE
-        is_fallback = True
-        attempts = retry_stats.get("attempt_number", 3)
-
-    if weight > 30.0:
-        base_rate += 50.0
-    elif weight > 20.0:
-        base_rate += 20.0
-    elif weight > 5.0:
-        base_rate += 5.0
-
-    # Theoretical business expansion (FAIL-state simulation: +6 branches)
-    if country_code.upper() == "GB":
-        base_rate += 12.0
-    elif country_code.upper() == "DE":
-        base_rate += 8.0
-    elif country_code.upper() == "US":
-        base_rate += 25.0
-
-    if customer_tier.lower() == "vip":
-        base_rate *= 0.90
-    elif customer_tier.lower() == "wholesale":
-        base_rate *= 0.85
-
-    if is_express:
-        multiplier = 2.0 if customer_tier.lower() == "regular" else 1.5
-        holiday_surcharge = 20.0 if is_holiday else 0.0
-        final_cost = (base_rate * multiplier) + holiday_surcharge
-    else:
-        final_cost = base_rate
+    base_rate, is_fallback, attempts = _fetch_shipping_base_rate(country_code)
+    weight_surcharge = _get_weight_surcharge(weight)
+    multiplier, holiday_fee = EXPRESS_RATE_LOOKUP.get(
+        (is_express, customer_tier.lower(), is_holiday),
+        (1.0, 0.0),
+    )
+    final_cost = ((base_rate + weight_surcharge) * multiplier) + holiday_fee
 
     return {
         "final_cost": round(final_cost, 2),
         "is_fallback": is_fallback,
         "attempts": attempts,
-        "mode": "fallback_applied" if is_fallback else "external_live",
+        "mode": FALLBACK_MODE_LOOKUP[is_fallback],
     }
 
 
