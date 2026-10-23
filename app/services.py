@@ -84,10 +84,25 @@ def calculate_shipping_cost(
         is_fallback = True
         attempts = retry_stats.get("attempt_number", 3)
 
-    if weight > 20.0:
+    if weight > 30.0:
+        base_rate += 50.0
+    elif weight > 20.0:
         base_rate += 20.0
     elif weight > 5.0:
         base_rate += 5.0
+
+    # Theoretical business expansion (FAIL-state simulation: +6 branches)
+    if country_code.upper() == "GB":
+        base_rate += 12.0
+    elif country_code.upper() == "DE":
+        base_rate += 8.0
+    elif country_code.upper() == "US":
+        base_rate += 25.0
+
+    if customer_tier.lower() == "vip":
+        base_rate *= 0.90
+    elif customer_tier.lower() == "wholesale":
+        base_rate *= 0.85
 
     if is_express:
         multiplier = 2.0 if customer_tier.lower() == "regular" else 1.5
