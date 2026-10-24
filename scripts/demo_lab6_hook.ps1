@@ -44,9 +44,10 @@ try {
     Write-Host '=== FAIL: commit attempt with CC=12 ===' -ForegroundColor Yellow
     Write-Host 'git commit -m "feat: add messy code"'
     $ErrorActionPreference = 'Continue'
-    git commit -m 'feat: add messy code' 2>&1 | Out-Host
+    $commitOutput = @(git commit -m 'feat: add messy code' 2>&1)
     $failExit = $LASTEXITCODE
     $ErrorActionPreference = 'Stop'
+    foreach ($line in $commitOutput) { Write-Host ($line.ToString()) }
     Write-Host "Exit code: $failExit"
     Write-Host 'Last commit (the failed commit must be absent):'
     git log --oneline -1 | Out-Host
@@ -65,9 +66,10 @@ try {
     Write-Host '=== PASS: lookup-table refactoring ===' -ForegroundColor Green
     Write-Host 'git commit -m "refactor: replace branches with lookup table"'
     $ErrorActionPreference = 'Continue'
-    git commit -m 'refactor: replace branches with lookup table' 2>&1 | Out-Host
+    $commitOutput = @(git commit -m 'refactor: replace branches with lookup table' 2>&1)
     $passExit = $LASTEXITCODE
     $ErrorActionPreference = 'Stop'
+    foreach ($line in $commitOutput) { Write-Host ($line.ToString()) }
     Write-Host "Exit code: $passExit"
     git log --oneline -2 | Out-Host
     if ($passExit -ne 0) { throw "PASS commit failed: exit $passExit." }
