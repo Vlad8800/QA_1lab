@@ -1,17 +1,18 @@
 param([switch]$NoPause)
 
+# ASCII-only source so Windows PowerShell 5.1 parses it in any code page.
 $ErrorActionPreference = 'Stop'
 $projectRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $python = Join-Path $projectRoot '.venv-1\Scripts\python.exe'
 $oldPython = $env:LAB6_PYTHON
 if (-not (Test-Path -LiteralPath $python)) {
-    throw "Не знайдено Python: $python"
+    throw "Python not found: $python"
 }
 
 Push-Location $projectRoot
 try {
     if (-not [string]::IsNullOrWhiteSpace((git status --porcelain | Out-String))) {
-        throw 'Робоча папка має незбережені зміни. Спершу заверши або збережи їх.'
+        throw 'Working tree is not clean. Save existing changes first.'
     }
 
     $originalBranch = (git branch --show-current).Trim()
@@ -20,7 +21,7 @@ try {
     $env:LAB6_PYTHON = $python
 
     git switch -c $demoBranch | Out-Host
-    if ($LASTEXITCODE -ne 0) { throw 'Не вдалося створити демонстраційну гілку.' }
+    if ($LASTEXITCODE -ne 0) { throw 'Could not create demo branch.' }
 
     @(
         'def demo_rate(value):',
@@ -36,42 +37,46 @@ try {
         '    if value == 10: return 10',
         '    if value == 11: return 11',
         '    return 0'
-    ) | Set-Content -LiteralPath $demoFile -Encoding utf8
+    ) | Set-Content -LiteralPath $demoFile -Encoding ascii
 
     git add -- $demoFile
     Write-Host ''
-    Write-Host '=== FAIL: спроба коміту функції з CC=12 ===' -ForegroundColor Yellow
+    Write-Host '=== FAIL: commit attempt with CC=12 ===' -ForegroundColor Yellow
     Write-Host 'git commit -m "feat: add messy code"'
+    $ErrorActionPreference = 'Continue'
     git commit -m 'feat: add messy code' 2>&1 | Out-Host
     $failExit = $LASTEXITCODE
-    Write-Host "Код завершення: $failExit"
-    Write-Host 'Останній коміт (невдалий коміт тут зʼявитися не повинен):'
+    $ErrorActionPreference = 'Stop'
+    Write-Host "Exit code: $failExit"
+    Write-Host 'Last commit (the failed commit must be absent):'
     git log --oneline -1 | Out-Host
-    if ($failExit -ne 1) { throw "Hook мав заблокувати коміт, але повернув $failExit." }
-    if (-not $NoPause) { Read-Host 'Зроби скріншот FAIL, потім натисни Enter' | Out-Null }
+    if ($failExit -ne 1) { throw "Hook did not block the commit: exit $failExit." }
+    if (-not $NoPause) { Read-Host 'Take the FAIL screenshot, then press Enter' | Out-Null }
 
     @(
         'RATES = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, 11: 11}',
         '',
         'def demo_rate(value):',
         '    return RATES.get(value, 0)'
-    ) | Set-Content -LiteralPath $demoFile -Encoding utf8
+    ) | Set-Content -LiteralPath $demoFile -Encoding ascii
 
     git add -- $demoFile
     Write-Host ''
-    Write-Host '=== PASS: коміт після рефакторингу через таблицю ===' -ForegroundColor Green
+    Write-Host '=== PASS: lookup-table refactoring ===' -ForegroundColor Green
     Write-Host 'git commit -m "refactor: replace branches with lookup table"'
+    $ErrorActionPreference = 'Continue'
     git commit -m 'refactor: replace branches with lookup table' 2>&1 | Out-Host
     $passExit = $LASTEXITCODE
-    Write-Host "Код завершення: $passExit"
+    $ErrorActionPreference = 'Stop'
+    Write-Host "Exit code: $passExit"
     git log --oneline -2 | Out-Host
-    if ($passExit -ne 0) { throw "Коміт після виправлення не пройшов: $passExit." }
-    if (-not $NoPause) { Read-Host 'Зроби скріншот PASS, потім натисни Enter' | Out-Null }
+    if ($passExit -ne 0) { throw "PASS commit failed: exit $passExit." }
+    if (-not $NoPause) { Read-Host 'Take the PASS screenshot, then press Enter' | Out-Null }
 
     git switch $originalBranch | Out-Host
-    if ($LASTEXITCODE -ne 0) { throw "Не вдалося повернутися на $originalBranch." }
+    if ($LASTEXITCODE -ne 0) { throw "Could not return to $originalBranch." }
     Write-Host ''
-    Write-Host "Готово. Ти знову на гілці $originalBranch. Демонстрація збережена в $demoBranch."
+    Write-Host "Done. Current branch: $originalBranch. Demo branch: $demoBranch."
 }
 finally {
     $env:LAB6_PYTHON = $oldPython
