@@ -1,0 +1,12 @@
+#!/bin/sh
+# Lab 6: the Python checker reads staged blobs and returns 1 on any violation.
+if [ -n "$LAB6_PYTHON" ]; then
+    PYTHON_EXEC="$LAB6_PYTHON"
+elif [ -f "./.venv-1/Scripts/python.exe" ]; then
+    PYTHON_EXEC="./.venv-1/Scripts/python.exe"
+else
+    PYTHON_EXEC="python"
+fi
+
+"$PYTHON_EXEC" quality_gate.py
+exit $?

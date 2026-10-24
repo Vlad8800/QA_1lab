@@ -1,0 +1,5 @@
+FAIL attempt: git commit -m "feat: add messy code"
+[31m[FAIL] sample.py:1 messy: CC=12 > 10[0m
+[31m[BLOCKED] Commit rejected by cyclomatic complexity gate.[0m
+exit=1
+commit_count=0

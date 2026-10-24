@@ -1,0 +1,21 @@
+flowchart TD
+  start([Start]) --> country{UA?}
+  country -- yes --> domestic[Return domestic rate] --> finish([Exit])
+  country -- no --> retry{Retry object?}
+  retry -- yes --> retryInfo[Use retry statistics] --> fetch[Fetch external rate]
+  retry -- no --> retryEmpty[Use empty statistics] --> fetch
+  fetch --> error{Exception?}
+  error -- yes --> fallback[Use fallback rate] --> heavy{Weight > 20?}
+  error -- no --> live[Use live rate] --> heavy
+  heavy -- yes --> highFee[Add 20] --> express{Express?}
+  heavy -- no --> medium{Weight > 5?}
+  medium -- yes --> midFee[Add 5] --> express
+  medium -- no --> express
+  express -- no --> standard[Use base rate] --> mode{Fallback?}
+  express -- yes --> tier{Regular tier?}
+  tier -- yes --> doubleRate[Multiplier 2] --> holiday{Holiday?}
+  tier -- no --> otherRate[Multiplier 1.5] --> holiday
+  holiday -- yes --> holidayFee[Add holiday fee] --> mode
+  holiday -- no --> mode
+  mode -- yes --> fallbackMode[Return fallback mode] --> finish
+  mode -- no --> liveMode[Return live mode] --> finish

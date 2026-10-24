@@ -1,0 +1,5 @@
+* 79e5dcd chore(audit): update automated halstead and mccabe audit script
+* 6b9d5a7 refactor(audit): eliminate conditional branches using lookup table, PASS
+* 5e21045 feat(audit): simulate topological CC failure, FAIL
+* c44aa3a chore(audit): establish Lab 6 baseline state
+* de038d9 feat: initial commit

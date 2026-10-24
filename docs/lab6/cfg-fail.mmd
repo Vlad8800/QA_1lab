@@ -1,0 +1,33 @@
+flowchart TD
+  start([Start]) --> country{UA?}
+  country -- yes --> domestic[Return domestic rate] --> finish([Exit])
+  country -- no --> retry{Retry object?}
+  retry -- yes --> retryInfo[Use retry statistics] --> fetch[Fetch external rate]
+  retry -- no --> retryEmpty[Use empty statistics] --> fetch
+  fetch --> error{Exception?}
+  error -- yes --> fallback[Use fallback rate] --> veryHeavy{Weight > 30?}
+  error -- no --> live[Use live rate] --> veryHeavy
+  veryHeavy -- yes --> hugeFee[Add 50] --> gb{GB?}
+  veryHeavy -- no --> heavy{Weight > 20?}
+  heavy -- yes --> highFee[Add 20] --> gb
+  heavy -- no --> medium{Weight > 5?}
+  medium -- yes --> midFee[Add 5] --> gb
+  medium -- no --> gb
+  gb -- yes --> gbFee[Add 12] --> vip{VIP tier?}
+  gb -- no --> de{DE?}
+  de -- yes --> deFee[Add 8] --> vip
+  de -- no --> us{US?}
+  us -- yes --> usFee[Add 25] --> vip
+  us -- no --> vip
+  vip -- yes --> vipDiscount[Multiply by 0.90] --> express{Express?}
+  vip -- no --> wholesale{Wholesale tier?}
+  wholesale -- yes --> wholesaleDiscount[Multiply by 0.85] --> express
+  wholesale -- no --> express
+  express -- no --> standard[Use base rate] --> mode{Fallback?}
+  express -- yes --> tier{Regular tier?}
+  tier -- yes --> doubleRate[Multiplier 2] --> holiday{Holiday?}
+  tier -- no --> otherRate[Multiplier 1.5] --> holiday
+  holiday -- yes --> holidayFee[Add holiday fee] --> mode
+  holiday -- no --> mode
+  mode -- yes --> fallbackMode[Return fallback mode] --> finish
+  mode -- no --> liveMode[Return live mode] --> finish

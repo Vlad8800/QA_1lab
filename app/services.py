@@ -1,5 +1,6 @@
 import logging
 import secrets
+from bisect import bisect_right
 from typing import Any, Dict, List, Optional
 import httpx
 from tenacity import (
@@ -54,9 +55,19 @@ def _fetch_external_base_rate(country_code: str) -> float:
 
 
 # --- DATA-DRIVEN REFACTORING: LOOKUP TABLES (Lab #6, Task 2) ---
-SHIPPING_RATE_POLICY = {
-    "UA": {"rate": 2.0, "mode": "domestic"},
+SHIPPING_SOURCE_LOOKUP = {
+    "UA": lambda _country_code: (2.0, False, 1),
 }
+SHIPPING_MODE_LOOKUP = {"UA": "domestic"}
+SHIPPING_COST_LOOKUP = {
+    "UA": lambda base_rate, _weight_fee, _multiplier, _holiday_fee: base_rate,
+}
+DEFAULT_SHIPPING_COST = (
+    lambda base_rate, weight_fee, multiplier, holiday_fee:
+    (base_rate + weight_fee) * multiplier + holiday_fee
+)
+WEIGHT_THRESHOLDS = (5.0, 20.0)
+WEIGHT_SURCHARGES = (0.0, 5.0, 20.0)
 
 EXPRESS_RATE_LOOKUP = {
     (True, "regular", True): (2.0, 20.0),
@@ -71,11 +82,6 @@ FALLBACK_MODE_LOOKUP = {
     True: "fallback_applied",
     False: "external_live",
 }
-
-
-def _get_weight_surcharge(weight: float) -> float:
-    """Lookup-driven weight surcharge."""
-    return 20.0 if weight > 20.0 else (5.0 if weight > 5.0 else 0.0)
 
 
 def _fetch_shipping_base_rate(country_code: str) -> tuple[float, bool, int]:
@@ -101,32 +107,25 @@ def calculate_shipping_cost(
 ) -> Dict[str, Any]:
     """
     Розрахунок доставки через Data-Driven Lookup Tables (Lab #6, Task 2).
-    Повне усунення логічних розгалужень if-else.
-    Cyclomatic Complexity: CC = 2 (Linear execution flow).
+    Правила вибору тарифу, надбавки та режиму задано таблицями.
+    У цій функції немає умовних переходів; CC = 1.
     """
     country_upper = country_code.upper()
-    if country_upper in SHIPPING_RATE_POLICY:
-        policy = SHIPPING_RATE_POLICY[country_upper]
-        return {
-            "final_cost": policy["rate"],
-            "is_fallback": False,
-            "attempts": 1,
-            "mode": policy["mode"],
-        }
-
-    base_rate, is_fallback, attempts = _fetch_shipping_base_rate(country_code)
-    weight_surcharge = _get_weight_surcharge(weight)
+    rate_source = SHIPPING_SOURCE_LOOKUP.get(country_upper, _fetch_shipping_base_rate)
+    base_rate, is_fallback, attempts = rate_source(country_code)
+    weight_surcharge = WEIGHT_SURCHARGES[bisect_right(WEIGHT_THRESHOLDS, weight)]
     multiplier, holiday_fee = EXPRESS_RATE_LOOKUP.get(
         (is_express, customer_tier.lower(), is_holiday),
         (1.0, 0.0),
     )
-    final_cost = ((base_rate + weight_surcharge) * multiplier) + holiday_fee
+    cost_formula = SHIPPING_COST_LOOKUP.get(country_upper, DEFAULT_SHIPPING_COST)
+    final_cost = cost_formula(base_rate, weight_surcharge, multiplier, holiday_fee)
 
     return {
         "final_cost": round(final_cost, 2),
         "is_fallback": is_fallback,
         "attempts": attempts,
-        "mode": FALLBACK_MODE_LOOKUP[is_fallback],
+        "mode": SHIPPING_MODE_LOOKUP.get(country_upper, FALLBACK_MODE_LOOKUP[is_fallback]),
     }
 
 

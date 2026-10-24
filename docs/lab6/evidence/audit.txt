@@ -1,0 +1,30 @@
+
+==============================================================================================
+ 1. GLOBAL BASELINE SCAN (HALSTEAD REPOSITORY SCREENING)
+==============================================================================================
+Total Python Source Files Analyzed: 46
+METRIC                                   | SYMBOL          | VALUE
+----------------------------------------------------------------------------------
+Distinct Operators                       | eta1 (h1)       | 20
+Distinct Operands                        | eta2 (h2)       | 902
+Total Operators Usage                    | N1              | 591
+Total Operands Usage                     | N2              | 1151
+Program Vocabulary                       | eta = h1 + h2   | 922
+Program Length                           | N = N1 + N2     | 1742
+Information Volume (bits)                | V = N * log2(eta) | 17156.30 bits
+Total Mental Effort                      | E = V * D       | 218923.53
+----------------------------------------------------------------------------------
+
+==============================================================================================
+ 2. ARCHITECTURAL LAYER HALSTEAD AUDIT & LOC HOTSPOTS ANALYSIS
+==============================================================================================
+ARCHITECTURAL ROLE           | FILE PATH                | LOC    | eta1  | eta2  | N1    | N2    | VOL (V)   | DIFF (D)  | EFFORT (E)
+-----------------------------------------------------------------------------------------------------------------------------
+Core Domain / Business Logic | app/services.py          | 223    | 11    | 46    | 26    | 51    | 449.13    | 6.10      | 2738.73
+Integration / Infrastructure | app/export/repository.py | 424    | 9     | 45    | 24    | 46    | 402.84    | 4.60      | 1853.07
+Utility / Helper / DTO       | app/utils.py             | 13     | 6     | 11    | 7     | 13    | 81.75     | 3.55      | 289.84
+-----------------------------------------------------------------------------------------------------------------------------
+
+HOTSPOT RANKING BY MENTAL EFFORT (E):
+  1. app/services.py (Core Domain / Business Logic): Effort E = 2738.73 [LOC = 223]
+  2. app/export/repository.py (Integration / Infrastructure): Effort E = 1853.07 [LOC = 424]
