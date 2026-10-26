@@ -37,7 +37,7 @@ def audit_halstead_baseline():
     # Summing each file's h1/h2 would count repeated symbols many times.
     nodes = []
     for path in files:
-        nodes.extend(ast.parse(path.read_text(encoding='utf-8'), filename=str(path)).body)
+        nodes.extend(ast.parse(path.read_text(encoding='utf-8-sig'), filename=str(path)).body)
     result = rm.h_visit_ast(ast.Module(body=nodes, type_ignores=[])).total
     vocab = result.h1 + result.h2
     length = result.N1 + result.N2
@@ -68,7 +68,7 @@ def audit_architectural_layers():
 
     stats = []
     for role, path in target_files:
-        with open(path, 'r', encoding='utf-8') as f:
+        with open(path, 'r', encoding='utf-8-sig') as f:
             code = f.read()
         h_rep = rm.h_visit(code).total
         raw = raw_analyze(code)
@@ -114,11 +114,11 @@ def audit_mccabe_topological():
         )
         block = next(b for b in cc.cc_visit(source) if b.name == 'calculate_shipping_cost')
         print(f'{label:<20} {ref:<10} CC={block.complexity:<3} Grade={cc.cc_rank(block.complexity)}')
-    current = Path('app/services.py').read_text(encoding='utf-8')
+    current = Path('app/services.py').read_text(encoding='utf-8-sig')
     block = next(b for b in cc.cc_visit(current) if b.name == 'calculate_shipping_cost')
     print(f'{"Lookup PASS":<20} {"worktree":<10} CC={block.complexity:<3} Grade={cc.cc_rank(block.complexity)}')
 
-    with open("app/services.py", "r", encoding="utf-8") as f:
+    with open("app/services.py", "r", encoding="utf-8-sig") as f:
         code = f.read()
 
     blocks = cc.cc_visit(code)
