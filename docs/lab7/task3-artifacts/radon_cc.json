@@ -1,0 +1,3020 @@
+{
+  "1.py": [
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 32,
+      "name": "set_cell_border",
+      "complexity": 4,
+      "lineno": 22,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 36,
+      "name": "set_cell_shading",
+      "complexity": 1,
+      "lineno": 34,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 86,
+      "name": "add_heading_1",
+      "complexity": 1,
+      "lineno": 78,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 95,
+      "name": "add_heading_2",
+      "complexity": 1,
+      "lineno": 88,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 102,
+      "name": "add_body",
+      "complexity": 1,
+      "lineno": 97,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 110,
+      "name": "add_bullet",
+      "complexity": 1,
+      "lineno": 104,
+      "closures": []
+    }
+  ],
+  "app/anonymization/policy.py": [
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 14,
+      "name": "HandlingAction",
+      "complexity": 1,
+      "lineno": 10,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 24,
+      "name": "EntityHandlingRule",
+      "complexity": 1,
+      "lineno": 18,
+      "methods": []
+    }
+  ],
+  "app/anonymization/routes.py": [
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 112,
+      "name": "verify_erasure_endpoint",
+      "complexity": 4,
+      "lineno": 89,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 80,
+      "name": "anonymize_user_endpoint",
+      "complexity": 3,
+      "lineno": 45,
+      "closures": []
+    }
+  ],
+  "app/anonymization/schemas.py": [
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 11,
+      "name": "EntityProcessingSummary",
+      "complexity": 1,
+      "lineno": 8,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 16,
+      "name": "AnonymizationRequest",
+      "complexity": 1,
+      "lineno": 14,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 25,
+      "name": "AnonymizationResponse",
+      "complexity": 1,
+      "lineno": 19,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 39,
+      "name": "ErasureVerificationResult",
+      "complexity": 1,
+      "lineno": 28,
+      "methods": []
+    }
+  ],
+  "app/anonymization/service.py": [
+    {
+      "type": "method",
+      "rank": "C",
+      "col_offset": 4,
+      "endline": 281,
+      "classname": "AnonymizationWorkflowService",
+      "name": "verify_erasure",
+      "complexity": 11,
+      "lineno": 238,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "B",
+      "col_offset": 4,
+      "endline": 232,
+      "classname": "AnonymizationWorkflowService",
+      "name": "anonymize_user",
+      "complexity": 8,
+      "lineno": 53,
+      "closures": []
+    },
+    {
+      "type": "class",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 281,
+      "name": "AnonymizationWorkflowService",
+      "complexity": 6,
+      "lineno": 33,
+      "methods": [
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 45,
+          "classname": "AnonymizationWorkflowService",
+          "name": "__init__",
+          "complexity": 1,
+          "lineno": 44,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 51,
+          "classname": "AnonymizationWorkflowService",
+          "name": "repository",
+          "complexity": 2,
+          "lineno": 48,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "B",
+          "col_offset": 4,
+          "endline": 232,
+          "classname": "AnonymizationWorkflowService",
+          "name": "anonymize_user",
+          "complexity": 8,
+          "lineno": 53,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "C",
+          "col_offset": 4,
+          "endline": 281,
+          "classname": "AnonymizationWorkflowService",
+          "name": "verify_erasure",
+          "complexity": 11,
+          "lineno": 238,
+          "closures": []
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 51,
+      "classname": "AnonymizationWorkflowService",
+      "name": "repository",
+      "complexity": 2,
+      "lineno": 48,
+      "closures": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 25,
+      "name": "AnonymizationAccessDeniedException",
+      "complexity": 1,
+      "lineno": 23,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 30,
+      "name": "SubjectNotFoundException",
+      "complexity": 1,
+      "lineno": 28,
+      "methods": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 45,
+      "classname": "AnonymizationWorkflowService",
+      "name": "__init__",
+      "complexity": 1,
+      "lineno": 44,
+      "closures": []
+    }
+  ],
+  "app/consent/gate.py": [
+    {
+      "type": "method",
+      "rank": "B",
+      "col_offset": 4,
+      "endline": 131,
+      "classname": "ConsentPolicyGate",
+      "name": "evaluate_access",
+      "complexity": 8,
+      "lineno": 54,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 52,
+      "classname": "ConsentPolicyGate",
+      "name": "invalidate_cache",
+      "complexity": 5,
+      "lineno": 45,
+      "closures": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 152,
+      "name": "ConsentPolicyGate",
+      "complexity": 4,
+      "lineno": 23,
+      "methods": [
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 37,
+          "classname": "ConsentPolicyGate",
+          "name": "__init__",
+          "complexity": 1,
+          "lineno": 34,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 43,
+          "classname": "ConsentPolicyGate",
+          "name": "repository",
+          "complexity": 2,
+          "lineno": 40,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 52,
+          "classname": "ConsentPolicyGate",
+          "name": "invalidate_cache",
+          "complexity": 5,
+          "lineno": 45,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "B",
+          "col_offset": 4,
+          "endline": 131,
+          "classname": "ConsentPolicyGate",
+          "name": "evaluate_access",
+          "complexity": 8,
+          "lineno": 54,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 152,
+          "classname": "ConsentPolicyGate",
+          "name": "_log_evaluation",
+          "complexity": 2,
+          "lineno": 134,
+          "closures": []
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 165,
+      "name": "get_policy_gate",
+      "complexity": 2,
+      "lineno": 161,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 43,
+      "classname": "ConsentPolicyGate",
+      "name": "repository",
+      "complexity": 2,
+      "lineno": 40,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 152,
+      "classname": "ConsentPolicyGate",
+      "name": "_log_evaluation",
+      "complexity": 2,
+      "lineno": 134,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 37,
+      "classname": "ConsentPolicyGate",
+      "name": "__init__",
+      "complexity": 1,
+      "lineno": 34,
+      "closures": []
+    }
+  ],
+  "app/consent/routes.py": [
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 61,
+      "name": "list_user_consents_endpoint",
+      "complexity": 3,
+      "lineno": 49,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 91,
+      "name": "grant_consent_endpoint",
+      "complexity": 3,
+      "lineno": 69,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 120,
+      "name": "revoke_consent_endpoint",
+      "complexity": 3,
+      "lineno": 99,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 136,
+      "name": "check_policy_gate_endpoint",
+      "complexity": 1,
+      "lineno": 128,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 156,
+      "name": "dispatch_marketing_campaign_endpoint",
+      "complexity": 1,
+      "lineno": 145,
+      "closures": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 41,
+      "name": "MarketingCampaignRequest",
+      "complexity": 1,
+      "lineno": 39,
+      "methods": []
+    }
+  ],
+  "app/consent/schemas.py": [
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 14,
+      "name": "ConsentPurpose",
+      "complexity": 1,
+      "lineno": 10,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 20,
+      "name": "ConsentStatus",
+      "complexity": 1,
+      "lineno": 17,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 28,
+      "name": "ProcessingLawfulBasis",
+      "complexity": 1,
+      "lineno": 23,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 33,
+      "name": "PolicyGateDecision",
+      "complexity": 1,
+      "lineno": 31,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 47,
+      "name": "ConsentRecord",
+      "complexity": 1,
+      "lineno": 36,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 53,
+      "name": "GrantConsentRequest",
+      "complexity": 1,
+      "lineno": 50,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 58,
+      "name": "RevokeConsentRequest",
+      "complexity": 1,
+      "lineno": 56,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 72,
+      "name": "ConsentResponse",
+      "complexity": 1,
+      "lineno": 61,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 78,
+      "name": "PolicyGateCheckRequest",
+      "complexity": 1,
+      "lineno": 75,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 88,
+      "name": "PolicyGateResult",
+      "complexity": 1,
+      "lineno": 81,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 98,
+      "name": "MarketingDispatchResult",
+      "complexity": 1,
+      "lineno": 91,
+      "methods": []
+    }
+  ],
+  "app/consent/service.py": [
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 228,
+      "classname": "ConsentManagementService",
+      "name": "revoke_consent",
+      "complexity": 5,
+      "lineno": 151,
+      "closures": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 298,
+      "name": "ConsentManagementService",
+      "complexity": 4,
+      "lineno": 36,
+      "methods": [
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 47,
+          "classname": "ConsentManagementService",
+          "name": "__init__",
+          "complexity": 1,
+          "lineno": 41,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 53,
+          "classname": "ConsentManagementService",
+          "name": "repository",
+          "complexity": 2,
+          "lineno": 50,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 59,
+          "classname": "ConsentManagementService",
+          "name": "gate",
+          "complexity": 2,
+          "lineno": 56,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 87,
+          "classname": "ConsentManagementService",
+          "name": "get_user_consents",
+          "complexity": 3,
+          "lineno": 61,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 148,
+          "classname": "ConsentManagementService",
+          "name": "grant_consent",
+          "complexity": 4,
+          "lineno": 89,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 228,
+          "classname": "ConsentManagementService",
+          "name": "revoke_consent",
+          "complexity": 5,
+          "lineno": 151,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 290,
+          "classname": "ConsentManagementService",
+          "name": "dispatch_marketing_email",
+          "complexity": 4,
+          "lineno": 231,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 298,
+          "classname": "ConsentManagementService",
+          "name": "_check_authorization",
+          "complexity": 3,
+          "lineno": 293,
+          "closures": []
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 148,
+      "classname": "ConsentManagementService",
+      "name": "grant_consent",
+      "complexity": 4,
+      "lineno": 89,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 290,
+      "classname": "ConsentManagementService",
+      "name": "dispatch_marketing_email",
+      "complexity": 4,
+      "lineno": 231,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 87,
+      "classname": "ConsentManagementService",
+      "name": "get_user_consents",
+      "complexity": 3,
+      "lineno": 61,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 298,
+      "classname": "ConsentManagementService",
+      "name": "_check_authorization",
+      "complexity": 3,
+      "lineno": 293,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 53,
+      "classname": "ConsentManagementService",
+      "name": "repository",
+      "complexity": 2,
+      "lineno": 50,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 59,
+      "classname": "ConsentManagementService",
+      "name": "gate",
+      "complexity": 2,
+      "lineno": 56,
+      "closures": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 28,
+      "name": "ConsentAccessDeniedException",
+      "complexity": 1,
+      "lineno": 26,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 33,
+      "name": "SubjectNotFoundException",
+      "complexity": 1,
+      "lineno": 31,
+      "methods": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 47,
+      "classname": "ConsentManagementService",
+      "name": "__init__",
+      "complexity": 1,
+      "lineno": 41,
+      "closures": []
+    }
+  ],
+  "app/export/repository.py": [
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 304,
+      "classname": "UserDataRepository",
+      "name": "upsert_grant_consent",
+      "complexity": 5,
+      "lineno": 247,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 337,
+      "classname": "UserDataRepository",
+      "name": "revoke_consent",
+      "complexity": 5,
+      "lineno": 306,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 245,
+      "classname": "UserDataRepository",
+      "name": "get_consent",
+      "complexity": 4,
+      "lineno": 240,
+      "closures": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 404,
+      "name": "UserDataRepository",
+      "complexity": 3,
+      "lineno": 8,
+      "methods": [
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 219,
+          "classname": "UserDataRepository",
+          "name": "__init__",
+          "complexity": 1,
+          "lineno": 11,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 226,
+          "classname": "UserDataRepository",
+          "name": "get_user_by_id",
+          "complexity": 1,
+          "lineno": 225,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 229,
+          "classname": "UserDataRepository",
+          "name": "get_settings_by_user_id",
+          "complexity": 1,
+          "lineno": 228,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 232,
+          "classname": "UserDataRepository",
+          "name": "get_activity_by_user_id",
+          "complexity": 3,
+          "lineno": 231,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 235,
+          "classname": "UserDataRepository",
+          "name": "get_orders_by_user_id",
+          "complexity": 3,
+          "lineno": 234,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 238,
+          "classname": "UserDataRepository",
+          "name": "get_consents_by_user_id",
+          "complexity": 3,
+          "lineno": 237,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 245,
+          "classname": "UserDataRepository",
+          "name": "get_consent",
+          "complexity": 4,
+          "lineno": 240,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 304,
+          "classname": "UserDataRepository",
+          "name": "upsert_grant_consent",
+          "complexity": 5,
+          "lineno": 247,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 337,
+          "classname": "UserDataRepository",
+          "name": "revoke_consent",
+          "complexity": 5,
+          "lineno": 306,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 366,
+          "classname": "UserDataRepository",
+          "name": "anonymize_user_profile",
+          "complexity": 2,
+          "lineno": 341,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 373,
+          "classname": "UserDataRepository",
+          "name": "delete_settings",
+          "complexity": 2,
+          "lineno": 368,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 379,
+          "classname": "UserDataRepository",
+          "name": "delete_activity_history",
+          "complexity": 3,
+          "lineno": 375,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 391,
+          "classname": "UserDataRepository",
+          "name": "revoke_consents_on_erasure",
+          "complexity": 3,
+          "lineno": 381,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 404,
+          "classname": "UserDataRepository",
+          "name": "retain_and_anonymize_orders",
+          "complexity": 3,
+          "lineno": 393,
+          "closures": []
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 232,
+      "classname": "UserDataRepository",
+      "name": "get_activity_by_user_id",
+      "complexity": 3,
+      "lineno": 231,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 235,
+      "classname": "UserDataRepository",
+      "name": "get_orders_by_user_id",
+      "complexity": 3,
+      "lineno": 234,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 238,
+      "classname": "UserDataRepository",
+      "name": "get_consents_by_user_id",
+      "complexity": 3,
+      "lineno": 237,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 379,
+      "classname": "UserDataRepository",
+      "name": "delete_activity_history",
+      "complexity": 3,
+      "lineno": 375,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 391,
+      "classname": "UserDataRepository",
+      "name": "revoke_consents_on_erasure",
+      "complexity": 3,
+      "lineno": 381,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 404,
+      "classname": "UserDataRepository",
+      "name": "retain_and_anonymize_orders",
+      "complexity": 3,
+      "lineno": 393,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 416,
+      "name": "get_default_repository",
+      "complexity": 2,
+      "lineno": 411,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 366,
+      "classname": "UserDataRepository",
+      "name": "anonymize_user_profile",
+      "complexity": 2,
+      "lineno": 341,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 373,
+      "classname": "UserDataRepository",
+      "name": "delete_settings",
+      "complexity": 2,
+      "lineno": 368,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 423,
+      "name": "reset_default_repository",
+      "complexity": 1,
+      "lineno": 419,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 219,
+      "classname": "UserDataRepository",
+      "name": "__init__",
+      "complexity": 1,
+      "lineno": 11,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 226,
+      "classname": "UserDataRepository",
+      "name": "get_user_by_id",
+      "complexity": 1,
+      "lineno": 225,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 229,
+      "classname": "UserDataRepository",
+      "name": "get_settings_by_user_id",
+      "complexity": 1,
+      "lineno": 228,
+      "closures": []
+    }
+  ],
+  "app/export/routes.py": [
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 48,
+      "name": "_resolve_authenticated_principal",
+      "complexity": 7,
+      "lineno": 23,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 90,
+      "name": "export_personal_data_endpoint",
+      "complexity": 3,
+      "lineno": 61,
+      "closures": []
+    }
+  ],
+  "app/export/schemas.py": [
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 17,
+      "name": "UserProfileExport",
+      "complexity": 1,
+      "lineno": 10,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 26,
+      "name": "UserSettingsExport",
+      "complexity": 1,
+      "lineno": 20,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 35,
+      "name": "UserActivityItem",
+      "complexity": 1,
+      "lineno": 29,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 45,
+      "name": "UserOrderItem",
+      "complexity": 1,
+      "lineno": 38,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 55,
+      "name": "UserConsentItem",
+      "complexity": 1,
+      "lineno": 48,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 62,
+      "name": "DocumentedOmission",
+      "complexity": 1,
+      "lineno": 58,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 84,
+      "name": "PersonalDataExportResponse",
+      "complexity": 1,
+      "lineno": 65,
+      "methods": []
+    }
+  ],
+  "app/export/service.py": [
+    {
+      "type": "method",
+      "rank": "C",
+      "col_offset": 4,
+      "endline": 243,
+      "classname": "PersonalDataExportService",
+      "name": "export_user_data",
+      "complexity": 11,
+      "lineno": 49,
+      "closures": []
+    },
+    {
+      "type": "class",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 243,
+      "name": "PersonalDataExportService",
+      "complexity": 6,
+      "lineno": 34,
+      "methods": [
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 41,
+          "classname": "PersonalDataExportService",
+          "name": "__init__",
+          "complexity": 1,
+          "lineno": 40,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 47,
+          "classname": "PersonalDataExportService",
+          "name": "repository",
+          "complexity": 2,
+          "lineno": 44,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "C",
+          "col_offset": 4,
+          "endline": 243,
+          "classname": "PersonalDataExportService",
+          "name": "export_user_data",
+          "complexity": 11,
+          "lineno": 49,
+          "closures": []
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 47,
+      "classname": "PersonalDataExportService",
+      "name": "repository",
+      "complexity": 2,
+      "lineno": 44,
+      "closures": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 26,
+      "name": "AccessDeniedException",
+      "complexity": 1,
+      "lineno": 24,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 31,
+      "name": "SubjectNotFoundException",
+      "complexity": 1,
+      "lineno": 29,
+      "methods": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 41,
+      "classname": "PersonalDataExportService",
+      "name": "__init__",
+      "complexity": 1,
+      "lineno": 40,
+      "closures": []
+    }
+  ],
+  "app/main.py": [
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 135,
+      "name": "calculate_order",
+      "complexity": 4,
+      "lineno": 86,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 59,
+      "name": "index_page",
+      "complexity": 1,
+      "lineno": 58,
+      "closures": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 45,
+      "name": "OrderItem",
+      "complexity": 1,
+      "lineno": 42,
+      "methods": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 54,
+      "name": "OrderRequest",
+      "complexity": 1,
+      "lineno": 48,
+      "methods": []
+    }
+  ],
+  "app/privacy/context.py": [
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 12,
+      "name": "get_correlation_id",
+      "complexity": 1,
+      "lineno": 10,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 17,
+      "name": "set_correlation_id",
+      "complexity": 1,
+      "lineno": 15,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 22,
+      "name": "clear_correlation_id",
+      "complexity": 1,
+      "lineno": 20,
+      "closures": []
+    }
+  ],
+  "app/privacy/filter.py": [
+    {
+      "type": "class",
+      "rank": "C",
+      "col_offset": 0,
+      "endline": 63,
+      "name": "PIISanitizingFilter",
+      "complexity": 15,
+      "lineno": 21,
+      "methods": [
+        {
+          "type": "method",
+          "rank": "C",
+          "col_offset": 4,
+          "endline": 63,
+          "classname": "PIISanitizingFilter",
+          "name": "filter",
+          "complexity": 14,
+          "lineno": 28,
+          "closures": []
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "rank": "C",
+      "col_offset": 4,
+      "endline": 63,
+      "classname": "PIISanitizingFilter",
+      "name": "filter",
+      "complexity": 14,
+      "lineno": 28,
+      "closures": []
+    }
+  ],
+  "app/privacy/formatter.py": [
+    {
+      "type": "class",
+      "rank": "C",
+      "col_offset": 0,
+      "endline": 62,
+      "name": "StructuredJsonFormatter",
+      "complexity": 11,
+      "lineno": 12,
+      "methods": [
+        {
+          "type": "method",
+          "rank": "B",
+          "col_offset": 4,
+          "endline": 62,
+          "classname": "StructuredJsonFormatter",
+          "name": "format",
+          "complexity": 10,
+          "lineno": 18,
+          "closures": []
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "rank": "B",
+      "col_offset": 4,
+      "endline": 62,
+      "classname": "StructuredJsonFormatter",
+      "name": "format",
+      "complexity": 10,
+      "lineno": 18,
+      "closures": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 78,
+      "name": "SafeTextFormatter",
+      "complexity": 3,
+      "lineno": 65,
+      "methods": [
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 73,
+          "classname": "SafeTextFormatter",
+          "name": "__init__",
+          "complexity": 2,
+          "lineno": 71,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 78,
+          "classname": "SafeTextFormatter",
+          "name": "format",
+          "complexity": 2,
+          "lineno": 75,
+          "closures": []
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 73,
+      "classname": "SafeTextFormatter",
+      "name": "__init__",
+      "complexity": 2,
+      "lineno": 71,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 78,
+      "classname": "SafeTextFormatter",
+      "name": "format",
+      "complexity": 2,
+      "lineno": 75,
+      "closures": []
+    }
+  ],
+  "app/privacy/logger.py": [
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 53,
+      "name": "setup_privacy_logging",
+      "complexity": 4,
+      "lineno": 12,
+      "closures": []
+    }
+  ],
+  "app/privacy/middleware.py": [
+    {
+      "type": "class",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 81,
+      "name": "PrivacyLoggingMiddleware",
+      "complexity": 6,
+      "lineno": 18,
+      "methods": [
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 81,
+          "classname": "PrivacyLoggingMiddleware",
+          "name": "dispatch",
+          "complexity": 5,
+          "lineno": 24,
+          "closures": []
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 81,
+      "classname": "PrivacyLoggingMiddleware",
+      "name": "dispatch",
+      "complexity": 5,
+      "lineno": 24,
+      "closures": []
+    }
+  ],
+  "app/privacy/sanitizer.py": [
+    {
+      "type": "function",
+      "rank": "C",
+      "col_offset": 0,
+      "endline": 219,
+      "name": "sanitize_data",
+      "complexity": 18,
+      "lineno": 165,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 251,
+      "name": "sanitize_record",
+      "complexity": 10,
+      "lineno": 222,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 137,
+      "name": "_sanitize_masked_value",
+      "complexity": 6,
+      "lineno": 126,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 40,
+      "name": "mask_email",
+      "complexity": 5,
+      "lineno": 28,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 52,
+      "name": "mask_phone",
+      "complexity": 4,
+      "lineno": 43,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 66,
+      "name": "mask_name",
+      "complexity": 4,
+      "lineno": 55,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 151,
+      "name": "_sanitize_mapping",
+      "complexity": 4,
+      "lineno": 140,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 162,
+      "name": "_sanitize_tuple",
+      "complexity": 4,
+      "lineno": 154,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 111,
+      "name": "sanitize_text",
+      "complexity": 3,
+      "lineno": 77,
+      "closures": [
+        {
+          "type": "function",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 107,
+          "name": "_replace_phone",
+          "complexity": 2,
+          "lineno": 102,
+          "closures": []
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 74,
+      "name": "mask_ip",
+      "complexity": 2,
+      "lineno": 69,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 117,
+      "name": "_is_redacted_key",
+      "complexity": 2,
+      "lineno": 114,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 123,
+      "name": "_is_masked_key",
+      "complexity": 2,
+      "lineno": 120,
+      "closures": []
+    }
+  ],
+  "app/services.py": [
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 241,
+      "name": "_get_customer_discount",
+      "complexity": 6,
+      "lineno": 231,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 252,
+      "name": "_get_coupon_discount",
+      "complexity": 5,
+      "lineno": 244,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 99,
+      "name": "_fetch_shipping_base_rate",
+      "complexity": 3,
+      "lineno": 88,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 228,
+      "name": "_get_vip_discount",
+      "complexity": 3,
+      "lineno": 223,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 262,
+      "name": "_calculate_delivery_fee",
+      "complexity": 3,
+      "lineno": 255,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 24,
+      "name": "calculate_base_total",
+      "complexity": 2,
+      "lineno": 21,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 205,
+      "name": "generate_shipping_tokens",
+      "complexity": 2,
+      "lineno": 198,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 289,
+      "name": "calculate_order_discount",
+      "complexity": 2,
+      "lineno": 265,
+      "closures": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 149,
+      "name": "ShippingOrderSpec",
+      "complexity": 2,
+      "lineno": 105,
+      "methods": [
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 120,
+          "classname": "ShippingOrderSpec",
+          "name": "__post_init__",
+          "complexity": 2,
+          "lineno": 116,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 124,
+          "classname": "ShippingOrderSpec",
+          "name": "country",
+          "complexity": 1,
+          "lineno": 123,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 129,
+          "classname": "ShippingOrderSpec",
+          "name": "weight_surcharge",
+          "complexity": 1,
+          "lineno": 127,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 136,
+          "classname": "ShippingOrderSpec",
+          "name": "rate_modifiers",
+          "complexity": 1,
+          "lineno": 132,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 145,
+          "classname": "ShippingOrderSpec",
+          "name": "calculate_cost",
+          "complexity": 1,
+          "lineno": 139,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 149,
+          "classname": "ShippingOrderSpec",
+          "name": "resolve_mode",
+          "complexity": 1,
+          "lineno": 147,
+          "closures": []
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 120,
+      "classname": "ShippingOrderSpec",
+      "name": "__post_init__",
+      "complexity": 2,
+      "lineno": 116,
+      "closures": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 174,
+      "name": "ShippingRateResult",
+      "complexity": 2,
+      "lineno": 153,
+      "methods": [
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 164,
+          "classname": "ShippingRateResult",
+          "name": "__getitem__",
+          "complexity": 1,
+          "lineno": 163,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 167,
+          "classname": "ShippingRateResult",
+          "name": "get",
+          "complexity": 1,
+          "lineno": 166,
+          "closures": []
+        },
+        {
+          "type": "method",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 174,
+          "classname": "ShippingRateResult",
+          "name": "to_dict",
+          "complexity": 1,
+          "lineno": 169,
+          "closures": []
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 37,
+      "name": "apply_loyalty_discount",
+      "complexity": 1,
+      "lineno": 28,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 55,
+      "name": "_fetch_external_base_rate",
+      "complexity": 1,
+      "lineno": 47,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 193,
+      "name": "calculate_shipping_cost",
+      "complexity": 1,
+      "lineno": 178,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 124,
+      "classname": "ShippingOrderSpec",
+      "name": "country",
+      "complexity": 1,
+      "lineno": 123,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 129,
+      "classname": "ShippingOrderSpec",
+      "name": "weight_surcharge",
+      "complexity": 1,
+      "lineno": 127,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 136,
+      "classname": "ShippingOrderSpec",
+      "name": "rate_modifiers",
+      "complexity": 1,
+      "lineno": 132,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 145,
+      "classname": "ShippingOrderSpec",
+      "name": "calculate_cost",
+      "complexity": 1,
+      "lineno": 139,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 149,
+      "classname": "ShippingOrderSpec",
+      "name": "resolve_mode",
+      "complexity": 1,
+      "lineno": 147,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 164,
+      "classname": "ShippingRateResult",
+      "name": "__getitem__",
+      "complexity": 1,
+      "lineno": 163,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 167,
+      "classname": "ShippingRateResult",
+      "name": "get",
+      "complexity": 1,
+      "lineno": 166,
+      "closures": []
+    },
+    {
+      "type": "method",
+      "rank": "A",
+      "col_offset": 4,
+      "endline": 174,
+      "classname": "ShippingRateResult",
+      "name": "to_dict",
+      "complexity": 1,
+      "lineno": 169,
+      "closures": []
+    }
+  ],
+  "app/utils.py": [
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 13,
+      "name": "validate_item_payload",
+      "complexity": 5,
+      "lineno": 7,
+      "closures": []
+    }
+  ],
+  "audit_chapin.py": [
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 85,
+      "name": "compute_metrics",
+      "complexity": 9,
+      "lineno": 73,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 36,
+      "name": "get_task1_variables",
+      "complexity": 1,
+      "lineno": 20,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 68,
+      "name": "get_task2_variables",
+      "complexity": 1,
+      "lineno": 40,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 111,
+      "name": "print_full_audit",
+      "complexity": 1,
+      "lineno": 89,
+      "closures": []
+    },
+    {
+      "type": "class",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 17,
+      "name": "VariableAudit",
+      "complexity": 1,
+      "lineno": 12,
+      "methods": []
+    }
+  ],
+  "audit_gqm_metrics.py": [
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 113,
+      "name": "audit_gqm_metrics",
+      "complexity": 7,
+      "lineno": 23,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 20,
+      "name": "print_banner",
+      "complexity": 1,
+      "lineno": 17,
+      "closures": []
+    }
+  ],
+  "audit_halstead_mccabe.py": [
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 131,
+      "name": "audit_mccabe_topological",
+      "complexity": 8,
+      "lineno": 104,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 55,
+      "name": "audit_halstead_baseline",
+      "complexity": 6,
+      "lineno": 29,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 101,
+      "name": "audit_architectural_layers",
+      "complexity": 5,
+      "lineno": 58,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 26,
+      "name": "print_banner",
+      "complexity": 1,
+      "lineno": 23,
+      "closures": []
+    }
+  ],
+  "demo_anonymization_workflow.py": [
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 130,
+      "name": "run_demo",
+      "complexity": 6,
+      "lineno": 32,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 25,
+      "name": "print_banner",
+      "complexity": 1,
+      "lineno": 22,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 29,
+      "name": "print_json",
+      "complexity": 1,
+      "lineno": 28,
+      "closures": []
+    }
+  ],
+  "demo_consent_management.py": [
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 149,
+      "name": "run_demo",
+      "complexity": 2,
+      "lineno": 32,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 25,
+      "name": "print_banner",
+      "complexity": 1,
+      "lineno": 22,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 29,
+      "name": "print_json",
+      "complexity": 1,
+      "lineno": 28,
+      "closures": []
+    }
+  ],
+  "demo_goodhart_shield.py": [
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 54,
+      "name": "run_honest_test_suite",
+      "complexity": 6,
+      "lineno": 45,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 27,
+      "name": "business_logic_discount",
+      "complexity": 4,
+      "lineno": 20,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 94,
+      "name": "evaluate_mutation_score",
+      "complexity": 3,
+      "lineno": 83,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 147,
+      "name": "run_goodhart_stress_test",
+      "complexity": 3,
+      "lineno": 97,
+      "closures": [
+        {
+          "type": "function",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 114,
+          "name": "dummy_runner",
+          "complexity": 2,
+          "lineno": 107,
+          "closures": []
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 65,
+      "name": "mutant_1",
+      "complexity": 2,
+      "lineno": 61,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 72,
+      "name": "mutant_2",
+      "complexity": 2,
+      "lineno": 68,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 16,
+      "name": "print_banner",
+      "complexity": 1,
+      "lineno": 13,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 39,
+      "name": "run_dummy_coverage_hack",
+      "complexity": 1,
+      "lineno": 33,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 77,
+      "name": "mutant_3",
+      "complexity": 1,
+      "lineno": 75,
+      "closures": []
+    }
+  ],
+  "demo_infra_reliability_stability.py": [
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 93,
+      "name": "run_reliability_experiment",
+      "complexity": 9,
+      "lineno": 38,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 180,
+      "name": "run_stability_experiment",
+      "complexity": 8,
+      "lineno": 126,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 105,
+      "name": "cpu_heavy_stress_process",
+      "complexity": 3,
+      "lineno": 102,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 123,
+      "name": "run_workload_iterations",
+      "complexity": 2,
+      "lineno": 108,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 32,
+      "name": "print_banner",
+      "complexity": 1,
+      "lineno": 29,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 210,
+      "name": "print_technical_protection_declaration",
+      "complexity": 1,
+      "lineno": 186,
+      "closures": []
+    }
+  ],
+  "demo_personal_data_export.py": [
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 67,
+      "name": "run_demo",
+      "complexity": 5,
+      "lineno": 12,
+      "closures": []
+    }
+  ],
+  "demo_secure_logging.py": [
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 70,
+      "name": "run_demo",
+      "complexity": 2,
+      "lineno": 15,
+      "closures": []
+    }
+  ],
+  "quality_gate.py": [
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 49,
+      "name": "main",
+      "complexity": 9,
+      "lineno": 23,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 20,
+      "name": "staged_python_files",
+      "complexity": 3,
+      "lineno": 18,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 15,
+      "name": "git",
+      "complexity": 1,
+      "lineno": 14,
+      "closures": []
+    }
+  ],
+  "tests/test_anonymization_workflow.py": [
+    {
+      "type": "function",
+      "rank": "D",
+      "col_offset": 0,
+      "endline": 105,
+      "name": "test_successful_user_anonymization_and_erasure",
+      "complexity": 30,
+      "lineno": 49,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "C",
+      "col_offset": 0,
+      "endline": 211,
+      "name": "test_erasure_verification_endpoint",
+      "complexity": 13,
+      "lineno": 211,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "C",
+      "col_offset": 0,
+      "endline": 110,
+      "name": "test_referential_integrity_and_retention_of_orders",
+      "complexity": 11,
+      "lineno": 110,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 45,
+      "name": "test_entity_handling_policy_completeness",
+      "complexity": 9,
+      "lineno": 33,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 141,
+      "name": "test_idempotency_of_anonymization",
+      "complexity": 8,
+      "lineno": 141,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 245,
+      "name": "test_privacy_safe_audit_logging_during_anonymization",
+      "complexity": 7,
+      "lineno": 245,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 165,
+      "name": "test_idor_protection_foreign_user_cannot_anonymize",
+      "complexity": 5,
+      "lineno": 165,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 182,
+      "name": "test_dpo_and_admin_can_execute_erasure",
+      "complexity": 4,
+      "lineno": 182,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 201,
+      "name": "test_nonexistent_user_returns_404",
+      "complexity": 3,
+      "lineno": 201,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 195,
+      "name": "test_unauthenticated_request_rejected",
+      "complexity": 2,
+      "lineno": 195,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 30,
+      "name": "clean_repository_state",
+      "complexity": 1,
+      "lineno": 26,
+      "closures": []
+    }
+  ],
+  "tests/test_consent_management.py": [
+    {
+      "type": "function",
+      "rank": "D",
+      "col_offset": 0,
+      "endline": 63,
+      "name": "test_grant_allow_revoke_deny_lifecycle_with_side_effect_verification",
+      "complexity": 24,
+      "lineno": 63,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "C",
+      "col_offset": 0,
+      "endline": 36,
+      "name": "test_consent_model_structure_and_evidentiary_history",
+      "complexity": 13,
+      "lineno": 36,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 203,
+      "name": "test_idempotency_of_grant_and_revoke",
+      "complexity": 7,
+      "lineno": 203,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 150,
+      "name": "test_purpose_isolation_cross_purpose_never_allowed",
+      "complexity": 5,
+      "lineno": 150,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 180,
+      "name": "test_policy_version_check_and_outdated_consent_rejection",
+      "complexity": 4,
+      "lineno": 180,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 243,
+      "name": "test_idor_protection_foreign_user_cannot_alter_consents",
+      "complexity": 4,
+      "lineno": 243,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 279,
+      "name": "test_lawful_basis_isolation_contractual_orders_never_blocked_by_consent",
+      "complexity": 4,
+      "lineno": 279,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 266,
+      "name": "test_dpo_role_can_manage_consents",
+      "complexity": 3,
+      "lineno": 266,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 33,
+      "name": "clean_repository_state",
+      "complexity": 1,
+      "lineno": 25,
+      "closures": []
+    }
+  ],
+  "tests/test_main.py": [
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 33,
+      "name": "test_calculate_shipping_cost",
+      "complexity": 8,
+      "lineno": 33,
+      "closures": [
+        {
+          "type": "function",
+          "rank": "A",
+          "col_offset": 4,
+          "endline": 39,
+          "name": "mock_fetch_rate",
+          "complexity": 2,
+          "lineno": 36,
+          "closures": []
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 24,
+      "name": "test_apply_loyalty_discount",
+      "complexity": 6,
+      "lineno": 24,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 73,
+      "name": "test_generate_shipping_tokens",
+      "complexity": 4,
+      "lineno": 73,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 81,
+      "name": "test_api_endpoints",
+      "complexity": 4,
+      "lineno": 81,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 15,
+      "name": "test_calculate_base_total",
+      "complexity": 2,
+      "lineno": 15,
+      "closures": []
+    }
+  ],
+  "tests/test_personal_data_export.py": [
+    {
+      "type": "function",
+      "rank": "D",
+      "col_offset": 0,
+      "endline": 104,
+      "name": "test_successful_personal_data_export_aggregation",
+      "complexity": 25,
+      "lineno": 63,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 124,
+      "name": "test_data_minimization_strict_exclusion_of_security_fields",
+      "complexity": 8,
+      "lineno": 124,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 222,
+      "name": "test_documented_omissions_for_empty_sources",
+      "complexity": 8,
+      "lineno": 222,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 246,
+      "name": "test_privacy_safe_audit_logging_during_export",
+      "complexity": 7,
+      "lineno": 246,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 159,
+      "name": "test_idor_protection_foreign_user_access_blocked",
+      "complexity": 5,
+      "lineno": 159,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 181,
+      "name": "test_unauthenticated_request_rejected",
+      "complexity": 3,
+      "lineno": 181,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 188,
+      "name": "test_bearer_token_authentication_support",
+      "complexity": 3,
+      "lineno": 188,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 196,
+      "name": "test_dpo_privileged_export_access",
+      "complexity": 3,
+      "lineno": 196,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 210,
+      "name": "test_nonexistent_subject_returns_404",
+      "complexity": 3,
+      "lineno": 210,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 56,
+      "name": "export_log_capture",
+      "complexity": 2,
+      "lineno": 49,
+      "closures": []
+    }
+  ],
+  "tests/test_resilience.py": [
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 36,
+      "name": "test_resilience_fallback_on_external_failure",
+      "complexity": 8,
+      "lineno": 36,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 21,
+      "name": "test_external_tariff_service_success",
+      "complexity": 7,
+      "lineno": 21,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 56,
+      "name": "test_resilience_retry_attempts_and_backoff",
+      "complexity": 3,
+      "lineno": 56,
+      "closures": []
+    }
+  ],
+  "tests/test_secure_logging.py": [
+    {
+      "type": "function",
+      "rank": "C",
+      "col_offset": 0,
+      "endline": 328,
+      "name": "test_fastapi_middleware_correlation_id_and_no_raw_body_leak",
+      "complexity": 18,
+      "lineno": 281,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 90,
+      "name": "test_logging_policy_definitions",
+      "complexity": 10,
+      "lineno": 90,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 152,
+      "name": "test_structured_json_logging",
+      "complexity": 10,
+      "lineno": 152,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 130,
+      "name": "test_sanitize_plain_text",
+      "complexity": 9,
+      "lineno": 130,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 108,
+      "name": "test_helper_masking_functions",
+      "complexity": 8,
+      "lineno": 108,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 194,
+      "name": "test_exception_message_and_traceback_sanitization",
+      "complexity": 7,
+      "lineno": 194,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "B",
+      "col_offset": 0,
+      "endline": 228,
+      "name": "test_negative_scenario_deep_nested_dto_and_leak_detection",
+      "complexity": 6,
+      "lineno": 228,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 79,
+      "name": "assert_no_raw_sensitive_leaks",
+      "complexity": 4,
+      "lineno": 71,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 68,
+      "name": "log_capture",
+      "complexity": 2,
+      "lineno": 56,
+      "closures": []
+    }
+  ],
+  "tests/test_services.py": [
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 129,
+      "name": "test_shipping_cost_immutable_value_objects_pass",
+      "complexity": 5,
+      "lineno": 102,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 11,
+      "name": "test_standard_customer_small_order",
+      "complexity": 2,
+      "lineno": 11,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 24,
+      "name": "test_standard_customer_large_order",
+      "complexity": 2,
+      "lineno": 24,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 49,
+      "name": "test_vip_customer_with_coupon_and_free_delivery",
+      "complexity": 2,
+      "lineno": 49,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 62,
+      "name": "test_wholesale_bulk_order",
+      "complexity": 2,
+      "lineno": 62,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 75,
+      "name": "test_small_order_holiday_delivery",
+      "complexity": 2,
+      "lineno": 75,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 88,
+      "name": "test_coupon_save10_discount_limit",
+      "complexity": 2,
+      "lineno": 88,
+      "closures": []
+    },
+    {
+      "type": "function",
+      "rank": "A",
+      "col_offset": 0,
+      "endline": 45,
+      "name": "test_invalid_order_amount_raises_error",
+      "complexity": 1,
+      "lineno": 37,
+      "closures": []
+    }
+  ]
+}
