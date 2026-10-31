@@ -3,9 +3,9 @@
 ## Хмарний моніторинг складності та карта Hotspots
 
 **Об'єкт:** репозиторій `QA_1lab`, прикладний Python-код і його Git-історія.  
-**Метод збору історії:** ретроспективний аудит, варіант 1. Репозиторій уже має 47 комітів.  
+**Метод збору історії:** ретроспективний аудит, варіант 1. Історія репозиторію використовується без штучних комітів.  
 **Період:** останні 90 днів від моменту запуску.  
-**Зріз локального запуску:** 31.10.2026; Git HEAD `2fb24e2`.  
+**Зріз локального запуску:** 31.10.2026; Git HEAD `2e2235c`.  
 **Сканер:** Radon 6.0.1, метрики McCabe CC і Halstead Effort.
 
 ### 1. Автоматизація в GitHub Actions
@@ -67,7 +67,7 @@ git log --since='90 days ago' --no-renames --format= --name-only -- '*.py' | sed
 У скрипті використано ту саму команду з `-z` для коректної обробки назв файлів з пробілами. Підрахунок обмежено поточними відстежуваними Python-файлами. Вивід локального запуску, відсортований за кількістю комітів:
 
 ```text
- 18  app/services.py
+ 19  app/services.py
   9  tests/test_main.py
   7  app/main.py
   4  audit_halstead_mccabe.py
@@ -80,7 +80,7 @@ git log --since='90 days ago' --no-renames --format= --name-only -- '*.py' | sed
   1  app/privacy/formatter.py
 ```
 
-Повний список 47 файлів є у [`churn_90d.txt`](task3-artifacts/churn_90d.txt).
+Повний список 48 файлів є у [`churn_90d.txt`](task3-artifacts/churn_90d.txt).
 
 ### 3. Правило класифікації
 
@@ -99,7 +99,7 @@ git log --since='90 days ago' --no-renames --format= --name-only -- '*.py' | sed
 
 | Файл | Max CC | Halstead Effort | Комітів 90 днів | Категорія |
 |---|---:|---:|---:|---|
-| `app/services.py` | 6 | 2857.98 | 18 | Active Development |
+| `app/services.py` | 6 | 3261.71 | 19 | Active Development |
 | `app/main.py` | 4 | 11.61 | 7 | Active Development |
 | `app/privacy/sanitizer.py` | 18 | 3346.72 | 1 | Sleeping Danger |
 | `app/privacy/filter.py` | 15 | 440.70 | 1 | Sleeping Danger |
@@ -110,14 +110,15 @@ git log --since='90 days ago' --no-renames --format= --name-only -- '*.py' | sed
 | `app/export/routes.py` | 7 | 161.96 | 1 | Stable Code |
 | `app/privacy/middleware.py` | 6 | 153.77 | 1 | Stable Code |
 
-**Висновок для наступного спринту.** Справжніх Hotspots за обраними порогами немає: жоден файл одночасно не має CC > 10 і щонайменше 5 змін. Найбільший майбутній ризик — `app/privacy/sanitizer.py` (CC 18, Effort 3346.72) і `app/privacy/filter.py` (CC 15). Їх варто розбити на менші функції й додати адресні тести **перед** новими змінами в приватності. `app/services.py` змінювався 18 разів, але максимальний CC лишається 6; його не слід оголошувати червоним лише через churn. Для нього пріоритет — регресійні тести доставки та контроль росту CC на наступних pull request. Малозмінювані файли з CC <= 10 залишаються у звичайному моніторингу.
+**Висновок для наступного спринту.** Справжніх Hotspots за обраними порогами немає: жоден файл одночасно не має CC > 10 і щонайменше 5 змін. Найбільший майбутній ризик — `app/privacy/sanitizer.py` (CC 18, Effort 3346.72) і `app/privacy/filter.py` (CC 15). Їх варто розбити на менші функції й додати адресні тести **перед** новими змінами в приватності. `app/services.py` змінювався 19 разів, але максимальний CC лишається 6; його не слід оголошувати червоним лише через churn. Для нього пріоритет — регресійні тести доставки та контроль росту CC на наступних pull request. Малозмінювані файли з CC <= 10 залишаються у звичайному моніторингу.
 
 Ця матриця показує поточний стан, а не причинність дефектів. Один коміт рахується один раз для кожного згаданого файлу; перейменування обліковується як новий шлях (`--no-renames`). Показники оновлюються на кожному запуску CI.
 
 ### 5. Перевірка в хмарі
 
-Локально сканер успішно обробив 47 відстежуваних Python-файлів і створив усі п'ять звітів у [`task3-artifacts`](task3-artifacts). Після виправлення налаштування довіри Git у контейнері [хмарний запуск GitHub Actions № 41204177716](https://github.com/Vlad8800/QA_1lab/actions/runs/41204177716) завершився зі статусом **Success**. Усі кроки job `hotspots`, включно з `Scan repository and calculate 90-day churn` та `Upload structured reports`, мають статус **success**. У секції **Artifacts** прикріплено `lab7-hotspots-41204177716` (18.9 KB, artifact ID `13044166105`).
+Локально сканер успішно обробив 48 відстежуваних Python-файлів і створив усі п'ять звітів у [`task3-artifacts`](task3-artifacts). Після виправлення налаштування довіри Git у контейнері [хмарний запуск GitHub Actions № 41204177716](https://github.com/Vlad8800/QA_1lab/actions/runs/41204177716) завершився зі статусом **Success**. Усі кроки job `hotspots`, включно з `Scan repository and calculate 90-day churn` та `Upload structured reports`, мають статус **success**. У секції **Artifacts** прикріплено `lab7-hotspots-41204177716` (18.9 KB, artifact ID `13044166105`).
 
 На [знімку сторінки GitHub Actions](github-actions-success.png) видно `Status Success` і `Artifacts 1`. Назва артефакту та повний журнал доступні за посиланням на запуск вище.
 
 ![Успішний запуск GitHub Actions і один прикріплений артефакт](github-actions-success.png)
+

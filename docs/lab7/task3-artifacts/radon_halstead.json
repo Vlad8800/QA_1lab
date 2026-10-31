@@ -1495,18 +1495,18 @@
   },
   "app/services.py": {
     "total": {
-      "h1": 11,
-      "h2": 48,
-      "N1": 27,
-      "N2": 53,
-      "vocabulary": 59,
-      "length": 80,
-      "calculated_length": 306.1319478396258,
-      "volume": 470.61144394894734,
-      "difficulty": 6.072916666666667,
-      "effort": 2857.9840814816284,
-      "time": 158.77689341564601,
-      "bugs": 0.15687048131631579
+      "h1": 12,
+      "h2": 50,
+      "N1": 28,
+      "N2": 55,
+      "vocabulary": 62,
+      "length": 83,
+      "calculated_length": 325.2123594973901,
+      "volume": 494.19829376211067,
+      "difficulty": 6.6,
+      "effort": 3261.70873882993,
+      "time": 181.20604104610723,
+      "bugs": 0.1647327645873702
     },
     "functions": {
       "calculate_base_total": {
@@ -1552,18 +1552,18 @@
         "bugs": 0.0
       },
       "_fetch_shipping_base_rate": {
-        "h1": 0,
-        "h2": 0,
-        "N1": 0,
-        "N2": 0,
-        "vocabulary": 0,
-        "length": 0,
-        "calculated_length": 0,
-        "volume": 0,
-        "difficulty": 0,
-        "effort": 0,
-        "time": 0.0,
-        "bugs": 0.0
+        "h1": 1,
+        "h2": 2,
+        "N1": 1,
+        "N2": 2,
+        "vocabulary": 3,
+        "length": 3,
+        "calculated_length": 2.0,
+        "volume": 4.754887502163469,
+        "difficulty": 0.5,
+        "effort": 2.3774437510817346,
+        "time": 0.1320802083934297,
+        "bugs": 0.0015849625007211565
       },
       "__post_init__": {
         "h1": 1,
@@ -2507,6 +2507,94 @@
       }
     }
   },
+  "scripts/build_hotspots.py": {
+    "total": {
+      "h1": 11,
+      "h2": 37,
+      "N1": 22,
+      "N2": 42,
+      "vocabulary": 48,
+      "length": 64,
+      "calculated_length": 230.80352233328142,
+      "volume": 357.43760004615405,
+      "difficulty": 6.243243243243243,
+      "effort": 2231.569881369232,
+      "time": 123.97610452051289,
+      "bugs": 0.11914586668205135
+    },
+    "functions": {
+      "command": {
+        "h1": 0,
+        "h2": 0,
+        "N1": 0,
+        "N2": 0,
+        "vocabulary": 0,
+        "length": 0,
+        "calculated_length": 0,
+        "volume": 0,
+        "difficulty": 0,
+        "effort": 0,
+        "time": 0.0,
+        "bugs": 0.0
+      },
+      "tracked_python_files": {
+        "h1": 1,
+        "h2": 2,
+        "N1": 1,
+        "N2": 2,
+        "vocabulary": 3,
+        "length": 3,
+        "calculated_length": 2.0,
+        "volume": 4.754887502163469,
+        "difficulty": 0.5,
+        "effort": 2.3774437510817346,
+        "time": 0.1320802083934297,
+        "bugs": 0.0015849625007211565
+      },
+      "churn_counts": {
+        "h1": 1,
+        "h2": 2,
+        "N1": 1,
+        "N2": 2,
+        "vocabulary": 3,
+        "length": 3,
+        "calculated_length": 2.0,
+        "volume": 4.754887502163469,
+        "difficulty": 0.5,
+        "effort": 2.3774437510817346,
+        "time": 0.1320802083934297,
+        "bugs": 0.0015849625007211565
+      },
+      "risk_category": {
+        "h1": 3,
+        "h2": 6,
+        "N1": 3,
+        "N2": 6,
+        "vocabulary": 9,
+        "length": 9,
+        "calculated_length": 20.264662506490406,
+        "volume": 28.529325012980813,
+        "difficulty": 1.5,
+        "effort": 42.793987519471216,
+        "time": 2.377443751081734,
+        "bugs": 0.009509775004326938
+      },
+      "main": {
+        "h1": 7,
+        "h2": 25,
+        "N1": 16,
+        "N2": 30,
+        "vocabulary": 32,
+        "length": 46,
+        "calculated_length": 135.74788919877133,
+        "volume": 230.0,
+        "difficulty": 4.2,
+        "effort": 966.0,
+        "time": 53.666666666666664,
+        "bugs": 0.07666666666666666
+      }
+    }
+  },
   "scripts/check_cfg.py": {
     "total": {
       "h1": 2,
@@ -2948,17 +3036,17 @@
   "tests/test_personal_data_export.py": {
     "total": {
       "h1": 5,
-      "h2": 91,
-      "N1": 52,
-      "N2": 104,
-      "vocabulary": 96,
-      "length": 156,
-      "calculated_length": 603.8189527325181,
-      "volume": 1027.2541501125004,
-      "difficulty": 2.857142857142857,
-      "effort": 2935.011857464287,
-      "time": 163.0562143035715,
-      "bugs": 0.34241805003750014
+      "h2": 87,
+      "N1": 48,
+      "N2": 96,
+      "vocabulary": 92,
+      "length": 144,
+      "calculated_length": 572.1457246132762,
+      "volume": 939.3929216722099,
+      "difficulty": 2.7586206896551726,
+      "effort": 2591.4287494405794,
+      "time": 143.96826385780997,
+      "bugs": 0.31313097389073663
     },
     "functions": {
       "export_log_capture": {
@@ -2975,19 +3063,75 @@
         "time": 0.0,
         "bugs": 0.0
       },
+      "_assert_export_metadata": {
+        "h1": 2,
+        "h2": 6,
+        "N1": 3,
+        "N2": 6,
+        "vocabulary": 8,
+        "length": 9,
+        "calculated_length": 17.509775004326936,
+        "volume": 27.0,
+        "difficulty": 1.0,
+        "effort": 27.0,
+        "time": 1.5,
+        "bugs": 0.009
+      },
+      "_assert_export_categories": {
+        "h1": 1,
+        "h2": 2,
+        "N1": 1,
+        "N2": 2,
+        "vocabulary": 3,
+        "length": 3,
+        "calculated_length": 2.0,
+        "volume": 4.754887502163469,
+        "difficulty": 0.5,
+        "effort": 2.3774437510817346,
+        "time": 0.1320802083934297,
+        "bugs": 0.0015849625007211565
+      },
+      "_assert_export_profile": {
+        "h1": 1,
+        "h2": 10,
+        "N1": 5,
+        "N2": 10,
+        "vocabulary": 11,
+        "length": 15,
+        "calculated_length": 33.219280948873624,
+        "volume": 51.89147427955947,
+        "difficulty": 0.5,
+        "effort": 25.945737139779734,
+        "time": 1.4414298410988742,
+        "bugs": 0.01729715809318649
+      },
+      "_assert_export_history": {
+        "h1": 2,
+        "h2": 14,
+        "N1": 8,
+        "N2": 16,
+        "vocabulary": 16,
+        "length": 24,
+        "calculated_length": 55.30296890880645,
+        "volume": 96.0,
+        "difficulty": 1.1428571428571428,
+        "effort": 109.71428571428571,
+        "time": 6.095238095238095,
+        "bugs": 0.032
+      },
       "test_successful_personal_data_export_aggregation": {
-        "h1": 3,
-        "h2": 38,
-        "N1": 22,
-        "N2": 44,
-        "vocabulary": 41,
-        "length": 66,
-        "calculated_length": 204.1761330130197,
-        "volume": 353.5984323047935,
-        "difficulty": 1.736842105263158,
-        "effort": 614.1446455820098,
-        "time": 34.119146976778325,
-        "bugs": 0.11786614410159783
+        "h1": 1,
+        "h2": 2,
+        "N1": 1,
+        "N2": 2,
+        "vocabulary": 3,
+        "length": 3,
+        "calculated_length": 2.0,
+        "volume": 4.754887502163469,
+        "difficulty": 0.5,
+        "effort": 2.3774437510817346,
+        "time": 0.1320802083934297,
+        "bugs": 0.0015849625007211565
       },
       "test_data_minimization_strict_exclusion_of_security_fields": {
         "h1": 2,

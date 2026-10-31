@@ -1,16 +1,16 @@
 {
-  "generated_utc": "2026-10-31T13:03:42.708317+00:00",
-  "git_head": "2fb24e22b90290c61309d758b6faa360b0f725d0",
+  "generated_utc": "2026-10-31T14:05:00.053613+00:00",
+  "git_head": "2e2235cafd9e7af7c9a9f5583c5528e265e8cbd2",
   "period_days": 90,
-  "since_utc": "2026-08-02T13:03:41.793808+00:00",
+  "since_utc": "2026-08-02T14:04:59.370977+00:00",
   "cc_high_when_gt": 10,
   "churn_high_when_gte": 5,
   "files": [
     {
       "file": "app/services.py",
       "max_cc": 6,
-      "halstead_effort": 2857.98,
-      "commits_90d": 18,
+      "halstead_effort": 3261.71,
+      "commits_90d": 19,
       "category": "Active Development"
     },
     {
@@ -49,16 +49,23 @@
       "category": "Stable Code"
     },
     {
+      "file": "tests/test_personal_data_export.py",
+      "max_cc": 9,
+      "halstead_effort": 2591.43,
+      "commits_90d": 2,
+      "category": "Stable Code"
+    },
+    {
+      "file": "app/export/repository.py",
+      "max_cc": 5,
+      "halstead_effort": 1853.07,
+      "commits_90d": 2,
+      "category": "Stable Code"
+    },
+    {
       "file": "tests/test_anonymization_workflow.py",
       "max_cc": 30,
       "halstead_effort": 9082.29,
-      "commits_90d": 1,
-      "category": "Sleeping Danger"
-    },
-    {
-      "file": "tests/test_personal_data_export.py",
-      "max_cc": 25,
-      "halstead_effort": 2935.01,
       "commits_90d": 1,
       "category": "Sleeping Danger"
     },
@@ -133,6 +140,13 @@
       "category": "Stable Code"
     },
     {
+      "file": "scripts/build_hotspots.py",
+      "max_cc": 8,
+      "halstead_effort": 2231.57,
+      "commits_90d": 1,
+      "category": "Stable Code"
+    },
+    {
       "file": "tests/test_resilience.py",
       "max_cc": 8,
       "halstead_effort": 312.11,
@@ -178,13 +192,6 @@
       "file": "app/consent/service.py",
       "max_cc": 5,
       "halstead_effort": 564.78,
-      "commits_90d": 1,
-      "category": "Stable Code"
-    },
-    {
-      "file": "app/export/repository.py",
-      "max_cc": 5,
-      "halstead_effort": 1853.07,
       "commits_90d": 1,
       "category": "Stable Code"
     },
