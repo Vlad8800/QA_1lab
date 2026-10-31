@@ -87,6 +87,8 @@ FALLBACK_MODE_LOOKUP = {
 
 def _fetch_shipping_base_rate(country_code: str) -> tuple[float, bool, int]:
     """Gracefully fetches external base rate or returns fallback."""
+    if country_code in SHIPPING_SOURCE_LOOKUP:
+        return SHIPPING_SOURCE_LOOKUP[country_code](country_code)
     retry_obj = getattr(_fetch_external_base_rate, "retry", None)
     retry_stats = getattr(retry_obj, "statistics", {}) if retry_obj else {}
     try:
