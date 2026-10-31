@@ -13,7 +13,9 @@ class BaseShippingQuote:
     def supports(self, spec: ShippingOrderSpec) -> bool:
         return True
 
-    def quote(self, spec: ShippingOrderSpec, base_rate: float) -> float:
+    def quote(self, spec: ShippingOrderSpec, base_rate: float, *, policy_context: str) -> float:
+        if not policy_context:
+            raise ValueError("Policy context is required")
         self.validate(spec, base_rate)
         return spec.calculate_cost(base_rate)
 
