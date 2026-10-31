@@ -1,0 +1,78 @@
+{
+  "baseline_source": "docs/lab8/task3-artifacts/baseline/shipping_policy_at_0110a85.txt",
+  "baseline_commit": "0110a85",
+  "pass_commit": "91beb7c",
+  "baseline": [
+    {
+      "class": "BaseShippingQuote",
+      "mro": [
+        "BaseShippingQuote",
+        "object"
+      ],
+      "dit_root_is_1": 1,
+      "pim_public_methods": 4,
+      "overridden_methods": []
+    },
+    {
+      "class": "RegionalShippingQuote",
+      "mro": [
+        "RegionalShippingQuote",
+        "BaseShippingQuote",
+        "object"
+      ],
+      "dit_root_is_1": 2,
+      "pim_public_methods": 4,
+      "overridden_methods": [
+        "quote",
+        "supports"
+      ]
+    },
+    {
+      "class": "ExpressHolidayShippingQuote",
+      "mro": [
+        "ExpressHolidayShippingQuote",
+        "RegionalShippingQuote",
+        "BaseShippingQuote",
+        "object"
+      ],
+      "dit_root_is_1": 3,
+      "pim_public_methods": 4,
+      "overridden_methods": [
+        "mode",
+        "quote"
+      ]
+    }
+  ],
+  "pass": [
+    {
+      "class": "BaseShippingQuote",
+      "mro": [
+        "BaseShippingQuote",
+        "object"
+      ],
+      "dit_root_is_1": 1,
+      "pim_public_methods": 4,
+      "overridden_methods": []
+    },
+    {
+      "class": "RegionalShippingQuote",
+      "mro": [
+        "RegionalShippingQuote",
+        "object"
+      ],
+      "dit_root_is_1": 1,
+      "pim_public_methods": 4,
+      "overridden_methods": []
+    },
+    {
+      "class": "ExpressHolidayShippingQuote",
+      "mro": [
+        "ExpressHolidayShippingQuote",
+        "object"
+      ],
+      "dit_root_is_1": 1,
+      "pim_public_methods": 4,
+      "overridden_methods": []
+    }
+  ]
+}
