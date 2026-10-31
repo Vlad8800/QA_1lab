@@ -1,0 +1,31 @@
+{
+  "definition": "Exclude constructors and dunder methods. Connect methods sharing read self-fields or direct self-calls. Normalized proxy=(components-1)/(methods-1); a single method scores 0.",
+  "baseline_ref": "59b6318",
+  "baseline": {
+    "operational_methods": 9,
+    "lcom4_components": 6,
+    "normalized_lcom4_proxy": 0.625
+  },
+  "pass": {
+    "ConsentWorkflow": {
+      "operational_methods": 3,
+      "lcom4_components": 1,
+      "normalized_lcom4_proxy": 0.0
+    },
+    "MarketingWorkflow": {
+      "operational_methods": 1,
+      "lcom4_components": 1,
+      "normalized_lcom4_proxy": 0.0
+    },
+    "ExportWorkflow": {
+      "operational_methods": 1,
+      "lcom4_components": 1,
+      "normalized_lcom4_proxy": 0.0
+    },
+    "ErasureWorkflow": {
+      "operational_methods": 1,
+      "lcom4_components": 1,
+      "normalized_lcom4_proxy": 0.0
+    }
+  }
+}

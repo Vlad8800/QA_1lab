@@ -12,7 +12,8 @@ from fastapi import APIRouter, Header, HTTPException, status
 from pydantic import BaseModel, Field
 
 from app.consent.gate import get_policy_gate
-from app.consent.privacy_god_object import PrivacyOperationsGodObject
+from app.consent.architecture.adapter import ConsentServiceAdapter
+from app.consent.architecture.workflows import ConsentWorkflow, MarketingWorkflow
 from app.consent.schemas import (
     ConsentPurpose,
     ConsentRecord,
@@ -33,9 +34,11 @@ from app.export.routes import _resolve_authenticated_principal
 router = APIRouter(tags=["GDPR Consent Management & Policy Gate"])
 
 # Shared service instances
-consent_service = ConsentManagementService()
 policy_gate = get_policy_gate()
-privacy_operations = PrivacyOperationsGodObject(consent=consent_service, gate=policy_gate)
+consent_service = ConsentManagementService(policy_gate=policy_gate)
+consent_adapter = ConsentServiceAdapter(consent_service)
+consent_workflow = ConsentWorkflow(consent_adapter)
+marketing_workflow = MarketingWorkflow(consent_adapter)
 
 
 class MarketingCampaignRequest(BaseModel):
@@ -56,7 +59,7 @@ def list_user_consents_endpoint(
 ):
     actor_id, role = _resolve_authenticated_principal(x_actor_id, x_actor_role, authorization)
     try:
-        return consent_service.get_user_consents(id, actor_id, role)
+        return consent_workflow.get_user_consents(id, actor_id, role)
     except ConsentAccessDeniedException as exc:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=str(exc))
     except SubjectNotFoundException as exc:
@@ -78,7 +81,7 @@ def grant_consent_endpoint(
 ):
     actor_id, role = _resolve_authenticated_principal(x_actor_id, x_actor_role, authorization)
     try:
-        return consent_service.grant_consent(
+        return consent_workflow.grant_consent(
             subject_id=id,
             purpose=payload.purpose,
             policy_version=payload.policy_version,
@@ -108,7 +111,7 @@ def revoke_consent_endpoint(
 ):
     actor_id, role = _resolve_authenticated_principal(x_actor_id, x_actor_role, authorization)
     try:
-        return consent_service.revoke_consent(
+        return consent_workflow.revoke_consent(
             subject_id=id,
             purpose=payload.purpose,
             source=payload.source,
@@ -152,5 +155,5 @@ def dispatch_marketing_campaign_endpoint(
     Business action demonstrating that the Policy Gate actually governs execution.
     If consent is revoked or missing, returns DENIED_BY_POLICY_GATE with no side effects.
     """
-    return privacy_operations.dispatch(payload.recipient_user_id, payload.campaign_name, x_correlation_id)
+    return marketing_workflow.dispatch(payload.recipient_user_id, payload.campaign_name, x_correlation_id)
 

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1450" height="600" viewBox="0 0 1450 600">
+<rect width="1450" height="100%" fill="#f8fafc"/>
+<text x="35" y="38" font-family="Arial" font-size="24" fill="#0f172a">Lab 8 dependency graph — explicit project-class references</text>
+<rect x="35" y="252" width="500" height="96" rx="12" fill="#7f1d1d"/>
+<text x="52" y="292" font-family="Arial" font-size="19" fill="white">ConsentWorkflow</text>
+<text x="52" y="322" font-family="Arial" font-size="15" fill="white">CBO proxy = 4; WMC = 4; LCOM4 proxy = 2</text>
+<line x1="535" y1="300" x2="740" y2="81" stroke="#64748b" stroke-width="1.6"/>
+<rect x="740" y="65" width="675" height="32" rx="6" fill="#dbeafe" stroke="#93c5fd"/>
+<text x="752" y="87" font-family="Arial" font-size="15" fill="#0f172a">app.consent.architecture.contracts.ConsentPort</text>
+<line x1="535" y1="300" x2="740" y2="126" stroke="#64748b" stroke-width="1.6"/>
+<rect x="740" y="110" width="675" height="32" rx="6" fill="#dbeafe" stroke="#93c5fd"/>
+<text x="752" y="132" font-family="Arial" font-size="15" fill="#0f172a">app.consent.schemas.ConsentPurpose</text>
+<line x1="535" y1="300" x2="740" y2="171" stroke="#64748b" stroke-width="1.6"/>
+<rect x="740" y="155" width="675" height="32" rx="6" fill="#dbeafe" stroke="#93c5fd"/>
+<text x="752" y="177" font-family="Arial" font-size="15" fill="#0f172a">app.consent.schemas.ConsentRecord</text>
+<line x1="535" y1="300" x2="740" y2="216" stroke="#64748b" stroke-width="1.6"/>
+<rect x="740" y="200" width="675" height="32" rx="6" fill="#dbeafe" stroke="#93c5fd"/>
+<text x="752" y="222" font-family="Arial" font-size="15" fill="#0f172a">app.consent.schemas.ConsentResponse</text>
+</svg>
