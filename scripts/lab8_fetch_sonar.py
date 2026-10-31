@@ -76,6 +76,9 @@ def collect_responses(project_key, branch, files):
             project_key + ":" + files[0],
             ("class_complexity", "coupling_between_objects", "lcom4"), branch,
         ),
+        "unsupported_dit_request": measure_request(
+            project_key + ":" + files[0], ("dit",), branch,
+        ),
     }
     for path in files:
         result["file_measures"][path] = measure_request(project_key + ":" + path, supported, branch)

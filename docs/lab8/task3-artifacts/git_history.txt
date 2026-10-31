@@ -1,0 +1,3 @@
+* 91beb7c refactor(audit): replace inheritance with composition pattern, PASS
+* ff1ba30 arch(audit): capture inheritance fragility crash, FAIL
+* 0110a85 arch(audit): baseline three-level shipping inheritance

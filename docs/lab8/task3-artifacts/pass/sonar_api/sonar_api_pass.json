@@ -1,0 +1,332 @@
+{
+  "fetched_at_utc": "2026-10-31T16:46:41.927359+00:00",
+  "project_key": "Vlad8800_QA_1lab",
+  "branch": "lab8-architecture",
+  "metric_catalog": {
+    "request_url": "https://sonarcloud.io/api/metrics/search?ps=500",
+    "http_status": 200,
+    "total": 165,
+    "available_keys": [
+      "accepted_issues",
+      "alert_status",
+      "analysis_from_sonarqube_9_4",
+      "blocker_violations",
+      "branch_coverage",
+      "bugs",
+      "classes",
+      "code_smells",
+      "cognitive_complexity",
+      "comment_lines",
+      "comment_lines_data",
+      "comment_lines_density",
+      "complexity",
+      "conditions_to_cover",
+      "confirmed_issues",
+      "coverage",
+      "critical_violations",
+      "development_cost",
+      "duplicated_blocks",
+      "duplicated_files",
+      "duplicated_lines",
+      "duplicated_lines_density",
+      "duplications_data",
+      "effort_to_reach_maintainability_rating_a",
+      "executable_lines_data",
+      "false_positive_issues",
+      "files",
+      "functions",
+      "generated_lines",
+      "generated_ncloc",
+      "high_impact_accepted_issues",
+      "info_violations",
+      "last_commit_date",
+      "line_coverage",
+      "lines",
+      "lines_to_cover",
+      "maintainability_issue_severity",
+      "maintainability_issues",
+      "major_violations",
+      "minor_violations",
+      "mule_configuration_complexity_rating",
+      "mule_configuration_files",
+      "mule_dw",
+      "mule_flows",
+      "mule_subflows",
+      "ncloc",
+      "ncloc_data",
+      "ncloc_language_distribution",
+      "new_accepted_issues",
+      "new_blocker_violations",
+      "new_branch_coverage",
+      "new_bugs",
+      "new_bugs_severity",
+      "new_code_smells",
+      "new_code_smells_severity",
+      "new_conditions_to_cover",
+      "new_coverage",
+      "new_critical_violations",
+      "new_development_cost",
+      "new_duplicated_blocks",
+      "new_duplicated_lines",
+      "new_duplicated_lines_density",
+      "new_info_violations",
+      "new_line_coverage",
+      "new_lines",
+      "new_lines_to_cover",
+      "new_maintainability_issue_severity",
+      "new_maintainability_issues",
+      "new_maintainability_rating",
+      "new_major_violations",
+      "new_minor_violations",
+      "new_ncloc",
+      "new_reliability_issue_severity",
+      "new_reliability_issues",
+      "new_reliability_rating",
+      "new_reliability_remediation_effort",
+      "new_sca_count_any_issue",
+      "new_sca_count_any_security",
+      "new_sca_count_licensing",
+      "new_sca_count_malware",
+      "new_sca_count_vulnerability",
+      "new_sca_rating_any_issue",
+      "new_sca_rating_any_security",
+      "new_sca_rating_licensing",
+      "new_sca_rating_malware",
+      "new_sca_rating_vulnerability",
+      "new_sca_severity_any_issue",
+      "new_sca_severity_any_security",
+      "new_sca_severity_licensing",
+      "new_sca_severity_malware",
+      "new_sca_severity_vulnerability",
+      "new_security_hotspots",
+      "new_security_hotspots_reviewed",
+      "new_security_hotspots_reviewed_status",
+      "new_security_hotspots_to_review_status",
+      "new_security_issue_severity",
+      "new_security_issues",
+      "new_security_rating",
+      "new_security_remediation_effort",
+      "new_security_review_rating",
+      "new_software_quality_maintainability_issues",
+      "new_software_quality_reliability_issues",
+      "new_software_quality_security_issues",
+      "new_sqale_debt_ratio",
+      "new_technical_debt",
+      "new_uncovered_conditions",
+      "new_uncovered_lines",
+      "new_violations",
+      "new_vulnerabilities",
+      "new_vulnerabilities_severity",
+      "open_issues",
+      "projects",
+      "public_api",
+      "public_documented_api_density",
+      "public_undocumented_api",
+      "pull_request_fixed_issues",
+      "quality_gate_details",
+      "quality_profiles",
+      "reliability_issue_severity",
+      "reliability_issues",
+      "reliability_rating",
+      "reliability_remediation_effort",
+      "reopened_issues",
+      "sca_count_any_issue",
+      "sca_count_any_security",
+      "sca_count_licensing",
+      "sca_count_malware",
+      "sca_count_vulnerability",
+      "sca_rating_any_issue",
+      "sca_rating_any_security",
+      "sca_rating_licensing",
+      "sca_rating_malware",
+      "sca_rating_vulnerability",
+      "sca_severity_any_issue",
+      "sca_severity_any_security",
+      "sca_severity_licensing",
+      "sca_severity_malware",
+      "sca_severity_vulnerability",
+      "security_hotspots",
+      "security_hotspots_reviewed",
+      "security_hotspots_reviewed_status",
+      "security_hotspots_to_review_status",
+      "security_issue_severity",
+      "security_issues",
+      "security_rating",
+      "security_remediation_effort",
+      "security_review_rating",
+      "skipped_tests",
+      "software_quality_maintainability_issues",
+      "software_quality_reliability_issues",
+      "software_quality_security_issues",
+      "sqale_debt_ratio",
+      "sqale_index",
+      "sqale_rating",
+      "statements",
+      "test_errors",
+      "test_execution_time",
+      "test_failures",
+      "test_success_density",
+      "tests",
+      "uncovered_conditions",
+      "uncovered_lines",
+      "violations",
+      "vulnerabilities",
+      "wont_fix_issues"
+    ],
+    "required_oo_keys_absent": [
+      "class_complexity",
+      "coupling_between_objects",
+      "cohesion_in_methods",
+      "lcom4",
+      "mhf",
+      "ahf",
+      "cof",
+      "dit"
+    ]
+  },
+  "latest_analysis": null,
+  "branch_info": {
+    "request_url": "https://sonarcloud.io/api/project_branches/list?project=Vlad8800_QA_1lab",
+    "http_status": 200,
+    "body": {
+      "branches": [
+        {
+          "name": "lab8-architecture",
+          "isMain": false,
+          "type": "SHORT",
+          "mergeBranch": "main",
+          "status": {
+            "qualityGateStatus": "OK",
+            "bugs": 0,
+            "vulnerabilities": 0,
+            "codeSmells": 0
+          },
+          "analysisDate": "2026-10-31T16:45:24+0000",
+          "commit": {
+            "sha": "91beb7cac0cb6474a5a29344c23e6e3dd7948873",
+            "author": {
+              "name": "Vlad8800",
+              "login": "Vlad8800-FIYQT@github",
+              "avatar": "24395a0fb46b9c695eda1eeb0a24d183"
+            },
+            "date": "2026-10-31T16:44:43+0000",
+            "message": "refactor(audit): replace inheritance with composition pattern, PASS"
+          },
+          "branchId": "8d656b6f-847b-4738-a2ac-f55e330aba96",
+          "branchUuidV1": "AaGStzQO2D3MkT4Dr1Jc"
+        },
+        {
+          "name": "main",
+          "isMain": true,
+          "type": "LONG",
+          "status": {
+            "qualityGateStatus": "OK",
+            "bugs": 0,
+            "vulnerabilities": 0,
+            "codeSmells": 0
+          },
+          "analysisDate": "2026-10-31T14:48:33+0000",
+          "commit": {
+            "sha": "8545112ad2e693517b45ec15ff6c3c03e7438363",
+            "author": {
+              "name": "Vlad8800",
+              "login": "Vlad8800-FIYQT@github",
+              "avatar": "24395a0fb46b9c695eda1eeb0a24d183"
+            },
+            "date": "2026-10-31T14:47:44+0000",
+            "message": "docs(lab7): prepare complete Notion report"
+          },
+          "branchId": "9ff35caf-43b6-46a6-b2f5-e8e49a09f0ef",
+          "branchUuidV1": "AaCVApGQFKDXOfVmFgmq"
+        }
+      ]
+    }
+  },
+  "project_measures": {
+    "request_url": "https://sonarcloud.io/api/measures/component?component=Vlad8800_QA_1lab&metricKeys=complexity%2Ccognitive_complexity%2Cncloc&branch=lab8-architecture",
+    "http_status": 200,
+    "body": {
+      "component": {
+        "id": "AaGStzQO2D3MkT4Dr1Jc",
+        "key": "Vlad8800_QA_1lab",
+        "name": "QA_1lab",
+        "qualifier": "TRK",
+        "measures": [
+          {
+            "metric": "complexity",
+            "value": "91"
+          },
+          {
+            "metric": "cognitive_complexity",
+            "value": "33",
+            "bestValue": false
+          },
+          {
+            "metric": "ncloc",
+            "value": "667"
+          }
+        ],
+        "branch": "lab8-architecture"
+      }
+    }
+  },
+  "file_measures": {
+    "app/shipping_policy.py": {
+      "request_url": "https://sonarcloud.io/api/measures/component?component=Vlad8800_QA_1lab%3Aapp%2Fshipping_policy.py&metricKeys=complexity%2Ccognitive_complexity%2Cncloc&branch=lab8-architecture",
+      "http_status": 200,
+      "body": {
+        "component": {
+          "id": "AaGS2DRkusAIaC0DfRDI",
+          "key": "Vlad8800_QA_1lab:app/shipping_policy.py",
+          "name": "shipping_policy.py",
+          "qualifier": "FIL",
+          "path": "app/shipping_policy.py",
+          "language": "py",
+          "measures": [
+            {
+              "metric": "complexity",
+              "value": "25"
+            },
+            {
+              "metric": "cognitive_complexity",
+              "value": "10",
+              "bestValue": false
+            },
+            {
+              "metric": "ncloc",
+              "value": "45"
+            }
+          ],
+          "branch": "lab8-architecture"
+        }
+      }
+    }
+  },
+  "unsupported_oo_request": {
+    "request_url": "https://sonarcloud.io/api/measures/component?component=Vlad8800_QA_1lab%3Aapp%2Fshipping_policy.py&metricKeys=class_complexity%2Ccoupling_between_objects%2Clcom4&branch=lab8-architecture",
+    "http_status": 404,
+    "body": {
+      "errors": [
+        {
+          "msg": "The following metric keys are not found: coupling_between_objects"
+        }
+      ]
+    }
+  },
+  "unsupported_dit_request": {
+    "request_url": "https://sonarcloud.io/api/measures/component?component=Vlad8800_QA_1lab%3Aapp%2Fshipping_policy.py&metricKeys=dit&branch=lab8-architecture",
+    "http_status": 200,
+    "body": {
+      "component": {
+        "id": "AaGS2DRkusAIaC0DfRDI",
+        "key": "Vlad8800_QA_1lab:app/shipping_policy.py",
+        "name": "shipping_policy.py",
+        "qualifier": "FIL",
+        "path": "app/shipping_policy.py",
+        "language": "py",
+        "measures": [],
+        "branch": "lab8-architecture"
+      }
+    }
+  }
+}
