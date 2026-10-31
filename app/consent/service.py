@@ -90,7 +90,7 @@ class ConsentManagementService:
         self,
         subject_id: str,
         purpose: ConsentPurpose,
-        policy_version: str,
+        agreement_version: str,
         source: str,
         authenticated_actor_id: str,
         actor_role: str = "user",
@@ -113,7 +113,7 @@ class ConsentManagementService:
             consent_id=consent_id,
             user_id=subject_id,
             purpose=purpose.value,
-            policy_version=policy_version,
+            policy_version=agreement_version,
             source=source,
             timestamp=now_utc,
         )
@@ -127,7 +127,7 @@ class ConsentManagementService:
                 "event_type": "CONSENT_GRANTED",
                 "user_id": subject_id,
                 "purpose": purpose.value,
-                "policy_version": policy_version,
+                "policy_version": agreement_version,
                 "source": source,
                 "actor_id": authenticated_actor_id,
                 "correlation_id": corr_id,
@@ -145,7 +145,7 @@ class ConsentManagementService:
             withdrawn_at=record.get("withdrawn_at"),
             updated_at=record["updated_at"],
             source=record["source"],
-            message=f"Consent granted for {purpose.value} under {policy_version}.",
+            message=f"Consent granted for {purpose.value} under {agreement_version}.",
         )
 
     def revoke_consent(
