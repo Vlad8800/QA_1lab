@@ -17,7 +17,7 @@ import uuid
 import pytest
 from fastapi.testclient import TestClient
 
-from app.export.repository import UserDataRepository
+from app.export.repository import UserDataRepository, get_default_repository
 from app.export.service import PersonalDataExportService
 from app.main import app
 from app.privacy import setup_privacy_logging
@@ -37,14 +37,6 @@ PROHIBITED_SECURITY_FIELDS = [
     "internal_notes",
 ]
 
-# Sensitive raw values from repo that MUST NEVER leak into the HTTP response body
-RAW_SENSITIVE_DB_VALUES = [
-    "$2b$12$e8x5Z89Z.fakehashvalue9912093840293482039482034982039",
-    "rst_tok_991823901823091283",
-    "secret_hashed_answer_12345",
-]
-
-
 @pytest.fixture
 def export_log_capture():
     """Fixture that captures logging output during export operations."""
@@ -59,6 +51,39 @@ def export_log_capture():
 # ==============================================================================
 # 1. ТЕСТ СТРУКТУРИ КОНТРАКТУ ТА АГРЕГАЦІЇ ДАНИХ (Article 15 Right of Access)
 # ==============================================================================
+
+def _assert_export_metadata(data):
+    assert data["schema_version"] == "1.0.0"
+    assert data["subject_id"] == "usr_101"
+    assert data["export_id"].startswith("exp_")
+    assert "generated_at" in data
+
+
+def _assert_export_categories(data):
+    for category in ("profile", "settings", "activity_history", "orders", "consents"):
+        assert category in data["data_categories"]
+
+
+def _assert_export_profile(data):
+    profile = data["profile"]
+    assert profile["full_name"] == "Олександр Коваленко"
+    assert profile["email"] == "oleksandr.kovalenko@example.ua"
+    assert profile["phone_number"] == "+380501112233"
+    settings = data["settings"]
+    assert settings["language"] == "uk"
+    assert settings["theme"] == "dark"
+
+
+def _assert_export_history(data):
+    assert len(data["activity_history"]) == 2
+    assert data["activity_history"][0]["action"] == "USER_LOGIN"
+    assert len(data["orders"]) == 2
+    assert data["orders"][0]["order_id"] == "ord_9001"
+    assert data["orders"][0]["total_amount"] == 1250.50
+    assert len(data["consents"]) == 2
+    assert data["consents"][0]["purpose"] == "MARKETING_EMAIL"
+    assert data["consents"][0]["is_granted"] is True
+
 
 def test_successful_personal_data_export_aggregation():
     """
@@ -81,40 +106,10 @@ def test_successful_personal_data_export_aggregation():
 
         data = response.json()
 
-        # 1. Метадані експорту
-        assert data["schema_version"] == "1.0.0"
-        assert data["subject_id"] == "usr_101"
-        assert data["export_id"].startswith("exp_")
-        assert "generated_at" in data
-
-        # 2. Категорії
-        categories = data["data_categories"]
-        assert "profile" in categories
-        assert "settings" in categories
-        assert "activity_history" in categories
-        assert "orders" in categories
-        assert "consents" in categories
-
-        # 3. Перевірка коректності агрегованих даних
-        profile = data["profile"]
-        assert profile["full_name"] == "Олександр Коваленко"
-        assert profile["email"] == "oleksandr.kovalenko@example.ua"
-        assert profile["phone_number"] == "+380501112233"
-
-        settings = data["settings"]
-        assert settings["language"] == "uk"
-        assert settings["theme"] == "dark"
-
-        assert len(data["activity_history"]) == 2
-        assert data["activity_history"][0]["action"] == "USER_LOGIN"
-
-        assert len(data["orders"]) == 2
-        assert data["orders"][0]["order_id"] == "ord_9001"
-        assert data["orders"][0]["total_amount"] == 1250.50
-
-        assert len(data["consents"]) == 2
-        assert data["consents"][0]["purpose"] == "MARKETING_EMAIL"
-        assert data["consents"][0]["is_granted"] is True
+        _assert_export_metadata(data)
+        _assert_export_categories(data)
+        _assert_export_profile(data)
+        _assert_export_history(data)
 
 
 # ==============================================================================
@@ -141,7 +136,14 @@ def test_data_minimization_strict_exclusion_of_security_fields():
         )
 
     # 2. Перевірка за конкретними сирими значеннями з бази даних
-    for raw_secret in RAW_SENSITIVE_DB_VALUES:
+    stored_user = get_default_repository().get_user_by_id("usr_101")
+    raw_secrets = (
+        stored_user["password_hash"],
+        stored_user["salt"],
+        stored_user["password_reset_token"],
+        stored_user["security_answer_hash"],
+    )
+    for raw_secret in raw_secrets:
         assert raw_secret not in response_text, (
             f"SECURITY VIOLATION: Raw security value '{raw_secret}' leaked in export response!"
         )

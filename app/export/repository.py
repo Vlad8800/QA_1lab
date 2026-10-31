@@ -2,6 +2,7 @@
 In-memory database repository simulating real relational/document store.
 Stores both user personal data and internal security-sensitive fields (for minimization validation).
 """
+import secrets
 from typing import Any, Dict, List, Optional
 
 
@@ -20,11 +21,11 @@ class UserDataRepository:
                 "registered_at": "2025-01-15T09:30:00Z",
                 "locale": "uk-UA",
                 # Security-sensitive fields (MUST NEVER be exported):
-                "password_hash": "$2b$12$e8x5Z89Z.fakehashvalue9912093840293482039482034982039",
-                "salt": "a8f9c2e1b4d7",
-                "password_reset_token": "rst_tok_991823901823091283",
+                "password_hash": secrets.token_hex(32),
+                "salt": secrets.token_hex(16),
+                "password_reset_token": secrets.token_urlsafe(24),
                 "security_question": "Дівоче прізвище матері?",
-                "security_answer_hash": "$2b$12$secret_hashed_answer_12345",
+                "security_answer_hash": secrets.token_hex(32),
                 "antifraud_score": 12.5,
                 "is_flagged_fraud": False,
                 "internal_risk_level": "LOW",
@@ -38,11 +39,11 @@ class UserDataRepository:
                 "shipping_address": "м. Львів, пл. Ринок, 10, кв. 5",
                 "registered_at": "2025-02-10T14:15:00Z",
                 "locale": "uk-UA",
-                "password_hash": "$2b$12$k9y4A71Z.anotherfakehash8829384029348203948203498",
-                "salt": "b7c2d9e4a1f3",
+                "password_hash": secrets.token_hex(32),
+                "salt": secrets.token_hex(16),
                 "password_reset_token": None,
                 "security_question": "Улюблене місто?",
-                "security_answer_hash": "$2b$12$hashed_city_lviv",
+                "security_answer_hash": secrets.token_hex(32),
                 "antifraud_score": 45.0,
                 "is_flagged_fraud": False,
                 "internal_risk_level": "MEDIUM",
@@ -56,8 +57,8 @@ class UserDataRepository:
                 "shipping_address": "м. Одеса, вул. Дерибасівська, 1",
                 "registered_at": "2026-03-01T11:00:00Z",
                 "locale": "uk-UA",
-                "password_hash": "$2b$12$secret_hash_usr103",
-                "salt": "c1d2e3f4a5b6",
+                "password_hash": secrets.token_hex(32),
+                "salt": secrets.token_hex(16),
                 "password_reset_token": None,
                 "antifraud_score": 5.0,
                 "is_flagged_fraud": False,
