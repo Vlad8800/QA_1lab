@@ -33,37 +33,52 @@ def fetch(path, params):
     return {"request_url": url, "http_status": status, "body": json.loads(body)}
 
 
-def collect_responses(project_key):
+def measure_request(component, supported, branch):
+    params = {"component": component, "metricKeys": ",".join(supported)}
+    if branch:
+        params["branch"] = branch
+    return fetch("/api/measures/component", params)
+
+
+def analysis_info(project_key, branch):
+    if branch:
+        return None, fetch("/api/project_branches/list", {"project": project_key})
+    return fetch("/api/project_analyses/search", {"project": project_key, "ps": 1}), None
+
+
+def catalog_info(catalog, available):
+    return {
+        "request_url": catalog["request_url"],
+        "http_status": catalog["http_status"],
+        "total": catalog["body"]["total"],
+        "available_keys": sorted(available),
+        "required_oo_keys_absent": [key for key in REQUIRED_OO_KEYS if key not in available],
+    }
+
+
+def collect_responses(project_key, branch, files):
     catalog = fetch("/api/metrics/search", {"ps": 500})
     if catalog["http_status"] != 200:
         raise RuntimeError(f"Metric catalog failed: HTTP {catalog['http_status']}")
     available = {metric["key"] for metric in catalog["body"]["metrics"]}
     supported = [key for key in ("complexity", "cognitive_complexity", "ncloc") if key in available]
+    latest_analysis, branch_info = analysis_info(project_key, branch)
     result = {
         "fetched_at_utc": datetime.now(timezone.utc).isoformat(),
         "project_key": project_key,
-        "metric_catalog": {
-            "request_url": catalog["request_url"],
-            "http_status": catalog["http_status"],
-            "total": catalog["body"]["total"],
-            "available_keys": sorted(available),
-            "required_oo_keys_absent": [key for key in REQUIRED_OO_KEYS if key not in available],
-        },
-        "latest_analysis": fetch("/api/project_analyses/search", {"project": project_key, "ps": 1}),
-        "project_measures": fetch("/api/measures/component", {
-            "component": project_key, "metricKeys": ",".join(supported),
-        }),
+        "branch": branch or "main",
+        "metric_catalog": catalog_info(catalog, available),
+        "latest_analysis": latest_analysis,
+        "branch_info": branch_info,
+        "project_measures": measure_request(project_key, supported, branch),
         "file_measures": {},
-        "unsupported_oo_request": fetch("/api/measures/component", {
-            "component": project_key + ":" + FILES[0],
-            "metricKeys": "class_complexity,coupling_between_objects,lcom4",
-        }),
+        "unsupported_oo_request": measure_request(
+            project_key + ":" + files[0],
+            ("class_complexity", "coupling_between_objects", "lcom4"), branch,
+        ),
     }
-    for path in FILES:
-        result["file_measures"][path] = fetch("/api/measures/component", {
-            "component": project_key + ":" + path,
-            "metricKeys": ",".join(supported),
-        })
+    for path in files:
+        result["file_measures"][path] = measure_request(project_key + ":" + path, supported, branch)
     return result
 
 
@@ -80,10 +95,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--project-key", default="Vlad8800_QA_1lab")
     parser.add_argument("--output-dir", type=Path, default=Path("docs/lab8/task1-artifacts"))
+    parser.add_argument("--branch", help="SonarCloud branch name; omit for the main branch")
+    parser.add_argument("--file", action="append", dest="files", help="Source file path; may be repeated")
     args = parser.parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    result = collect_responses(args.project_key)
-    output = args.output_dir / "sonar_api_baseline.json"
+    result = collect_responses(args.project_key, args.branch, args.files or FILES)
+    output = args.output_dir / f"sonar_api_{'pass' if args.branch else 'baseline'}.json"
     output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(output)
     print_summary(result)

@@ -1,0 +1,4 @@
+* df5f6ff (HEAD -> lab8-architecture, origin/lab8-architecture) ci(lab8): scan architecture branch with SonarCloud
+* 0190df8 refactor(audit): eliminate god object via interface decomposition, PASS
+* 76b4f0a arch(audit): capture god object coupling failure, FAIL
+* 59b6318 arch(audit): baseline synthetic privacy god object
