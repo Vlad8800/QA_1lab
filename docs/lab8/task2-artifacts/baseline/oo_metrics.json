@@ -1,0 +1,981 @@
+{
+  "definitions": {
+    "wmc_radon_sum": "Sum of Radon cyclomatic complexity for methods in each class.",
+    "cbo_project_class_reference_proxy": "Distinct same-project classes named in the class AST; dynamic calls and ambiguous names may be missed.",
+    "lcom4_ast_proxy": "Connected components of instance methods sharing self fields or calling each other; 1 is the cohesive ideal, 0 means no methods.",
+    "mhf_python_convention_proxy": "Underscore-prefixed methods / methods excluding double-underscore methods.",
+    "ahf_python_convention_proxy": "Underscore-prefixed instance fields / instance fields excluding double-underscore fields.",
+    "cof_project_reference_proxy": "Directed same-project class reference edges / N(N-1)."
+  },
+  "project": {
+    "class_count": 45,
+    "method_count": 49,
+    "hidden_method_count": 2,
+    "field_count": 16,
+    "hidden_field_count": 11,
+    "directed_class_reference_edges": 63,
+    "mhf_python_convention_proxy": 0.0408,
+    "ahf_python_convention_proxy": 0.6875,
+    "cof_project_reference_proxy": 0.0318
+  },
+  "selected_files": {
+    "app/services.py": [
+      {
+        "class": "app.services.ShippingOrderSpec",
+        "file": "app/services.py",
+        "wmc_radon_sum": 7,
+        "cbo_project_class_reference_proxy": 0,
+        "lcom4_ast_proxy": 3,
+        "method_count": 6,
+        "fields": [],
+        "coupled_classes": [],
+        "visible_method_count": 5,
+        "hidden_method_count": 0,
+        "visible_field_count": 0,
+        "hidden_field_count": 0
+      },
+      {
+        "class": "app.services.ShippingRateResult",
+        "file": "app/services.py",
+        "wmc_radon_sum": 3,
+        "cbo_project_class_reference_proxy": 0,
+        "lcom4_ast_proxy": 3,
+        "method_count": 3,
+        "fields": [],
+        "coupled_classes": [],
+        "visible_method_count": 2,
+        "hidden_method_count": 0,
+        "visible_field_count": 0,
+        "hidden_field_count": 0
+      }
+    ],
+    "app/export/repository.py": [
+      {
+        "class": "app.export.repository.UserDataRepository",
+        "file": "app/export/repository.py",
+        "wmc_radon_sum": 39,
+        "cbo_project_class_reference_proxy": 0,
+        "lcom4_ast_proxy": 6,
+        "method_count": 14,
+        "fields": [
+          "_activity",
+          "_consents",
+          "_orders",
+          "_settings",
+          "_users"
+        ],
+        "coupled_classes": [],
+        "visible_method_count": 13,
+        "hidden_method_count": 0,
+        "visible_field_count": 5,
+        "hidden_field_count": 5
+      }
+    ],
+    "app/consent/schemas.py": [
+      {
+        "class": "app.consent.schemas.ConsentPurpose",
+        "file": "app/consent/schemas.py",
+        "wmc_radon_sum": 0,
+        "cbo_project_class_reference_proxy": 0,
+        "lcom4_ast_proxy": 0,
+        "method_count": 0,
+        "fields": [],
+        "coupled_classes": [],
+        "visible_method_count": 0,
+        "hidden_method_count": 0,
+        "visible_field_count": 0,
+        "hidden_field_count": 0
+      },
+      {
+        "class": "app.consent.schemas.ConsentRecord",
+        "file": "app/consent/schemas.py",
+        "wmc_radon_sum": 0,
+        "cbo_project_class_reference_proxy": 2,
+        "lcom4_ast_proxy": 0,
+        "method_count": 0,
+        "fields": [],
+        "coupled_classes": [
+          "app.consent.schemas.ConsentPurpose",
+          "app.consent.schemas.ConsentStatus"
+        ],
+        "visible_method_count": 0,
+        "hidden_method_count": 0,
+        "visible_field_count": 0,
+        "hidden_field_count": 0
+      },
+      {
+        "class": "app.consent.schemas.ConsentResponse",
+        "file": "app/consent/schemas.py",
+        "wmc_radon_sum": 0,
+        "cbo_project_class_reference_proxy": 2,
+        "lcom4_ast_proxy": 0,
+        "method_count": 0,
+        "fields": [],
+        "coupled_classes": [
+          "app.consent.schemas.ConsentPurpose",
+          "app.consent.schemas.ConsentStatus"
+        ],
+        "visible_method_count": 0,
+        "hidden_method_count": 0,
+        "visible_field_count": 0,
+        "hidden_field_count": 0
+      },
+      {
+        "class": "app.consent.schemas.ConsentStatus",
+        "file": "app/consent/schemas.py",
+        "wmc_radon_sum": 0,
+        "cbo_project_class_reference_proxy": 0,
+        "lcom4_ast_proxy": 0,
+        "method_count": 0,
+        "fields": [],
+        "coupled_classes": [],
+        "visible_method_count": 0,
+        "hidden_method_count": 0,
+        "visible_field_count": 0,
+        "hidden_field_count": 0
+      },
+      {
+        "class": "app.consent.schemas.GrantConsentRequest",
+        "file": "app/consent/schemas.py",
+        "wmc_radon_sum": 0,
+        "cbo_project_class_reference_proxy": 1,
+        "lcom4_ast_proxy": 0,
+        "method_count": 0,
+        "fields": [],
+        "coupled_classes": [
+          "app.consent.schemas.ConsentPurpose"
+        ],
+        "visible_method_count": 0,
+        "hidden_method_count": 0,
+        "visible_field_count": 0,
+        "hidden_field_count": 0
+      },
+      {
+        "class": "app.consent.schemas.MarketingDispatchResult",
+        "file": "app/consent/schemas.py",
+        "wmc_radon_sum": 0,
+        "cbo_project_class_reference_proxy": 1,
+        "lcom4_ast_proxy": 0,
+        "method_count": 0,
+        "fields": [],
+        "coupled_classes": [
+          "app.consent.schemas.PolicyGateDecision"
+        ],
+        "visible_method_count": 0,
+        "hidden_method_count": 0,
+        "visible_field_count": 0,
+        "hidden_field_count": 0
+      },
+      {
+        "class": "app.consent.schemas.PolicyGateCheckRequest",
+        "file": "app/consent/schemas.py",
+        "wmc_radon_sum": 0,
+        "cbo_project_class_reference_proxy": 1,
+        "lcom4_ast_proxy": 0,
+        "method_count": 0,
+        "fields": [],
+        "coupled_classes": [
+          "app.consent.schemas.ConsentPurpose"
+        ],
+        "visible_method_count": 0,
+        "hidden_method_count": 0,
+        "visible_field_count": 0,
+        "hidden_field_count": 0
+      },
+      {
+        "class": "app.consent.schemas.PolicyGateDecision",
+        "file": "app/consent/schemas.py",
+        "wmc_radon_sum": 0,
+        "cbo_project_class_reference_proxy": 0,
+        "lcom4_ast_proxy": 0,
+        "method_count": 0,
+        "fields": [],
+        "coupled_classes": [],
+        "visible_method_count": 0,
+        "hidden_method_count": 0,
+        "visible_field_count": 0,
+        "hidden_field_count": 0
+      },
+      {
+        "class": "app.consent.schemas.PolicyGateResult",
+        "file": "app/consent/schemas.py",
+        "wmc_radon_sum": 0,
+        "cbo_project_class_reference_proxy": 2,
+        "lcom4_ast_proxy": 0,
+        "method_count": 0,
+        "fields": [],
+        "coupled_classes": [
+          "app.consent.schemas.ConsentPurpose",
+          "app.consent.schemas.PolicyGateDecision"
+        ],
+        "visible_method_count": 0,
+        "hidden_method_count": 0,
+        "visible_field_count": 0,
+        "hidden_field_count": 0
+      },
+      {
+        "class": "app.consent.schemas.ProcessingLawfulBasis",
+        "file": "app/consent/schemas.py",
+        "wmc_radon_sum": 0,
+        "cbo_project_class_reference_proxy": 0,
+        "lcom4_ast_proxy": 0,
+        "method_count": 0,
+        "fields": [],
+        "coupled_classes": [],
+        "visible_method_count": 0,
+        "hidden_method_count": 0,
+        "visible_field_count": 0,
+        "hidden_field_count": 0
+      },
+      {
+        "class": "app.consent.schemas.RevokeConsentRequest",
+        "file": "app/consent/schemas.py",
+        "wmc_radon_sum": 0,
+        "cbo_project_class_reference_proxy": 1,
+        "lcom4_ast_proxy": 0,
+        "method_count": 0,
+        "fields": [],
+        "coupled_classes": [
+          "app.consent.schemas.ConsentPurpose"
+        ],
+        "visible_method_count": 0,
+        "hidden_method_count": 0,
+        "visible_field_count": 0,
+        "hidden_field_count": 0
+      }
+    ]
+  },
+  "all_classes": [
+    {
+      "class": "app.anonymization.policy.EntityHandlingRule",
+      "file": "app/anonymization/policy.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 1,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [
+        "app.anonymization.policy.HandlingAction"
+      ],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.anonymization.policy.HandlingAction",
+      "file": "app/anonymization/policy.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.anonymization.schemas.AnonymizationRequest",
+      "file": "app/anonymization/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.anonymization.schemas.AnonymizationResponse",
+      "file": "app/anonymization/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 1,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [
+        "app.anonymization.schemas.EntityProcessingSummary"
+      ],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.anonymization.schemas.EntityProcessingSummary",
+      "file": "app/anonymization/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.anonymization.schemas.ErasureVerificationResult",
+      "file": "app/anonymization/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.anonymization.service.AnonymizationAccessDeniedException",
+      "file": "app/anonymization/service.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.anonymization.service.AnonymizationWorkflowService",
+      "file": "app/anonymization/service.py",
+      "wmc_radon_sum": 22,
+      "cbo_project_class_reference_proxy": 6,
+      "lcom4_ast_proxy": 4,
+      "method_count": 4,
+      "fields": [
+        "_custom_repository"
+      ],
+      "coupled_classes": [
+        "app.anonymization.policy.HandlingAction",
+        "app.anonymization.schemas.AnonymizationResponse",
+        "app.anonymization.schemas.EntityProcessingSummary",
+        "app.anonymization.schemas.ErasureVerificationResult",
+        "app.anonymization.service.AnonymizationAccessDeniedException",
+        "app.export.repository.UserDataRepository"
+      ],
+      "visible_method_count": 3,
+      "hidden_method_count": 0,
+      "visible_field_count": 1,
+      "hidden_field_count": 1
+    },
+    {
+      "class": "app.anonymization.service.SubjectNotFoundException",
+      "file": "app/anonymization/service.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.gate.ConsentPolicyGate",
+      "file": "app/consent/gate.py",
+      "wmc_radon_sum": 18,
+      "cbo_project_class_reference_proxy": 4,
+      "lcom4_ast_proxy": 4,
+      "method_count": 5,
+      "fields": [
+        "_cache",
+        "_custom_repository"
+      ],
+      "coupled_classes": [
+        "app.consent.schemas.ConsentPurpose",
+        "app.consent.schemas.PolicyGateDecision",
+        "app.consent.schemas.PolicyGateResult",
+        "app.export.repository.UserDataRepository"
+      ],
+      "visible_method_count": 4,
+      "hidden_method_count": 1,
+      "visible_field_count": 2,
+      "hidden_field_count": 2
+    },
+    {
+      "class": "app.consent.privacy_god_object.PrivacyOperationsGodObject",
+      "file": "app/consent/privacy_god_object.py",
+      "wmc_radon_sum": 15,
+      "cbo_project_class_reference_proxy": 16,
+      "lcom4_ast_proxy": 6,
+      "method_count": 10,
+      "fields": [
+        "consent",
+        "eraser",
+        "exporter",
+        "gate",
+        "repository"
+      ],
+      "coupled_classes": [
+        "app.anonymization.schemas.AnonymizationResponse",
+        "app.anonymization.service.AnonymizationWorkflowService",
+        "app.consent.gate.ConsentPolicyGate",
+        "app.consent.schemas.ConsentPurpose",
+        "app.consent.schemas.ConsentRecord",
+        "app.consent.schemas.ConsentResponse",
+        "app.consent.schemas.ConsentStatus",
+        "app.consent.schemas.GrantConsentRequest",
+        "app.consent.schemas.MarketingDispatchResult",
+        "app.consent.schemas.PolicyGateDecision",
+        "app.consent.schemas.PolicyGateResult",
+        "app.consent.schemas.RevokeConsentRequest",
+        "app.consent.service.ConsentManagementService",
+        "app.export.repository.UserDataRepository",
+        "app.export.schemas.PersonalDataExportResponse",
+        "app.export.service.PersonalDataExportService"
+      ],
+      "visible_method_count": 9,
+      "hidden_method_count": 0,
+      "visible_field_count": 5,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.routes.MarketingCampaignRequest",
+      "file": "app/consent/routes.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.schemas.ConsentPurpose",
+      "file": "app/consent/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.schemas.ConsentRecord",
+      "file": "app/consent/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 2,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [
+        "app.consent.schemas.ConsentPurpose",
+        "app.consent.schemas.ConsentStatus"
+      ],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.schemas.ConsentResponse",
+      "file": "app/consent/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 2,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [
+        "app.consent.schemas.ConsentPurpose",
+        "app.consent.schemas.ConsentStatus"
+      ],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.schemas.ConsentStatus",
+      "file": "app/consent/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.schemas.GrantConsentRequest",
+      "file": "app/consent/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 1,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [
+        "app.consent.schemas.ConsentPurpose"
+      ],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.schemas.MarketingDispatchResult",
+      "file": "app/consent/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 1,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [
+        "app.consent.schemas.PolicyGateDecision"
+      ],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.schemas.PolicyGateCheckRequest",
+      "file": "app/consent/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 1,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [
+        "app.consent.schemas.ConsentPurpose"
+      ],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.schemas.PolicyGateDecision",
+      "file": "app/consent/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.schemas.PolicyGateResult",
+      "file": "app/consent/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 2,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [
+        "app.consent.schemas.ConsentPurpose",
+        "app.consent.schemas.PolicyGateDecision"
+      ],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.schemas.ProcessingLawfulBasis",
+      "file": "app/consent/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.schemas.RevokeConsentRequest",
+      "file": "app/consent/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 1,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [
+        "app.consent.schemas.ConsentPurpose"
+      ],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.service.ConsentAccessDeniedException",
+      "file": "app/consent/service.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.service.ConsentManagementService",
+      "file": "app/consent/service.py",
+      "wmc_radon_sum": 24,
+      "cbo_project_class_reference_proxy": 9,
+      "lcom4_ast_proxy": 5,
+      "method_count": 8,
+      "fields": [
+        "_custom_gate",
+        "_custom_repository"
+      ],
+      "coupled_classes": [
+        "app.consent.gate.ConsentPolicyGate",
+        "app.consent.schemas.ConsentPurpose",
+        "app.consent.schemas.ConsentRecord",
+        "app.consent.schemas.ConsentResponse",
+        "app.consent.schemas.ConsentStatus",
+        "app.consent.schemas.MarketingDispatchResult",
+        "app.consent.schemas.PolicyGateDecision",
+        "app.consent.service.ConsentAccessDeniedException",
+        "app.export.repository.UserDataRepository"
+      ],
+      "visible_method_count": 7,
+      "hidden_method_count": 1,
+      "visible_field_count": 2,
+      "hidden_field_count": 2
+    },
+    {
+      "class": "app.consent.service.SubjectNotFoundException",
+      "file": "app/consent/service.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.export.repository.UserDataRepository",
+      "file": "app/export/repository.py",
+      "wmc_radon_sum": 39,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 6,
+      "method_count": 14,
+      "fields": [
+        "_activity",
+        "_consents",
+        "_orders",
+        "_settings",
+        "_users"
+      ],
+      "coupled_classes": [],
+      "visible_method_count": 13,
+      "hidden_method_count": 0,
+      "visible_field_count": 5,
+      "hidden_field_count": 5
+    },
+    {
+      "class": "app.export.schemas.DocumentedOmission",
+      "file": "app/export/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.export.schemas.PersonalDataExportResponse",
+      "file": "app/export/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 6,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [
+        "app.export.schemas.DocumentedOmission",
+        "app.export.schemas.UserActivityItem",
+        "app.export.schemas.UserConsentItem",
+        "app.export.schemas.UserOrderItem",
+        "app.export.schemas.UserProfileExport",
+        "app.export.schemas.UserSettingsExport"
+      ],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.export.schemas.UserActivityItem",
+      "file": "app/export/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.export.schemas.UserConsentItem",
+      "file": "app/export/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.export.schemas.UserOrderItem",
+      "file": "app/export/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.export.schemas.UserProfileExport",
+      "file": "app/export/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.export.schemas.UserSettingsExport",
+      "file": "app/export/schemas.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.export.service.AccessDeniedException",
+      "file": "app/export/service.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.export.service.PersonalDataExportService",
+      "file": "app/export/service.py",
+      "wmc_radon_sum": 14,
+      "cbo_project_class_reference_proxy": 9,
+      "lcom4_ast_proxy": 3,
+      "method_count": 3,
+      "fields": [
+        "_custom_repository"
+      ],
+      "coupled_classes": [
+        "app.export.repository.UserDataRepository",
+        "app.export.schemas.DocumentedOmission",
+        "app.export.schemas.PersonalDataExportResponse",
+        "app.export.schemas.UserActivityItem",
+        "app.export.schemas.UserConsentItem",
+        "app.export.schemas.UserOrderItem",
+        "app.export.schemas.UserProfileExport",
+        "app.export.schemas.UserSettingsExport",
+        "app.export.service.AccessDeniedException"
+      ],
+      "visible_method_count": 2,
+      "hidden_method_count": 0,
+      "visible_field_count": 1,
+      "hidden_field_count": 1
+    },
+    {
+      "class": "app.export.service.SubjectNotFoundException",
+      "file": "app/export/service.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.main.OrderItem",
+      "file": "app/main.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.main.OrderRequest",
+      "file": "app/main.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 1,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [
+        "app.main.OrderItem"
+      ],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.privacy.filter.PIISanitizingFilter",
+      "file": "app/privacy/filter.py",
+      "wmc_radon_sum": 14,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 1,
+      "method_count": 1,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 1,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.privacy.formatter.SafeTextFormatter",
+      "file": "app/privacy/formatter.py",
+      "wmc_radon_sum": 4,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 2,
+      "method_count": 2,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 1,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.privacy.formatter.StructuredJsonFormatter",
+      "file": "app/privacy/formatter.py",
+      "wmc_radon_sum": 10,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 1,
+      "method_count": 1,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 1,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.privacy.middleware.PrivacyLoggingMiddleware",
+      "file": "app/privacy/middleware.py",
+      "wmc_radon_sum": 5,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 1,
+      "method_count": 1,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 1,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.services.ShippingOrderSpec",
+      "file": "app/services.py",
+      "wmc_radon_sum": 7,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 3,
+      "method_count": 6,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 5,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.services.ShippingRateResult",
+      "file": "app/services.py",
+      "wmc_radon_sum": 3,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 3,
+      "method_count": 3,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 2,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    }
+  ]
+}

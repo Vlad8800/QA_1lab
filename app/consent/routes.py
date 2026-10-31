@@ -12,6 +12,7 @@ from fastapi import APIRouter, Header, HTTPException, status
 from pydantic import BaseModel, Field
 
 from app.consent.gate import get_policy_gate
+from app.consent.privacy_god_object import PrivacyOperationsGodObject
 from app.consent.schemas import (
     ConsentPurpose,
     ConsentRecord,
@@ -34,6 +35,7 @@ router = APIRouter(tags=["GDPR Consent Management & Policy Gate"])
 # Shared service instances
 consent_service = ConsentManagementService()
 policy_gate = get_policy_gate()
+privacy_operations = PrivacyOperationsGodObject(consent=consent_service, gate=policy_gate)
 
 
 class MarketingCampaignRequest(BaseModel):
@@ -150,9 +152,5 @@ def dispatch_marketing_campaign_endpoint(
     Business action demonstrating that the Policy Gate actually governs execution.
     If consent is revoked or missing, returns DENIED_BY_POLICY_GATE with no side effects.
     """
-    return consent_service.dispatch_marketing_email(
-        recipient_user_id=payload.recipient_user_id,
-        campaign_name=payload.campaign_name,
-        correlation_id=x_correlation_id,
-    )
+    return privacy_operations.dispatch(payload.recipient_user_id, payload.campaign_name, x_correlation_id)
 
