@@ -20,6 +20,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Trust checked-out repository in container
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
       - name: Install complexity scanner
         run: python -m pip install --no-cache-dir radon==6.0.1
 
