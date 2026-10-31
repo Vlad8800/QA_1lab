@@ -22,7 +22,7 @@ import radon.complexity as radon_cc
 from radon.raw import analyze as radon_raw
 import lizard
 
-from app.services import calculate_base_total, apply_loyalty_discount, calculate_shipping_cost
+from app.services import calculate_base_total, apply_loyalty_discount, calculate_shipping_cost, ShippingOrderSpec
 from app.privacy.sanitizer import sanitize_text
 
 
@@ -116,7 +116,7 @@ def run_workload_iterations(iterations=350):
         t0 = time.perf_counter()
         _ = calculate_base_total(sample_order)
         _ = apply_loyalty_discount(1300.0, "vip")
-        _ = calculate_shipping_cost(country_code="UA", weight=2.5, is_express=True, customer_tier="vip", is_holiday=False)
+        _ = calculate_shipping_cost(ShippingOrderSpec(country_code="UA", weight=2.5, is_express=True, customer_tier="vip", is_holiday=False))
         _ = sanitize_text("Customer email: alice@bank.com, card: 4111-2222-3333-4444, notes: secret")
         lat = (time.perf_counter() - t0) * 1000.0  # ms
         latencies.append(lat)

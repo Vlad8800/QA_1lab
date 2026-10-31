@@ -12,6 +12,7 @@ from app.services import (
     apply_loyalty_discount,
     calculate_base_total,
     calculate_shipping_cost,
+    ShippingOrderSpec,
 )
 from app.utils import validate_item_payload
 
@@ -111,13 +112,7 @@ def calculate_order(order: OrderRequest):
     discounted_price = apply_loyalty_discount(subtotal, order.customer_tier)
 
     # 2. Розрахунок вартості доставки (зовнішній сервіс із Retry та Fallback)
-    shipping_info = calculate_shipping_cost(
-        country_code=order.country_code,
-        weight=order.weight,
-        is_express=order.is_express,
-        customer_tier=order.customer_tier,
-        is_holiday=order.is_holiday,
-    )
+    shipping_info = calculate_shipping_cost(ShippingOrderSpec(country_code=order.country_code, weight=order.weight, is_express=order.is_express, customer_tier=order.customer_tier, is_holiday=order.is_holiday))
 
     # 3. Підсумкова вартість
     final_total = round(discounted_price + shipping_info["final_cost"], 2)

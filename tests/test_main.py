@@ -2,6 +2,7 @@ from fastapi.testclient import TestClient
 from app.main import app
 import app.services as services
 from app.services import (
+    ShippingOrderSpec,
     calculate_base_total,
     apply_loyalty_discount,
     calculate_shipping_cost,
@@ -40,31 +41,31 @@ def test_calculate_shipping_cost(monkeypatch):
     monkeypatch.setattr(services, "_fetch_external_base_rate", mock_fetch_rate)
 
     assert (
-        calculate_shipping_cost("UA", 15.0, True, "regular", False)["final_cost"]
+        calculate_shipping_cost(ShippingOrderSpec("UA", 15.0, True, "regular", False))["final_cost"]
         == 2.0
     )
     assert (
-        calculate_shipping_cost("PL", 3.0, False, "regular", False)["final_cost"]
+        calculate_shipping_cost(ShippingOrderSpec("PL", 3.0, False, "regular", False))["final_cost"]
         == 15.0
     )
     assert (
-        calculate_shipping_cost("DE", 10.0, False, "regular", False)["final_cost"]
+        calculate_shipping_cost(ShippingOrderSpec("DE", 10.0, False, "regular", False))["final_cost"]
         == 25.0
     )
     assert (
-        calculate_shipping_cost("US", 25.0, False, "regular", False)["final_cost"]
+        calculate_shipping_cost(ShippingOrderSpec("US", 25.0, False, "regular", False))["final_cost"]
         == 40.0
     )
     assert (
-        calculate_shipping_cost("FR", 10.0, True, "regular", True)["final_cost"]
+        calculate_shipping_cost(ShippingOrderSpec("FR", 10.0, True, "regular", True))["final_cost"]
         == 70.0
     )
     assert (
-        calculate_shipping_cost("FR", 10.0, True, "regular", False)["final_cost"]
+        calculate_shipping_cost(ShippingOrderSpec("FR", 10.0, True, "regular", False))["final_cost"]
         == 50.0
     )
     assert (
-        calculate_shipping_cost("FR", 10.0, True, "gold", False)["final_cost"]
+        calculate_shipping_cost(ShippingOrderSpec("FR", 10.0, True, "gold", False))["final_cost"]
         == 37.5
     )
 
