@@ -1,0 +1,61 @@
+{
+  "source": "app\\shipping_policy.py",
+  "dit_definition": "root class = 1",
+  "classes": [
+    {
+      "class": "BaseShippingQuote",
+      "dit_root_is_1": 1,
+      "pim_public_methods": 4,
+      "added_public_methods": 4,
+      "overridden_methods": [],
+      "parent_classes": [],
+      "injected_components": [],
+      "public_method_names": [
+        "mode",
+        "quote",
+        "supports",
+        "validate"
+      ]
+    },
+    {
+      "class": "RegionalShippingQuote",
+      "dit_root_is_1": 2,
+      "pim_public_methods": 4,
+      "added_public_methods": 0,
+      "overridden_methods": [
+        "quote",
+        "supports"
+      ],
+      "parent_classes": [
+        "BaseShippingQuote"
+      ],
+      "injected_components": [],
+      "public_method_names": [
+        "mode",
+        "quote",
+        "supports",
+        "validate"
+      ]
+    },
+    {
+      "class": "ExpressHolidayShippingQuote",
+      "dit_root_is_1": 3,
+      "pim_public_methods": 4,
+      "added_public_methods": 0,
+      "overridden_methods": [
+        "mode",
+        "quote"
+      ],
+      "parent_classes": [
+        "RegionalShippingQuote"
+      ],
+      "injected_components": [],
+      "public_method_names": [
+        "mode",
+        "quote",
+        "supports",
+        "validate"
+      ]
+    }
+  ]
+}

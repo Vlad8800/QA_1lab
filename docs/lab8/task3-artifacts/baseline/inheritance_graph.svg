@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="640" viewBox="0 0 1100 640">
+<rect width="100%" height="100%" fill="#f8fafc"/>
+<text x="35" y="40" font-family="Arial" font-size="25" fill="#0f172a">Lab 8 vertical architecture audit</text>
+<rect x="270" y="90" width="560" height="100" rx="12" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+<text x="290" y="127" font-family="Arial" font-size="21" fill="#0f172a">BaseShippingQuote</text>
+<text x="290" y="159" font-family="Arial" font-size="17" fill="#334155">DIT=1  PIM=4  Overridden=0</text>
+<rect x="270" y="270" width="560" height="100" rx="12" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+<text x="290" y="307" font-family="Arial" font-size="21" fill="#0f172a">RegionalShippingQuote</text>
+<text x="290" y="339" font-family="Arial" font-size="17" fill="#334155">DIT=2  PIM=4  Overridden=2</text>
+<line x1="550" y1="190" x2="550" y2="270" stroke="#475569" stroke-width="3"/>
+<text x="570" y="230" font-family="Arial" font-size="16" fill="#475569">inherits</text>
+<rect x="270" y="450" width="560" height="100" rx="12" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+<text x="290" y="487" font-family="Arial" font-size="21" fill="#0f172a">ExpressHolidayShippingQuote</text>
+<text x="290" y="519" font-family="Arial" font-size="17" fill="#334155">DIT=3  PIM=4  Overridden=2</text>
+<line x1="550" y1="370" x2="550" y2="450" stroke="#475569" stroke-width="3"/>
+<text x="570" y="410" font-family="Arial" font-size="16" fill="#475569">inherits</text>
+</svg>

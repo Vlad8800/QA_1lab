@@ -15,6 +15,7 @@ from app.services import (
     ShippingOrderSpec,
 )
 from app.utils import validate_item_payload
+from app.shipping_policy import ExpressHolidayShippingQuote
 
 # Initialize centralized privacy-safe logging
 setup_privacy_logging()
@@ -52,6 +53,33 @@ class OrderRequest(BaseModel):
     is_express: bool = Field(default=False, example=True)
     is_holiday: bool = Field(default=False, example=False)
     items: List[OrderItem]
+
+
+class ShippingPolicyRequest(BaseModel):
+    country_code: str = "PL"
+    weight: float = Field(default=6.0, gt=0)
+    base_rate: float = Field(default=25.0, ge=0)
+    is_express: bool = False
+    customer_tier: str = "regular"
+    is_holiday: bool = False
+    is_fallback: bool = False
+
+
+@app.post("/api/v1/orders/quote-with-policy")
+def quote_with_policy(request: ShippingPolicyRequest):
+    """Demonstrate the active shipping policy hierarchy on a real HTTP path."""
+    spec = ShippingOrderSpec(
+        country_code=request.country_code, weight=request.weight,
+        is_express=request.is_express, customer_tier=request.customer_tier,
+        is_holiday=request.is_holiday,
+    )
+    policy = ExpressHolidayShippingQuote()
+    return {
+        "supported": policy.supports(spec),
+        "final_cost": policy.quote(spec, request.base_rate),
+        "mode": policy.mode(spec, request.is_fallback),
+        "policy": type(policy).__name__,
+    }
 
 
 @app.get("/", response_class=HTMLResponse)
