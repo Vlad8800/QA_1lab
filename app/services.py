@@ -121,6 +121,14 @@ def calculate_shipping_cost(
     cost_formula = SHIPPING_COST_LOOKUP.get(country_upper, DEFAULT_SHIPPING_COST)
     final_cost = cost_formula(base_rate, weight_surcharge, multiplier, holiday_fee)
 
+    # --- SIMULATION OF UNCONTROLLED DATA MUTATION (FAIL-STATE) ---
+    # Помилка розробника через відсутність захисту імутабельності (мутабельна змінна final_cost типу M):
+    # При спробі застосувати святкову знижку (promo_discount = 12.0) значення підсумкової вартості
+    # випадково перезаписується замість віднімання: `final_cost = promo_discount`.
+    promo_discount = 12.0
+    if is_holiday:
+        final_cost = promo_discount  # КРИТИЧНИЙ ЗБІЙ МУТАЦІЇ: сума 70.0 випадково перезаписується на 12.0
+
     return {
         "final_cost": round(final_cost, 2),
         "is_fallback": is_fallback,

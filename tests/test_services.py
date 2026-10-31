@@ -1,5 +1,5 @@
 import pytest
-from app.services import calculate_order_discount
+from app.services import calculate_order_discount, calculate_shipping_cost
 
 
 def test_standard_customer_small_order():
@@ -91,3 +91,27 @@ def test_coupon_save10_discount_limit():
     # 20% wholesale + 5% SAVE5 = 25%
     # 2000.0 * 0.75 = 1500.0
     assert result == 1500.0
+
+
+def test_shipping_cost_uncontrolled_data_mutation_holiday_fail():
+    """
+    CRASH-TEST / FAIL-STATE (Lab #7, Task 2):
+    Симуляція виявлення дефекту неконтрольованої мутації даних.
+    Сценарій: розрахунок міжнародної експрес-доставки у святковий день.
+    Вхідні дані: country='PL', weight=6.0, is_express=True, customer_tier='regular', is_holiday=True.
+    Очікувана бізнес-вартість: (20.0 base + 5.0 weight) * 2.0 express + 20.0 holiday = 70.0.
+    Фактичний результат: 12.0 через випадковий перезапис `final_cost = promo_discount`.
+    Касовий розрив: 58.0 грн/EUR (недоплата 83% тарифу).
+    """
+    result = calculate_shipping_cost(
+        country_code="PL",
+        weight=6.0,
+        is_express=True,
+        customer_tier="regular",
+        is_holiday=True,
+    )
+    # Очікуємо 70.0, але отримуємо 12.0 через неконтрольовану мутацію
+    assert result["final_cost"] == 70.0, (
+        f"CRITICAL FINANCIAL DEFICIT (Касовий розрив): "
+        f"очікувалось 70.0, але отримано {result['final_cost']} через мутацію final_cost!"
+    )
