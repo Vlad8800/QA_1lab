@@ -8,15 +8,15 @@
     "cof_project_reference_proxy": "Directed same-project class reference edges / N(N-1)."
   },
   "project": {
-    "class_count": 53,
-    "method_count": 56,
-    "hidden_method_count": 2,
-    "field_count": 16,
-    "hidden_field_count": 16,
-    "directed_class_reference_edges": 65,
-    "mhf_python_convention_proxy": 0.0357,
+    "class_count": 57,
+    "method_count": 64,
+    "hidden_method_count": 1,
+    "field_count": 25,
+    "hidden_field_count": 25,
+    "directed_class_reference_edges": 79,
+    "mhf_python_convention_proxy": 0.0156,
     "ahf_python_convention_proxy": 1.0,
-    "cof_project_reference_proxy": 0.0236
+    "cof_project_reference_proxy": 0.0247
   },
   "selected_files": {
     "app/services.py": [
@@ -471,6 +471,119 @@
       "hidden_field_count": 0
     },
     {
+      "class": "app.consent.architecture.errors.ConsentAccessDeniedException",
+      "file": "app/consent/architecture/errors.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.architecture.errors.SubjectNotFoundException",
+      "file": "app/consent/architecture/errors.py",
+      "wmc_radon_sum": 0,
+      "cbo_project_class_reference_proxy": 0,
+      "lcom4_ast_proxy": 0,
+      "method_count": 0,
+      "fields": [],
+      "coupled_classes": [],
+      "visible_method_count": 0,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.architecture.operations.ConsentAuthorization",
+      "file": "app/consent/architecture/operations.py",
+      "wmc_radon_sum": 3,
+      "cbo_project_class_reference_proxy": 1,
+      "lcom4_ast_proxy": 1,
+      "method_count": 1,
+      "fields": [],
+      "coupled_classes": [
+        "app.consent.architecture.errors.ConsentAccessDeniedException"
+      ],
+      "visible_method_count": 1,
+      "hidden_method_count": 0,
+      "visible_field_count": 0,
+      "hidden_field_count": 0
+    },
+    {
+      "class": "app.consent.architecture.operations.ConsentReadOperations",
+      "file": "app/consent/architecture/operations.py",
+      "wmc_radon_sum": 5,
+      "cbo_project_class_reference_proxy": 5,
+      "lcom4_ast_proxy": 3,
+      "method_count": 3,
+      "fields": [
+        "_authorization",
+        "_repository_provider"
+      ],
+      "coupled_classes": [
+        "app.consent.architecture.operations.ConsentAuthorization",
+        "app.consent.schemas.ConsentPurpose",
+        "app.consent.schemas.ConsentRecord",
+        "app.consent.schemas.ConsentStatus",
+        "app.export.repository.UserDataRepository"
+      ],
+      "visible_method_count": 2,
+      "hidden_method_count": 0,
+      "visible_field_count": 2,
+      "hidden_field_count": 2
+    },
+    {
+      "class": "app.consent.architecture.operations.ConsentWriteOperations",
+      "file": "app/consent/architecture/operations.py",
+      "wmc_radon_sum": 12,
+      "cbo_project_class_reference_proxy": 6,
+      "lcom4_ast_proxy": 4,
+      "method_count": 5,
+      "fields": [
+        "_authorization",
+        "_gate_provider",
+        "_repository_provider"
+      ],
+      "coupled_classes": [
+        "app.consent.architecture.operations.ConsentAuthorization",
+        "app.consent.gate.ConsentPolicyGate",
+        "app.consent.schemas.ConsentPurpose",
+        "app.consent.schemas.ConsentResponse",
+        "app.consent.schemas.ConsentStatus",
+        "app.export.repository.UserDataRepository"
+      ],
+      "visible_method_count": 4,
+      "hidden_method_count": 0,
+      "visible_field_count": 3,
+      "hidden_field_count": 3
+    },
+    {
+      "class": "app.consent.architecture.operations.MarketingOperations",
+      "file": "app/consent/architecture/operations.py",
+      "wmc_radon_sum": 6,
+      "cbo_project_class_reference_proxy": 4,
+      "lcom4_ast_proxy": 3,
+      "method_count": 3,
+      "fields": [
+        "_gate_provider"
+      ],
+      "coupled_classes": [
+        "app.consent.gate.ConsentPolicyGate",
+        "app.consent.schemas.ConsentPurpose",
+        "app.consent.schemas.MarketingDispatchResult",
+        "app.consent.schemas.PolicyGateDecision"
+      ],
+      "visible_method_count": 2,
+      "hidden_method_count": 0,
+      "visible_field_count": 1,
+      "hidden_field_count": 1
+    },
+    {
       "class": "app.consent.architecture.workflows.ConsentWorkflow",
       "file": "app/consent/architecture/workflows.py",
       "wmc_radon_sum": 4,
@@ -756,59 +869,32 @@
       "hidden_field_count": 0
     },
     {
-      "class": "app.consent.service.ConsentAccessDeniedException",
-      "file": "app/consent/service.py",
-      "wmc_radon_sum": 0,
-      "cbo_project_class_reference_proxy": 0,
-      "lcom4_ast_proxy": 0,
-      "method_count": 0,
-      "fields": [],
-      "coupled_classes": [],
-      "visible_method_count": 0,
-      "hidden_method_count": 0,
-      "visible_field_count": 0,
-      "hidden_field_count": 0
-    },
-    {
       "class": "app.consent.service.ConsentManagementService",
       "file": "app/consent/service.py",
-      "wmc_radon_sum": 24,
-      "cbo_project_class_reference_proxy": 9,
-      "lcom4_ast_proxy": 5,
-      "method_count": 8,
+      "wmc_radon_sum": 9,
+      "cbo_project_class_reference_proxy": 7,
+      "lcom4_ast_proxy": 6,
+      "method_count": 7,
       "fields": [
         "_custom_gate",
-        "_custom_repository"
+        "_custom_repository",
+        "_marketing",
+        "_reader",
+        "_writer"
       ],
       "coupled_classes": [
+        "app.consent.architecture.operations.ConsentAuthorization",
+        "app.consent.architecture.operations.ConsentReadOperations",
+        "app.consent.architecture.operations.ConsentWriteOperations",
+        "app.consent.architecture.operations.MarketingOperations",
         "app.consent.gate.ConsentPolicyGate",
         "app.consent.schemas.ConsentPurpose",
-        "app.consent.schemas.ConsentRecord",
-        "app.consent.schemas.ConsentResponse",
-        "app.consent.schemas.ConsentStatus",
-        "app.consent.schemas.MarketingDispatchResult",
-        "app.consent.schemas.PolicyGateDecision",
-        "app.consent.service.ConsentAccessDeniedException",
         "app.export.repository.UserDataRepository"
       ],
-      "visible_method_count": 7,
-      "hidden_method_count": 1,
-      "visible_field_count": 2,
-      "hidden_field_count": 2
-    },
-    {
-      "class": "app.consent.service.SubjectNotFoundException",
-      "file": "app/consent/service.py",
-      "wmc_radon_sum": 0,
-      "cbo_project_class_reference_proxy": 0,
-      "lcom4_ast_proxy": 0,
-      "method_count": 0,
-      "fields": [],
-      "coupled_classes": [],
-      "visible_method_count": 0,
+      "visible_method_count": 6,
       "hidden_method_count": 0,
-      "visible_field_count": 0,
-      "hidden_field_count": 0
+      "visible_field_count": 5,
+      "hidden_field_count": 5
     },
     {
       "class": "app.export.repository.UserDataRepository",
