@@ -1,5 +1,5 @@
 {
-  "fetched_at_utc": "2026-10-31T16:09:43.626252+00:00",
+  "fetched_at_utc": "2026-10-31T16:25:11.555200+00:00",
   "project_key": "Vlad8800_QA_1lab",
   "branch": "lab8-architecture",
   "metric_catalog": {
@@ -201,16 +201,16 @@
             "vulnerabilities": 0,
             "codeSmells": 0
           },
-          "analysisDate": "2026-10-31T16:07:19+0000",
+          "analysisDate": "2026-10-31T16:24:35+0000",
           "commit": {
-            "sha": "df5f6ffc195fc0019eb813a5a8f6d05a27c2eb80",
+            "sha": "9c401a92c166caafd6300081ad86c36f093a9aa8",
             "author": {
               "name": "Vlad8800",
               "login": "Vlad8800-FIYQT@github",
               "avatar": "24395a0fb46b9c695eda1eeb0a24d183"
             },
-            "date": "2026-10-31T16:06:31+0000",
-            "message": "ci(lab8): scan architecture branch with SonarCloud"
+            "date": "2026-10-31T16:23:47+0000",
+            "message": "refactor(lab8): extract consent decisions from compatibility facade"
           },
           "branchId": "8d656b6f-847b-4738-a2ac-f55e330aba96",
           "branchUuidV1": "AaGStzQO2D3MkT4Dr1Jc"
@@ -254,7 +254,7 @@
         "measures": [
           {
             "metric": "complexity",
-            "value": "50"
+            "value": "61"
           },
           {
             "metric": "cognitive_complexity",
@@ -263,7 +263,7 @@
           },
           {
             "metric": "ncloc",
-            "value": "458"
+            "value": "494"
           }
         ],
         "branch": "lab8-architecture"
@@ -361,6 +361,36 @@
         }
       }
     },
+    "app/consent/architecture/operations.py": {
+      "request_url": "https://sonarcloud.io/api/measures/component?component=Vlad8800_QA_1lab%3Aapp%2Fconsent%2Farchitecture%2Foperations.py&metricKeys=complexity%2Ccognitive_complexity%2Cncloc&branch=lab8-architecture",
+      "http_status": 200,
+      "body": {
+        "component": {
+          "id": "AaGSxzxZeRS3ER4Ay-hR",
+          "key": "Vlad8800_QA_1lab:app/consent/architecture/operations.py",
+          "name": "operations.py",
+          "qualifier": "FIL",
+          "path": "app/consent/architecture/operations.py",
+          "language": "py",
+          "measures": [
+            {
+              "metric": "complexity",
+              "value": "26"
+            },
+            {
+              "metric": "cognitive_complexity",
+              "value": "12",
+              "bestValue": false
+            },
+            {
+              "metric": "ncloc",
+              "value": "240"
+            }
+          ],
+          "branch": "lab8-architecture"
+        }
+      }
+    },
     "app/consent/routes.py": {
       "request_url": "https://sonarcloud.io/api/measures/component?component=Vlad8800_QA_1lab%3Aapp%2Fconsent%2Froutes.py&metricKeys=complexity%2Ccognitive_complexity%2Cncloc&branch=lab8-architecture",
       "http_status": 200,
@@ -405,16 +435,16 @@
           "measures": [
             {
               "metric": "complexity",
-              "value": "24"
+              "value": "9"
             },
             {
               "metric": "cognitive_complexity",
-              "value": "14",
+              "value": "2",
               "bestValue": false
             },
             {
               "metric": "ncloc",
-              "value": "240"
+              "value": "34"
             }
           ],
           "branch": "lab8-architecture"

@@ -1,4 +1,7 @@
-* df5f6ff (HEAD -> lab8-architecture, origin/lab8-architecture) ci(lab8): scan architecture branch with SonarCloud
+* 9c401a9 (HEAD -> lab8-architecture, origin/lab8-architecture) refactor(lab8): extract consent decisions from compatibility facade
+* 8b30aa1 docs(lab8): publish God Object audit and cloud PASS evidence
+* df5f6ff ci(lab8): scan architecture branch with SonarCloud
 * 0190df8 refactor(audit): eliminate god object via interface decomposition, PASS
 * 76b4f0a arch(audit): capture god object coupling failure, FAIL
 * 59b6318 arch(audit): baseline synthetic privacy god object
+* 66fd5a5 docs(lab8): capture SonarCloud OO baseline and metric limits

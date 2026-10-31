@@ -33,7 +33,7 @@ def grant_consent(..., agreement_version: str, ...):
 
 ## 3. PASS — інтерфейсна декомпозиція
 
-Коміт [`0190df8`](https://github.com/Vlad8800/QA_1lab/commit/0190df8) видаляє `PrivacyOperationsGodObject` і вводить чотири малі класи з окремими обов'язками:
+Коміт [`0190df8`](https://github.com/Vlad8800/QA_1lab/commit/0190df8) видаляє `PrivacyOperationsGodObject` і вводить чотири малі класи з окремими обов'язками. Додатковий [коміт `9c401a9`](https://github.com/Vlad8800/QA_1lab/commit/9c401a9) переносить також **реальну бізнес-логіку** зі старого `ConsentManagementService` у компоненти читання, зміни згод, маркетингу й авторизації. Старий клас залишено лише як сумісний фасад для викликів чинного API.
 
 | Компонент | Обов'язок | Контракт конструктора |
 |---|---|---|
@@ -53,6 +53,11 @@ flowchart LR
     CP -. реалізація .-> A[ConsentServiceAdapter]
     MP -. реалізація .-> A
     A --> S[ConsentManagementService]
+    S --> Q[ConsentReadOperations]
+    S --> C[ConsentWriteOperations]
+    S --> M[MarketingOperations]
+    Q --> AP[ConsentAuthorization]
+    C --> AP
     EW[ExportWorkflow] --> EP[ExportPort]
     RW[ErasureWorkflow] --> RP[ErasurePort]
     EP -. реалізація .-> EX[PersonalDataExportService]
@@ -72,21 +77,23 @@ flowchart LR
 | PASS `ErasureWorkflow` | 2 | 2 | 1 | 0,000 |
 | PASS `ConsentServiceAdapter` | 5 | 2 | — | — |
 
+Після перенесення внутрішньої логіки WMC старого `ConsentManagementService` знизився з **24 до 9**, а CBO proxy — з **9 до 7**. Нові внутрішні компоненти мають WMC/CBO: `ConsentReadOperations` **5/5**, `ConsentWriteOperations` **12/6**, `MarketingOperations` **6/4**, `ConsentAuthorization` **3/1**. Отже, серед оновлених компонентів цієї підсистеми найбільший CBO proxy = **7 ≤ 8**. Це не просто рознесення викликів фасаду: реалізації читання, зміни та перевірки відправки фізично перенесені у [`operations.py`](../../app/consent/architecture/operations.py).
+
 Максимум для чотирьох нових робочих класів знизився з **16 до 4** зв'язків, тобто у **4 рази**, і задовольняє заданий орієнтир CBO ≤ 8 **за локальним proxy**. Нормалізований proxy дорівнює 0,000 ≤ 0,2. Його формула: `(кількість компонентів зв'язності методів − 1) / (кількість робочих методів − 1)`; для класу з одним робочим методом значення 0. Конструктори й службові `__dunder__` методи не враховано. [Сирі обчислення для обох Git-станів](task2-artifacts/lcom_comparison.json) отримані скриптом [`lab8_lcom_comparison.py`](../../scripts/lab8_lcom_comparison.py). Це визначена нами нормалізація для порівняння, **не офіційна метрика SonarCloud**.
 
 Фінальна перевірка всього проєкту в Python 3.11 Docker-контейнері: **52 passed**, код завершення 0 — [`pytest.log`](task2-artifacts/pass/pytest.log). Локальний Git hook також підтвердив CC ≤ 10 для нових методів. Згоди й маркетинг перевірені через HTTP-сценарії; експорт і видалення — окремим інтеграційним тестом композиції.
 
 ## 4. Хмарне сканування і межа інструменту
 
-Гілку `lab8-architecture` додано до [SonarCloud workflow](../../.github/workflows/sonarcloud.yml). [Повторне сканування на коміті `df5f6ff`](https://github.com/Vlad8800/QA_1lab/actions/runs/41218060003) завершилося **Success**. SonarCloud зареєстрував аналіз гілки `2026-10-31T18:07:19+02:00`. REST API повернув для PASS-файлу `app/consent/architecture/workflows.py`: `complexity=10`, `cognitive_complexity=0`, `ncloc=42`; для адаптера `complexity=5`. [Сирий PASS JSON](task2-artifacts/pass/sonar_api/sonar_api_pass.json) містить URL кожного запиту, HTTP-статуси, файлові дані та повторну відповідь HTTP 404 на запит CK-ключів.
+Гілку `lab8-architecture` додано до [SonarCloud workflow](../../.github/workflows/sonarcloud.yml). [Повторне сканування фінального коду `9c401a9`](https://github.com/Vlad8800/QA_1lab/actions/runs/41219489182) завершилося **Success**. SonarCloud зареєстрував аналіз гілки `2026-10-31T18:24:35+02:00`, SHA `9c401a92c166caafd6300081ad86c36f093a9aa8`. REST API повернув для `app/consent/architecture/workflows.py` `complexity=10`, для `adapter.py` — 5, для `operations.py` — 26, для сумісного `app/consent/service.py` — 9. Це **файлові**, а не класові показники. [Сирий PASS JSON](task2-artifacts/pass/sonar_api/sonar_api_pass.json) містить URL кожного запиту, HTTP-статуси, файлові дані та повторну відповідь HTTP 404 на запит CK-ключів.
 
 Відтворення PASS-запиту:
 
 ```powershell
-.\.venv-1\Scripts\python.exe scripts\lab8_fetch_sonar.py --branch lab8-architecture --output-dir docs/lab8/task2-artifacts/pass/sonar_api --file app/consent/architecture/workflows.py --file app/consent/architecture/adapter.py --file app/consent/architecture/contracts.py --file app/consent/routes.py --file app/consent/service.py
+.\.venv-1\Scripts\python.exe scripts\lab8_fetch_sonar.py --branch lab8-architecture --output-dir docs/lab8/task2-artifacts/pass/sonar_api --file app/consent/architecture/workflows.py --file app/consent/architecture/adapter.py --file app/consent/architecture/contracts.py --file app/consent/architecture/operations.py --file app/consent/routes.py --file app/consent/service.py
 ```
 
-Навіть після успішного сканування цей SonarCloud не видає офіційні CBO/LCOM: ключів немає в каталозі метрик сервера. Цю неможливість слід показати викладачу разом із HTTP 404 та запропонувати локальний AST/Radon аналіз як інструментальну альтернативу. Без такого погодження буквальну вимогу «PASS CK JSON через SonarQube Web API» підтвердити не можна. Початковий `ConsentManagementService` залишається окремим кандидатом на подальшу декомпозицію; у цьому експерименті ліквідовано саме штучно агрегований God Object.
+Навіть після успішного сканування цей SonarCloud не видає офіційні CBO/LCOM: ключів немає в каталозі метрик сервера. Цю неможливість слід показати викладачу разом із HTTP 404 та запропонувати локальний AST/Radon аналіз як інструментальну альтернативу. Без такого погодження буквальну вимогу «PASS CK JSON через SonarQube Web API» підтвердити не можна. Штучно агрегований God Object видалено; бізнес-рішення старого `ConsentManagementService` також розділено, але інші класи проєкту не входили до цього експерименту.
 
 ## 5. Git History і відтворення
 
@@ -96,6 +103,7 @@ flowchart LR
 59b6318 arch(audit): baseline synthetic privacy god object
 76b4f0a arch(audit): capture god object coupling failure, FAIL
 0190df8 refactor(audit): eliminate god object via interface decomposition, PASS
+9c401a9 refactor(lab8): extract consent decisions from compatibility facade
 ```
 
 Команди з папки `C:\Users\Vlad\Documents\Навчання\Тестування\8`:
