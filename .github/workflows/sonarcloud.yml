@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - lab8-architecture
   pull_request:
     types: [opened, synchronize, reopened]
 
