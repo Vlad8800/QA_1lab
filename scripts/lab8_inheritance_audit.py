@@ -37,8 +37,11 @@ def injected_dependencies(node, classes):
     for method in node.body:
         if isinstance(method, ast.FunctionDef) and method.name == "__init__":
             for argument in method.args.args:
-                if (name := class_name(argument.annotation)) in classes:
-                    dependencies.add(name)
+                if argument.annotation is None:
+                    continue
+                for annotation_node in ast.walk(argument.annotation):
+                    if isinstance(annotation_node, ast.Name) and annotation_node.id in classes:
+                        dependencies.add(annotation_node.id)
     return sorted(dependencies)
 
 

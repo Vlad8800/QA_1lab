@@ -38,3 +38,22 @@ def test_shipping_policy_http_path_uses_deep_rule():
 def test_domestic_policy_keeps_local_rate():
     spec = ShippingOrderSpec(country_code="UA", weight=6.0)
     assert RegionalShippingQuote().quote(spec, 2.0) == 2.0
+
+
+def test_injected_base_localizes_the_new_policy_context_contract():
+    class RecordingBase:
+        def __init__(self):
+            self.context = None
+
+        def validate(self, spec, base_rate):
+            assert base_rate >= 0
+
+        def quote(self, spec, base_rate, *, policy_context):
+            self.context = policy_context
+            return 80.0
+
+    helper = RecordingBase()
+    policy = RegionalShippingQuote(base=helper)
+
+    assert policy.quote(pl_spec(), 25.0) == 80.0
+    assert helper.context == "regional"
