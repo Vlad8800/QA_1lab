@@ -118,4 +118,6 @@ git log --since='90 days ago' --no-renames --format= --name-only -- '*.py' | sed
 
 Локально сканер успішно обробив 47 відстежуваних Python-файлів і створив усі п'ять звітів у [`task3-artifacts`](task3-artifacts). Після виправлення налаштування довіри Git у контейнері [хмарний запуск GitHub Actions № 41204177716](https://github.com/Vlad8800/QA_1lab/actions/runs/41204177716) завершився зі статусом **Success**. Усі кроки job `hotspots`, включно з `Scan repository and calculate 90-day churn` та `Upload structured reports`, мають статус **success**. У секції **Artifacts** прикріплено `lab7-hotspots-41204177716` (18.9 KB, artifact ID `13044166105`).
 
-На сторінці запуску видно статус і артефакт; вона є перевірюваним доказом хмарного виконання. Окремий графічний скріншот сторінки до локального звіту не додано.
+На [знімку сторінки GitHub Actions](github-actions-success.png) видно `Status Success` і `Artifacts 1`. Назва артефакту та повний журнал доступні за посиланням на запуск вище.
+
+![Успішний запуск GitHub Actions і один прикріплений артефакт](github-actions-success.png)
