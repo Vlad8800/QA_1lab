@@ -21,7 +21,7 @@ Copy-Item config/shipping-policy.example.json runtime/shipping-policy.json
 python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-API: http://127.0.0.1:8000/docs.
+API: <http://127.0.0.1:8000/docs>.
 Політика доставки: GET /api/v1/shipping/policy.
 Маршрут новачка: [локальне середовище](docs/developer/local.md) → [SDD](docs/architecture/sdd.md)
 → [контракти](docs/api/index.md) → [внесення змін](CONTRIBUTING.md).

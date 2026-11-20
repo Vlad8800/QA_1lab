@@ -29,7 +29,7 @@ python -m mkdocs build --strict
 python -m mkdocs serve -a 127.0.0.1:8001
 ```
 
-API: http://127.0.0.1:8000/docs; база знань: http://127.0.0.1:8001.
+API: <http://127.0.0.1:8000/docs>; база знань: <http://127.0.0.1:8001>.
 Політика доставки читається до старту; файл runtime не комітиться.
 Дозволені CORS origins задаються через DOCS_CORS_ORIGINS (через кому, без секретів).
 Для Swagger на GitHub Pages виберіть HTTP localhost server і дозвольте браузеру доступ до локальної мережі, якщо він запитає.

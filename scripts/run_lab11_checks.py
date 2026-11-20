@@ -19,7 +19,7 @@ if __name__=='__main__':
         ('review-policy-tests',[sys.executable,'scripts/test_review_policy.py']),
         ('contract-boundary-tests',[sys.executable,'scripts/test_contract_boundary.py']),
         ('spectral',['node','node_modules/@stoplight/spectral-cli/dist/index.js','lint','docs/api/openapi.yaml','--fail-severity','warn']),
-        ('markdownlint',['node','node_modules/markdownlint-cli2/markdownlint-cli2.mjs']),
+        ('markdownlint',['node','node_modules/markdownlint-cli2/markdownlint-cli2-bin.mjs']),
         ('strict-build',[sys.executable,'-m','mkdocs','build','--strict'])
     ]:
         try:results[name]=run(name,args)

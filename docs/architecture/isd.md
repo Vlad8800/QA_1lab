@@ -31,7 +31,7 @@ flowchart TD
 ## Environments
 
 | Середовище | Розміщення, процеси, дані | Конфігурація та статус |
-|---|---|---|
+| --- | --- | --- |
 | dev | Windows/Linux/macOS; один ASGI worker; seeded memory | Python 3.11 як орієнтир CI, `venv`, host 127.0.0.1, port 8000; команди в README |
 | test | `pytest`/TestClient; окремий процес тестового запуску | `pytest.ini`: pythonpath=`.`, testpaths=`tests`; mocks зовнішнього тарифу й reset repository в тестах |
 | CI SonarCloud | `ubuntu-latest`, Python 3.11, окремий job | Встановлення requirements + pytest-cov + pytest-mock; pytest/coverage; Sonar scan |
@@ -57,7 +57,7 @@ Copy-Item config/shipping-policy.example.json runtime/shipping-policy.json
 ## Configuration
 
 | Параметр | Де задається | Значення / значення за замовчуванням | Секрет? / статус |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | ASGI app | CLI | `app.main:app` | Ні, документовано |
 | Host/port/workers | Uvicorn CLI | `127.0.0.1`, `8000`, `1` | Ні; не app env |
 | `SHIPPING_POLICY_FILE` | env | runtime/shipping-policy.json, якщо не задано | Ні; чинний path override, файл обов’язковий |
@@ -112,7 +112,7 @@ Copy-Item config/shipping-policy.example.json runtime/shipping-policy.json
 [Компонент SDD](sdd.md#tooling). Джерела: [Sonar workflow](https://github.com/Vlad8800/QA_1lab/blob/lab11-documentation-as-code/.github/workflows/sonarcloud.yml), [Hotspots workflow](https://github.com/Vlad8800/QA_1lab/blob/lab11-documentation-as-code/.github/workflows/lab7-hotspots.yml), [quality_gate.py](https://github.com/Vlad8800/QA_1lab/blob/main/quality_gate.py), [hook](https://github.com/Vlad8800/QA_1lab/blob/lab11-documentation-as-code/scripts/pre-commit), [Gitleaks config](https://github.com/Vlad8800/QA_1lab/blob/main/.pre-commit-config.yaml), [k6](https://github.com/Vlad8800/QA_1lab/blob/main/load_test.js).
 
 | Контур | Тригер / середовище | Стадії | Gate та реальна межа |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | SonarCloud | push лише `main`; PR opened/synchronize/reopened; ubuntu-latest/Python 3.11 | checkout full history → pip requirements + pytest-cov/pytest-mock → provision shipping-policy JSON → pytest coverage.xml → Sonar scan | pytest nonzero блокує job; окремого `sonar.qualitygate.wait=true` чи Quality Gate action немає; статус Sonar server/branch protection не підтверджений конфігом |
 | Hotspots ЛР7 | кожний push і pull_request; Python 3.11 Docker job | apt Git → checkout fetch-depth=0 → safe.directory → Radon 6.0.1 → build_hotspots → upload artifact | `max CC>10`, churn>=5 — класифікація, **не блокування job за категорією**; помилка скрипта/відсутність artifact — відмова; `if: always()` на upload |
 | CC hook ЛР6 | локальний git commit після ручного встановлення | staged `.py` з індексу → Radon кожного методу | `CC>10` або scan error → exit 1; це не CI gate й не перевірка всього дерева |
@@ -126,7 +126,7 @@ Quick start встановлює явно відсутні пакети server/t
 ## Monitoring
 
 | Сигнал | Наявне джерело | Ціль / дія оператора | Статус |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | HTTP status/duration/correlation | JSON події middleware | Дослідити 5xx за correlation ID; availability target для production визначається окремо | Логи є; dashboard/alert не встановлено |
 | p95 та частка failed requests | Ручний k6 `load_test.js` | p95<200 ms, failure rate<1% для зазначеного local UA workload | Скрипт реалізує thresholds; новий load-run у цій поставці не заявляється |
 | Tariff fallback | `Fallback activated`, shipping.is_fallback | Proposed alert: >5% міжнародних розрахунків за 5 хвилин → перевірити provider; це не поріг з поточного коду | Опис майбутнього collector; counters/alert відсутні |
@@ -140,7 +140,7 @@ Quick start встановлює явно відсутні пакети server/t
 RTO — допустимий час повернення працездатного сервісу після відмови. RPO — допустимий часовий обсяг втрачених змін даних. Значення нижче — **цілі**, не результати виміряного SLA.
 
 | Об’єкт | Ціль RTO | Ціль RPO | Поточна досяжність / обмеження |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Dev/test: відновити код і seed-demo | <=15 хвилин за наявності Python, залежностей і перевіреного Git bundle | 0 щодо відомого зафіксованого seed/SHA | Bundle відновлює committed код, не RAM. Мета RPO=0 стосується лише відомого seed, а не користувацьких мутацій |
 | Поточні runtime consents/erasure/profile changes | Числовий RTO повного відновлення стану не забезпечений | Обмежений RPO не забезпечений: можливі втрати всіх змін від створення процесу | Реальної резервної копії mutable RAM немає; restart повертає seed |
 | Production target після реалізації persistence | <=60 хвилин | <=15 хвилин | Proposed; durable БД, журнал змін/backup, зовнішня копія та restore drill ще не реалізовані |
@@ -189,11 +189,9 @@ git switch --detach 8545112ad2e693517b45ec15ff6c3c03e7438363
 
 Перевірки цієї документаційної поставки: відповідність HTTP-route переліку коду; локальні файлові посилання та fragment anchors; наявність SDD↔ISD зв’язку для кожного компонента; потрібні поля ADR; запуск наявних тестів і smoke за наявності сумісного Python. [Звіт і фактичні обмеження перевірки](https://github.com/Vlad8800/QA_1lab/blob/lab11-documentation-as-code/docs/lab10/task2-report.md). Production restore SLA, новий запуск GitHub CI та load test не заявляються виконаними без відповідних логів.
 
-
 ## Пов’язані знання
 
 [[architecture/sdd|SDD]] · [[architecture/isd|ISD]] · [[architecture/adr/0001-demo-in-memory-boundary|ADR-0001]] · [[architecture/adr/0002-immutable-shipping-contracts|ADR-0002]] · [[developer/local|Локальний запуск]]
-
 
 ## Documentation as Code — ЛР11
 
@@ -209,5 +207,5 @@ git switch --detach 8545112ad2e693517b45ec15ff6c3c03e7438363
 | Pages | Успішний docs-build у main | OIDC, environment github-pages |
 
 Workflow: .github/workflows/docs.yml. PR та навчальна гілка лише перевіряються; deploy виконується з main.
-Змінна DOCS_CORS_ORIGINS дозволяє звернення Swagger до локального API з http://127.0.0.1:8001.
+Змінна DOCS_CORS_ORIGINS дозволяє звернення Swagger до локального API з <http://127.0.0.1:8001>.
 MkDocs працює окремим процесом на порту 8001; це інструмент документації, а не сервіс бізнес-системи.

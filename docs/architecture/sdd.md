@@ -157,7 +157,7 @@ erDiagram
 ```
 
 | Колекція/об’єкт | Ключ та зміст | Життєвий цикл |
-|---|---|---|
+| --- | --- | --- |
 | `_users` | dict за user ID; profile, credentials і internal risk fields | Seed при створенні repo; профіль анонімізується, ID зберігається |
 | `_settings` | dict за user ID; UI/notification preferences | Видаляється при erasure |
 | `_activity` | list; activity ID/user ID/timestamp/action/resource/status | Seed-історія; видаляється при erasure; не тотожна stdout-логам |
@@ -174,7 +174,7 @@ erDiagram
 HTTP/JSON поверх одного FastAPI application. Точні Pydantic-схеми доступні з `/openapi.json`; таблиця нижче додає бізнес-результати й помилки, які не всі явно оголошені в OpenAPI. `422` — автоматична перевірка моделі/enum/числових обмежень; `500` можливий для необроблених помилок.
 
 | Метод і шлях | Вхід / заголовки | Успішний результат | Контрольовані помилки / нюанси |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `GET /api/v1/shipping/policy` | Немає | `200`: schema_version, policy_version | Файл перевіряється до startup; відсутній/невалідний файл блокує запуск, а не повертає HTTP 404 |
 | `GET /` | Немає | `200 text/html`, навчальна сторінка | Не є deep readiness-перевіркою |
 | `POST /api/v1/orders/calculate` | `OrderRequest` | `200`: status/subtotal/discounted_price/shipping/final_total | `422` на price<=0, quantity<=0, weight<=0; `400` при відхиленні item helper; тарифний збій → `200` з fallback |
@@ -202,7 +202,7 @@ HTTP/JSON поверх одного FastAPI application. Точні Pydantic-с�
 ## Internal contracts
 
 | Викликач → компонент | Контракт | Інваріант / відмова |
-|---|---|---|
+| --- | --- | --- |
 | API → Orders | `calculate_base_total(items)`; `apply_loyalty_discount(subtotal,tier)`; `calculate_shipping_cost(ShippingOrderSpec)` | Результат доставки — frozen `ShippingRateResult`; weight<=0 → ValueError при прямому виклику |
 | Orders → Tariff | `_fetch_external_base_rate(country_code) -> float` | Retry до 3 спроб; остаточна помилка обробляється wrapper fallback |
 | Export → Repository | `get_user_by_id`, `get_settings_by_user_id`, `get_activity_by_user_id`, `get_orders_by_user_id`, `get_consents_by_user_id` | None/порожні джерела → 404 для відсутнього профілю або documented omission для категорії |
@@ -219,7 +219,7 @@ Resolver довіряє клієнтським `X-Actor-ID`/`X-Actor-Role`, Bear
 ## Verification
 
 | Поведінка | Наявні тести |
-|---|---|
+| --- | --- |
 | HTTP orders, тарифи та базові формули | [test_main.py](https://github.com/Vlad8800/QA_1lab/blob/lab11-documentation-as-code/tests/test_main.py), [test_services.py](https://github.com/Vlad8800/QA_1lab/blob/lab11-documentation-as-code/tests/test_services.py) |
 | External success, fallback, Retry config | [test_resilience.py](https://github.com/Vlad8800/QA_1lab/blob/lab11-documentation-as-code/tests/test_resilience.py) |
 | Export: мінімізація, IDOR, omissions | [test_personal_data_export.py](https://github.com/Vlad8800/QA_1lab/blob/lab11-documentation-as-code/tests/test_personal_data_export.py) |
@@ -231,11 +231,9 @@ Resolver довіряє клієнтським `X-Actor-ID`/`X-Actor-Role`, Bear
 
 Фактичні результати перевірки поставки — [звіт завдання №2](https://github.com/Vlad8800/QA_1lab/blob/lab11-documentation-as-code/docs/lab10/task2-report.md). [Інфраструктурні перевірки](isd.md#verification).
 
-
 ## Пов’язані знання
 
 [[architecture/sdd|SDD]] · [[architecture/isd|ISD]] · [[architecture/adr/0001-demo-in-memory-boundary|ADR-0001]] · [[architecture/adr/0002-immutable-shipping-contracts|ADR-0002]] · [[developer/local|Локальний запуск]]
-
 
 ## API-контракт ЛР11
 

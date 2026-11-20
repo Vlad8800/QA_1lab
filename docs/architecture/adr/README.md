@@ -10,7 +10,7 @@ tags: [architecture]
 Дата початку реєстру: **15.11.2026**. [SDD](../../sdd.md), [ISD](../../isd.md), [матриця аудиторій](../../audience-matrix.md).
 
 | Номер | Рішення | Статус | Область |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | [0001](0001-demo-in-memory-boundary.md) | Зберегти in-memory storage лише для навчального baseline | Accepted | Runtime, state, RTO/RPO |
 | [0002](0002-immutable-shipping-contracts.md) | Зберегти frozen контракти доставки | Accepted | Доменний контракт і тестованість |
 

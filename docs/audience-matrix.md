@@ -10,7 +10,7 @@ tags: [architecture]
 Дата: 15.11.2026. Власник документації навчальної поставки: maintainer `Vlad8800`. Чотири аудиторії: розробники (включно з новачком), QA, DevOps, бізнес. Статус **«покрито» означає наявність перевірюваної документальної відповіді**, а не реалізацію всіх production-механізмів.
 
 | Аудиторія | Ключове питання | Документ-відповідь | Статус |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Розробники / новачок | Як установити залежності й отримати перший результат локально? | [README quick start](index.md#quick-start-для-windows-powershell), [ISD environments](isd.md#environments) | Покрито: створено README, явні server/test dependencies, UA smoke=52 |
 | Розробники | З якими компонентами взаємодіє мій модуль і де він розгортається? | [SDD component map](sdd.md#component-map), component sections → ISD deployment map | Покрито: усі дев’ять компонентів мають взаємні посилання й deployment entry |
 | Розробники | Чому залишені RAM-storage та frozen DTO і як змінювати рішення? | [ADR index](architecture/adr/README.md), [0001](architecture/adr/0001-demo-in-memory-boundary.md), [0002](architecture/adr/0002-immutable-shipping-contracts.md) | Покрито: альтернативи, наслідки, дата й supersession policy |

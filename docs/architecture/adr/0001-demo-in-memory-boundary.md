@@ -20,7 +20,7 @@ tags: [architecture]
 ## Alternatives
 
 | Альтернатива | Переваги | Вартість / межі |
-|---|---|---|
+| --- | --- | --- |
 | In-memory dict/list в одному процесі | Немає DB setup; явні fixtures; простий reset і тести | Втрата змін після restart; немає транзакцій, міжпроцесної узгодженості та backups |
 | SQLite file | Локальна персистентність, транзакції, невеликий deployment | Потрібні схема, міграції та адаптер; файл/backup/concurrency стають окремою відповідальністю |
 | PostgreSQL | Транзакції, constraints, спільний стан для workers | Окремий сервіс, credentials, міграції, backup/restore та супровід |
