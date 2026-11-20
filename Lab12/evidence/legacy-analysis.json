@@ -1,0 +1,222 @@
+{
+  "audit_extract": [
+    {
+      "id": "F019",
+      "path": "app/export/__init__.py",
+      "included": true,
+      "kind": "annotations",
+      "last_file_commit": "de038d9bde3fd13360f5e10ded3bf51a55f66693",
+      "last_file_date": "2026-10-16",
+      "file_age_days": 30,
+      "owner_git": "Vlad8800",
+      "file_commits": 1,
+      "last_doc_date": "2026-10-16",
+      "doc_age_days": 30,
+      "doc_changes": 1,
+      "component": "app/export",
+      "code_commits": 2,
+      "ratio": 2.0,
+      "code_commits_since_doc": 1
+    },
+    {
+      "id": "F020",
+      "path": "app/export/repository.py",
+      "included": true,
+      "kind": "annotations",
+      "last_file_commit": "2e2235cafd9e7af7c9a9f5583c5528e265e8cbd2",
+      "last_file_date": "2026-10-31",
+      "file_age_days": 15,
+      "owner_git": "Vlad8800",
+      "file_commits": 2,
+      "last_doc_date": "2026-10-16",
+      "doc_age_days": 30,
+      "doc_changes": 1,
+      "component": "app/export",
+      "code_commits": 2,
+      "ratio": 2.0,
+      "code_commits_since_doc": 1
+    },
+    {
+      "id": "F021",
+      "path": "app/export/routes.py",
+      "included": true,
+      "kind": "annotations",
+      "last_file_commit": "de038d9bde3fd13360f5e10ded3bf51a55f66693",
+      "last_file_date": "2026-10-16",
+      "file_age_days": 30,
+      "owner_git": "Vlad8800",
+      "file_commits": 1,
+      "last_doc_date": "2026-10-16",
+      "doc_age_days": 30,
+      "doc_changes": 1,
+      "component": "app/export",
+      "code_commits": 2,
+      "ratio": 2.0,
+      "code_commits_since_doc": 1
+    },
+    {
+      "id": "F022",
+      "path": "app/export/schemas.py",
+      "included": true,
+      "kind": "annotations",
+      "last_file_commit": "de038d9bde3fd13360f5e10ded3bf51a55f66693",
+      "last_file_date": "2026-10-16",
+      "file_age_days": 30,
+      "owner_git": "Vlad8800",
+      "file_commits": 1,
+      "last_doc_date": "2026-10-16",
+      "doc_age_days": 30,
+      "doc_changes": 1,
+      "component": "app/export",
+      "code_commits": 2,
+      "ratio": 2.0,
+      "code_commits_since_doc": 1
+    },
+    {
+      "id": "F023",
+      "path": "app/export/service.py",
+      "included": true,
+      "kind": "annotations",
+      "last_file_commit": "de038d9bde3fd13360f5e10ded3bf51a55f66693",
+      "last_file_date": "2026-10-16",
+      "file_age_days": 30,
+      "owner_git": "Vlad8800",
+      "file_commits": 1,
+      "last_doc_date": "2026-10-16",
+      "doc_age_days": 30,
+      "doc_changes": 1,
+      "component": "app/export",
+      "code_commits": 2,
+      "ratio": 2.0,
+      "code_commits_since_doc": 1
+    }
+  ],
+  "source_inventory": {
+    "app/export/routes.py": [
+      {
+        "line": 23,
+        "text": "def _resolve_authenticated_principal("
+      },
+      {
+        "line": 61,
+        "text": "def export_personal_data_endpoint("
+      },
+      {
+        "line": 81,
+        "text": "except AccessDeniedException as exc:"
+      },
+      {
+        "line": 87,
+        "text": "except SubjectNotFoundException as exc:"
+      }
+    ],
+    "app/export/service.py": [
+      {
+        "line": 10,
+        "text": "from app.export.repository import UserDataRepository, get_default_repository"
+      },
+      {
+        "line": 24,
+        "text": "class AccessDeniedException(Exception):"
+      },
+      {
+        "line": 29,
+        "text": "class SubjectNotFoundException(Exception):"
+      },
+      {
+        "line": 34,
+        "text": "class PersonalDataExportService:"
+      },
+      {
+        "line": 40,
+        "text": "def __init__(self, repository: Optional[UserDataRepository] = None):"
+      },
+      {
+        "line": 44,
+        "text": "def repository(self) -> UserDataRepository:"
+      },
+      {
+        "line": 47,
+        "text": "return get_default_repository()"
+      },
+      {
+        "line": 49,
+        "text": "def export_user_data("
+      },
+      {
+        "line": 92,
+        "text": "raw_user = self.repository.get_user_by_id(subject_id)"
+      }
+    ],
+    "app/export/repository.py": [
+      {
+        "line": 9,
+        "text": "class UserDataRepository:"
+      },
+      {
+        "line": 12,
+        "text": "def __init__(self):"
+      },
+      {
+        "line": 226,
+        "text": "def get_user_by_id(self, user_id: str) -> Optional[Dict[str, Any]]:"
+      },
+      {
+        "line": 229,
+        "text": "def get_settings_by_user_id(self, user_id: str) -> Optional[Dict[str, Any]]:"
+      },
+      {
+        "line": 232,
+        "text": "def get_activity_by_user_id(self, user_id: str) -> List[Dict[str, Any]]:"
+      },
+      {
+        "line": 235,
+        "text": "def get_orders_by_user_id(self, user_id: str) -> List[Dict[str, Any]]:"
+      },
+      {
+        "line": 238,
+        "text": "def get_consents_by_user_id(self, user_id: str) -> List[Dict[str, Any]]:"
+      },
+      {
+        "line": 241,
+        "text": "def get_consent(self, user_id: str, purpose: str) -> Optional[Dict[str, Any]]:"
+      },
+      {
+        "line": 248,
+        "text": "def upsert_grant_consent("
+      },
+      {
+        "line": 307,
+        "text": "def revoke_consent("
+      },
+      {
+        "line": 342,
+        "text": "def anonymize_user_profile("
+      },
+      {
+        "line": 369,
+        "text": "def delete_settings(self, user_id: str) -> bool:"
+      },
+      {
+        "line": 376,
+        "text": "def delete_activity_history(self, user_id: str) -> int:"
+      },
+      {
+        "line": 382,
+        "text": "def revoke_consents_on_erasure(self, user_id: str, timestamp: str) -> int:"
+      },
+      {
+        "line": 394,
+        "text": "def retain_and_anonymize_orders(self, user_id: str) -> int:"
+      },
+      {
+        "line": 412,
+        "text": "def get_default_repository() -> UserDataRepository:"
+      },
+      {
+        "line": 420,
+        "text": "def reset_default_repository() -> UserDataRepository:"
+      }
+    ]
+  }
+}
