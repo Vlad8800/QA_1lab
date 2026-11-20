@@ -14,33 +14,14 @@ INFO    -  MERMAID2  - Using javascript library (10.4.0):
    https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs
 INFO    -  Cleaning site directory
 INFO    -  Building documentation to directory: C:\Users\Vlad\Documents\��������\����������\1\site
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\index.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\audience-matrix.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\isd.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\handover.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\sdd.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\maintenance.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\architecture\isd.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\api\index.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\architecture\adr\0001-demo-in-memory-boundary.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\architecture\sdd.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\architecture\adr\README.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\architecture\adr\0002-immutable-shipping-contracts.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\developer\index.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\developer\contributing.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\developer\local.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\developer\reference.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\developer\standards.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\lab10\task2-report.md' has no git logs, using current timestamp
-mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\Documents\��������\����������\1\docs\lab10\task3-report.md' has no git logs, using current timestamp
 INFO    -  mkdocs_swagger_ui_tag: Processing file 'api/index.md'
-INFO    -  MERMAID2  - Found superfences config: {'custom_fences': [{'name': 'mermaid', 'class': 'mermaid', 'format': functools.partial(<function fence_mermaid at 0x000001C78C182160>, custom=True)}]}
+INFO    -  MERMAID2  - Found superfences config: {'custom_fences': [{'name': 'mermaid', 'class': 'mermaid', 'format': functools.partial(<function fence_mermaid at 0x0000023DC5B82160>, custom=True)}]}
 INFO    -  MERMAID2  - Found 'fence_mermaid_custom' function: activate custom loader for superfences
 INFO    -  MERMAID2  - Custom loader activated
 INFO    -  MERMAID2  - Page '�������������� ISD': found 1 diagrams, adding scripts
 INFO    -  MERMAID2  - Custom loader activated
 INFO    -  MERMAID2  - Page '����������� SDD': found 3 diagrams, adding scripts
 INFO    -  mkdocs_swagger_ui_tag: Copying swagger ui assets.
-INFO    -  Documentation built in 11.33 seconds
+INFO    -  Documentation built in 7.02 seconds
 
 Exit Code: 0

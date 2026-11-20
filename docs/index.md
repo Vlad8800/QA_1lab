@@ -19,5 +19,3 @@ FastAPI працює в одному процесі; дані демонстра
 
 Документи ЛР6–7 та історичні протоколи ЛР10 збережені в Git і не публікуються як актуальні інструкції.
 [[architecture/sdd|Карта системи]] · [[developer/index|Шлях розробника]] · [[api/index|API]]
-
-[Controlled broken reference](missing-lab11-page.md)

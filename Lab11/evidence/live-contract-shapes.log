@@ -41,8 +41,8 @@ $ C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Sc
         "user_id": "demo-user",
         "purpose": "MARKETING_EMAIL",
         "policy_version_checked": null,
-        "evaluated_at": "2026-11-20T16:11:11.531314+00:00",
-        "correlation_id": "486746e7-175e-4858-bb5d-9e4c253001c1"
+        "evaluated_at": "2026-11-20T16:35:47.894369+00:00",
+        "correlation_id": "375f098a-9634-4b40-ac3e-bf4a0890cafd"
       }
     },
     {
