@@ -1,0 +1,27 @@
+
+ \u2502  Material for MkDocs reaches end of life on May 5, 2027.
+ \u2502  Critical fixes and security updates continue until that date.
+ \u2502
+ \u2502  Zensical is its maintained successor, built by the same team.
+ \u2502  Try it alongside MkDocs with your existing mkdocs.yml:
+ \u2502  https://zensical.org/docs/compatibility/mkdocs/migration/
+
+  To disable this warning, set NO_MKDOCS_2_WARNING=1.
+
+INFO    -  MERMAID2  - Initialization arguments: {}
+INFO    -  MERMAID2  - Using javascript library (10.4.0):
+   https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs
+INFO    -  Cleaning site directory
+INFO    -  Building documentation to directory: C:\Users\Vlad\Documents\═ртўрээ \╥хёЄєтрээ \1\site
+WARNING -  Doc file 'index.md' contains a link 'missing-lab11-page.md', but the target is not found among documentation files.
+INFO    -  mkdocs_swagger_ui_tag: Processing file 'api/index.md'
+INFO    -  MERMAID2  - Found superfences config: {'custom_fences': [{'name': 'mermaid', 'class': 'mermaid', 'format': functools.partial(<function fence_mermaid at 0x0000014DE94D2160>, custom=True)}]}
+INFO    -  MERMAID2  - Found 'fence_mermaid_custom' function: activate custom loader for superfences
+INFO    -  MERMAID2  - Custom loader activated
+INFO    -  MERMAID2  - Page '▓эЇЁрёЄЁєъЄєЁр ISD': found 1 diagrams, adding scripts
+INFO    -  MERMAID2  - Custom loader activated
+INFO    -  MERMAID2  - Page '╧Ёю║ъЄєтрээ  SDD': found 3 diagrams, adding scripts
+INFO    -  mkdocs_swagger_ui_tag: Copying swagger ui assets.
+
+Aborted with 1 warnings in strict mode!
+Exit Code: 1

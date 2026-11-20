@@ -1,0 +1,64 @@
+site_name: QA_1lab — база знань
+site_url: https://Vlad8800.github.io/QA_1lab/
+repo_url: https://github.com/Vlad8800/QA_1lab
+theme:
+  name: material
+  language: uk
+  features: [navigation.sections, content.code.copy]
+nav:
+  - Початок: index.md
+  - Розробнику:
+      - Онбординг: developer/index.md
+      - Локальне середовище: developer/local.md
+      - Внесення змін: developer/contributing.md
+      - Стандарти коду: developer/standards.md
+      - Довідник Python: developer/reference.md
+  - API:
+      - Інтерактивна довідка: api/index.md
+  - Архітектура:
+      - Проєктування SDD: architecture/sdd.md
+      - Інфраструктура ISD: architecture/isd.md
+      - Рішення ADR: architecture/adr/README.md
+      - ADR-0001: architecture/adr/0001-demo-in-memory-boundary.md
+      - ADR-0002: architecture/adr/0002-immutable-shipping-contracts.md
+  - Супровід:
+      - Покриття аудиторій: audience-matrix.md
+      - Регламент: maintenance.md
+      - Передача знань: handover.md
+  - Сумісність посилань:
+      - Попереднє розташування SDD: sdd.md
+      - Попереднє розташування ISD: isd.md
+exclude_docs: |
+  lab6/
+  lab7/
+  lab10/
+plugins:
+  - search
+  - mermaid2
+  - git-revision-date-localized:
+      type: date
+      enable_creation_date: false
+      fallback_to_build_date: true
+      enable_git_follow: false
+  - swagger-ui-tag
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [.] 
+hooks: [scripts/docs_hooks.py]
+markdown_extensions:
+  - admonition
+  - tables
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom
+validation:
+  nav:
+    omitted_files: warn
+    not_found: warn
+  links:
+    not_found: warn
+    anchors: warn
+    unrecognized_links: warn

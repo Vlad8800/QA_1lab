@@ -1,0 +1,8 @@
+{
+  "scope": "local structure/link preflight only; MkDocs strict and GitHub Actions NOT verified",
+  "baseline": "6a15d31768cf5642b7368d8eb0e347a28d6cf3b7",
+  "fail": "ff47ba15333fb170be9abe90c2c20a01298ceb56",
+  "fail_exit": 1,
+  "pass": "e785356f1163f5a117ec75f4ccefc100bcc2d71f",
+  "pass_exit": 0
+}

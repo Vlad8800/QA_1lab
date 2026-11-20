@@ -1,0 +1,28 @@
+{
+  "showTags": true,
+  "showOrphans": false,
+  "search": "path:docs -path:docs/lab6 -path:docs/lab7 -path:docs/lab10",
+  "colorGroups": [
+    {
+      "query": "tag:#architecture",
+      "color": {
+        "a": 1,
+        "rgb": 39423
+      }
+    },
+    {
+      "query": "tag:#api",
+      "color": {
+        "a": 1,
+        "rgb": 16753920
+      }
+    },
+    {
+      "query": "tag:#ops",
+      "color": {
+        "a": 1,
+        "rgb": 65280
+      }
+    }
+  ]
+}

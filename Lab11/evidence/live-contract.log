@@ -1,0 +1,70 @@
+$ C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Scripts\python.exe scripts/check_contract.py
+[
+  {
+    "method": "GET",
+    "path": "/api/v1/shipping/policy",
+    "status": 200,
+    "result": "PASS",
+    "response": {
+      "schema_version": "1.0",
+      "policy_version": "demo-2026-11"
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/orders/calculate",
+    "status": 200,
+    "result": "PASS",
+    "response": {
+      "status": "success",
+      "subtotal": 50.0,
+      "discounted_price": 50.0,
+      "shipping": {
+        "final_cost": 2.0,
+        "is_fallback": false,
+        "attempts": 1,
+        "mode": "domestic"
+      },
+      "final_total": 52.0
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/policy-gate/check",
+    "status": 200,
+    "result": "PASS",
+    "response": {
+      "decision": "DENY",
+      "reason": "No consent record found for purpose 'MARKETING_EMAIL' (GDPR Art. 6(1)(a) requirement not met).",
+      "user_id": "demo-user",
+      "purpose": "MARKETING_EMAIL",
+      "policy_version_checked": null,
+      "evaluated_at": "2026-11-20T16:35:49.439387+00:00",
+      "correlation_id": "7c4d072b-5af3-450c-bb90-321a57566eb1"
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/orders/calculate",
+    "status": 422,
+    "result": "PASS",
+    "response": {
+      "code": "VALIDATION_ERROR",
+      "detail": "Request validation failed"
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/policy-gate/check",
+    "status": 422,
+    "result": "PASS",
+    "response": {
+      "code": "VALIDATION_ERROR",
+      "detail": "Request validation failed"
+    }
+  }
+]
+C:\Users\Vlad\Documents\��������\����������\1\scripts\check_contract.py:5: DeprecationWarning: jsonschema.RefResolver is deprecated as of v4.18.0, in favor of the https://github.com/python-jsonschema/referencing library, which provides more compliant referencing behavior as well as more flexible APIs for customization. A future release will remove RefResolver. Please file a feature request (on referencing) if you are missing an API for the kind of customization you need.
+  from jsonschema import Draft202012Validator, RefResolver
+
+Exit Code: 0

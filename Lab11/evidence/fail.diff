@@ -1,0 +1,18 @@
+commit ff47ba15333fb170be9abe90c2c20a01298ceb56
+Author:     Vlad8800 <vlad8800z@gmail.com>
+AuthorDate: Fri Nov 20 15:10:58 2026 +0200
+Commit:     Vlad8800 <vlad8800z@gmail.com>
+CommitDate: Fri Nov 20 15:10:58 2026 +0200
+
+    docs(ci): inject broken reference into strict build, FAIL
+
+diff --git a/docs/index.md b/docs/index.md
+index 902893f..4f0db06 100644
+--- a/docs/index.md
++++ b/docs/index.md
+@@ -19,3 +19,5 @@ FastAPI працює в одному процесі; дані демонстра
+ 
+ Документи ЛР6–7 та історичні протоколи ЛР10 збережені в Git і не публікуються як актуальні інструкції.
+ [[architecture/sdd|Карта системи]] · [[developer/index|Шлях розробника]] · [[api/index|API]]
++
++[Controlled broken reference](missing-lab11-page.md)

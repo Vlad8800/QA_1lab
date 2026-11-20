@@ -1,0 +1,562 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "QA_1lab Public Contract",
+    "version": "1.0.0",
+    "description": "API-first contract for three operations of the educational FastAPI system.",
+    "contact": {
+      "name": "Vlad8800",
+      "url": "https://github.com/Vlad8800/QA_1lab"
+    },
+    "license": {
+      "name": "Educational use"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8000",
+      "description": "Local API for Try it out"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Shipping",
+      "description": "Shipping operations"
+    },
+    {
+      "name": "Orders",
+      "description": "Orders operations"
+    },
+    {
+      "name": "Consent",
+      "description": "Consent operations"
+    }
+  ],
+  "paths": {
+    "/api/v1/shipping/policy": {
+      "get": {
+        "operationId": "shippingPolicy",
+        "tags": [
+          "Shipping"
+        ],
+        "summary": "shippingPolicy",
+        "description": "Read deployment policy loaded before startup.",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShippingPolicy"
+                },
+                "example": {
+                  "schema_version": "1.0",
+                  "policy_version": "demo-2026-11"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "VALIDATION_ERROR",
+                  "detail": "Request validation failed"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected server failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "VALIDATION_ERROR",
+                  "detail": "Request validation failed"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/orders/calculate": {
+      "post": {
+        "operationId": "calculateOrder",
+        "tags": [
+          "Orders"
+        ],
+        "summary": "calculateOrder",
+        "description": "Calculate item subtotal, loyalty discount and shipping. UA is local; other countries use a provider with fallback.",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResult"
+                },
+                "example": {
+                  "status": "success",
+                  "subtotal": 50,
+                  "discounted_price": 50,
+                  "shipping": {
+                    "final_cost": 2,
+                    "is_fallback": false,
+                    "attempts": 1,
+                    "mode": "domestic"
+                  },
+                  "final_total": 52
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "VALIDATION_ERROR",
+                  "detail": "Request validation failed"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected server failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "VALIDATION_ERROR",
+                  "detail": "Request validation failed"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid item payload",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "VALIDATION_ERROR",
+                  "detail": "Request validation failed"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderRequest"
+              },
+              "example": {
+                "customer_tier": "regular",
+                "country_code": "UA",
+                "weight": 1.5,
+                "is_express": false,
+                "is_holiday": false,
+                "items": [
+                  {
+                    "name": "Mouse",
+                    "price": 25,
+                    "quantity": 2
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/policy-gate/check": {
+      "post": {
+        "operationId": "checkPolicyGate",
+        "tags": [
+          "Consent"
+        ],
+        "summary": "checkPolicyGate",
+        "description": "Evaluate purpose-specific consent without side effects. DENY is a successful policy evaluation, not an HTTP error.",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyGateResult"
+                },
+                "example": {
+                  "decision": "DENY",
+                  "reason": "No consent record found",
+                  "user_id": "demo-user",
+                  "purpose": "MARKETING_EMAIL",
+                  "policy_version_checked": null,
+                  "evaluated_at": "2026-11-20T12:00:00Z",
+                  "correlation_id": "lab11-demo"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "VALIDATION_ERROR",
+                  "detail": "Request validation failed"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected server failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "VALIDATION_ERROR",
+                  "detail": "Request validation failed"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PolicyGateRequest"
+              },
+              "example": {
+                "user_id": "demo-user",
+                "purpose": "MARKETING_EMAIL"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-Correlation-ID",
+            "in": "header",
+            "description": "Trace identifier for the policy evaluation",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "lab11-demo"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "detail"
+        ],
+        "example": {
+          "code": "VALIDATION_ERROR",
+          "detail": "Request validation failed"
+        }
+      },
+      "ShippingPolicy": {
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "enum": [
+              "1.0"
+            ]
+          },
+          "policy_version": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "schema_version",
+          "policy_version"
+        ],
+        "example": {
+          "schema_version": "1.0",
+          "policy_version": "demo-2026-11"
+        }
+      },
+      "OrderItem": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+          }
+        },
+        "required": [
+          "name",
+          "price"
+        ],
+        "example": {
+          "name": "Mouse",
+          "price": 25,
+          "quantity": 2
+        }
+      },
+      "OrderRequest": {
+        "type": "object",
+        "properties": {
+          "customer_tier": {
+            "type": "string",
+            "default": "regular"
+          },
+          "country_code": {
+            "type": "string",
+            "default": "UA"
+          },
+          "weight": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "default": 1.5
+          },
+          "is_express": {
+            "type": "boolean",
+            "default": false
+          },
+          "is_holiday": {
+            "type": "boolean",
+            "default": false
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderItem"
+            }
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "example": {
+          "customer_tier": "regular",
+          "country_code": "UA",
+          "weight": 1.5,
+          "is_express": false,
+          "is_holiday": false,
+          "items": [
+            {
+              "name": "Mouse",
+              "price": 25,
+              "quantity": 2
+            }
+          ]
+        }
+      },
+      "ShippingResult": {
+        "type": "object",
+        "required": [
+          "final_cost",
+          "is_fallback",
+          "attempts",
+          "mode"
+        ],
+        "properties": {
+          "final_cost": {
+            "type": "number"
+          },
+          "is_fallback": {
+            "type": "boolean"
+          },
+          "attempts": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "domestic",
+              "external_live",
+              "fallback_applied"
+            ]
+          }
+        },
+        "example": {
+          "final_cost": 2,
+          "is_fallback": false,
+          "attempts": 1,
+          "mode": "domestic"
+        }
+      },
+      "OrderResult": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success"
+            ]
+          },
+          "subtotal": {
+            "type": "number"
+          },
+          "discounted_price": {
+            "type": "number"
+          },
+          "shipping": {
+            "$ref": "#/components/schemas/ShippingResult"
+          },
+          "final_total": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "status",
+          "subtotal",
+          "discounted_price",
+          "shipping",
+          "final_total"
+        ],
+        "example": {
+          "status": "success",
+          "subtotal": 50,
+          "discounted_price": 50,
+          "shipping": {
+            "final_cost": 2,
+            "is_fallback": false,
+            "attempts": 1,
+            "mode": "domestic"
+          },
+          "final_total": 52
+        }
+      },
+      "PolicyGateRequest": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "MARKETING_EMAIL",
+              "MARKETING_SMS",
+              "OPTIONAL_ANALYTICS",
+              "THIRD_PARTY_SHARING"
+            ]
+          },
+          "required_policy_version": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "user_id",
+          "purpose"
+        ],
+        "example": {
+          "user_id": "demo-user",
+          "purpose": "MARKETING_EMAIL"
+        }
+      },
+      "PolicyGateResult": {
+        "type": "object",
+        "properties": {
+          "decision": {
+            "type": "string",
+            "enum": [
+              "ALLOW",
+              "DENY"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "MARKETING_EMAIL",
+              "MARKETING_SMS",
+              "OPTIONAL_ANALYTICS",
+              "THIRD_PARTY_SHARING"
+            ]
+          },
+          "policy_version_checked": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "evaluated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "correlation_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "decision",
+          "reason",
+          "user_id",
+          "purpose",
+          "evaluated_at",
+          "correlation_id"
+        ],
+        "example": {
+          "decision": "DENY",
+          "reason": "No consent record found",
+          "user_id": "demo-user",
+          "purpose": "MARKETING_EMAIL",
+          "policy_version_checked": null,
+          "evaluated_at": "2026-11-20T12:00:00Z",
+          "correlation_id": "lab11-demo"
+        }
+      }
+    }
+  }
+}

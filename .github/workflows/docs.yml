@@ -1,0 +1,70 @@
+name: Documentation
+on:
+  push:
+    branches: [main, lab11-documentation-as-code, lab11-final]
+    tags: ['docs-v*']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  docs-build:
+    runs-on: ubuntu-latest
+    steps:
+      # Full history supplies real page revision dates.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: |
+          python -m pip install -r requirements.txt -r requirements-docs.txt uvicorn
+          npm install
+      - name: Spectral contract lint
+        run: npm run lint:api
+      - name: Markdown style
+        run: npm run lint:md
+      - name: Review date audit
+        run: python scripts/check_review_dates.py
+      - name: Review policy tests
+        run: |
+          python scripts/test_review_policy.py
+      - name: Live contract verification
+        run: |
+          mkdir -p runtime
+          cp config/shipping-policy.example.json runtime/shipping-policy.json
+          python scripts/test_contract_boundary.py
+          python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 > /tmp/lab11-api.log 2>&1 &
+          API_PID=$!
+          trap 'kill "$API_PID"' EXIT
+          python scripts/wait_api.py
+          python scripts/check_contract.py
+      - name: Strict documentation build
+        run: python -m mkdocs build --strict
+      - name: Documentation graph and navigation audit
+        run: python scripts/check_docs_structure.py
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+  deploy:
+    needs: docs-build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish verified documentation
+        id: deployment
+        uses: actions/deploy-pages@v4

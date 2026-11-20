@@ -1,3 +1,10 @@
+---
+owner: Vlad8800
+status: published
+review_date: 2027-05-19
+tags: [architecture]
+---
+
 # Project Hub Лабораторна робота 7
 
 **Дисципліна:** Інженерія якості та супровід програмних систем  

@@ -1,0 +1,10 @@
+{
+  "pages": 17,
+  "nav": 17,
+  "connected": 17,
+  "errors": [
+    "index.md: missing missing-lab11-page.md"
+  ]
+}
+
+Exit Code: 1

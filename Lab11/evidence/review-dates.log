@@ -1,0 +1,19 @@
+$ C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Scripts\python.exe scripts/check_review_dates.py
+{
+  "date": "2026-11-20",
+  "checked": 27,
+  "overdue": [],
+  "deprecated": [
+    {
+      "document": "docs/isd.md",
+      "replacement": "architecture/isd.md"
+    },
+    {
+      "document": "docs/sdd.md",
+      "replacement": "architecture/sdd.md"
+    }
+  ],
+  "errors": []
+}
+
+Exit Code: 0

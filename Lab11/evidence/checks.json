@@ -1,0 +1,12 @@
+{
+  "review-dates": 0,
+  "structure": 0,
+  "review-policy-tests": 0,
+  "contract-boundary-tests": 0,
+  "spectral": 0,
+  "markdownlint": 0,
+  "strict-build": 0,
+  "api-startup": 0,
+  "live-contract-shapes": 0,
+  "live-contract": 0
+}

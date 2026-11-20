@@ -1,0 +1,7 @@
+$ node node_modules/markdownlint-cli2/markdownlint-cli2-bin.mjs
+markdownlint-cli2 v0.20.0 (markdownlint v0.40.0)
+Finding: README.md CONTRIBUTING.md CHANGELOG.md docs/**/*.md !docs/lab6/** !docs/lab7/** !docs/lab10/**
+Linting: 20 file(s)
+Summary: 0 error(s)
+
+Exit Code: 0
