@@ -315,3 +315,23 @@ owner має переглянути зміст або задепрекувати
 Цільова адреса Pages: https://Vlad8800.github.io/QA_1lab/ — **це ціль конфігурації, а не підтверджений діючий сайт**.
 Порядок отримання решти обов’язкових доказів наведено в [DEMO.md](DEMO.md).
 До успішної strict-збірки, Spectral, генерації SDK, хмарного FAIL/PASS і публікації роботу не можна вважати повністю завершеною.
+## Підсумкові результати
+
+- Локальні перевірки документації завершено успішно.
+- SDK згенеровано за OpenAPI-контрактом.
+- Документацію опубліковано через GitHub Pages:
+  https://vlad8800.github.io/QA_1lab/
+- Запит GET /api/v1/shipping/policy у Swagger повернув HTTP 200
+  та JSON із schema_version і policy_version.
+- Проведено експеримент FAIL → PASS: після внесення дефекту
+  перевірка завершилася помилкою, після виправлення — успішно.
+- Логи експерименту: evidence/fail-strict.log
+  та evidence/pass-strict.log.
+
+### Візуальні докази
+
+![Граф зв’язків документації](evidence/screenshots/obsidian-graph.png)
+
+![Swagger: HTTP 200](evidence/screenshots/swagger-try-it-out.png)
+
+![Опублікована документація](evidence/screenshots/published-site.png)
