@@ -1,3 +1,10 @@
+---
+owner: Vlad8800
+status: published
+review_date: 2027-05-19
+tags: [architecture]
+---
+
 # Лабораторна робота 7 — завдання 3
 
 ## Хмарний моніторинг складності та карта Hotspots

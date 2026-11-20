@@ -1,0 +1,9 @@
+$ C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Scripts\python.exe scripts/check_docs_structure.py
+{
+  "pages": 17,
+  "nav": 17,
+  "connected": 17,
+  "errors": []
+}
+
+Exit Code: 0

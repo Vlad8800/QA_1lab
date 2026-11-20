@@ -1,0 +1,4 @@
+$ node node_modules/@stoplight/spectral-cli/dist/index.js lint docs/api/openapi.yaml --fail-severity warn
+No results with a severity of 'warn' or higher found!
+
+Exit Code: 0

@@ -1,4 +1,5 @@
 import logging
+from app.shipping_policy import load_shipping_policy
 from typing import List
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
@@ -19,6 +20,8 @@ from app.utils import validate_item_payload
 # Initialize centralized privacy-safe logging
 setup_privacy_logging()
 logger = logging.getLogger("app.orders")
+
+shipping_policy = load_shipping_policy()
 
 app = FastAPI(
     title="Order Quality & Resilience Demo API",
@@ -115,7 +118,7 @@ def calculate_order(order: OrderRequest):
     shipping_info = calculate_shipping_cost(ShippingOrderSpec(country_code=order.country_code, weight=order.weight, is_express=order.is_express, customer_tier=order.customer_tier, is_holiday=order.is_holiday))
 
     # 3. Підсумкова вартість
-    final_total = round(discounted_price + shipping_info["final_cost"], 2)
+    final_total = round(discounted_price + shipping_info.final_cost, 2)
 
     logger.info(
         "Order calculation completed successfully",
@@ -131,6 +134,15 @@ def calculate_order(order: OrderRequest):
         "status": "success",
         "subtotal": subtotal,
         "discounted_price": discounted_price,
-        "shipping": shipping_info,
+        "shipping": shipping_info.to_dict(),
         "final_total": final_total,
     }
+
+@app.get("/api/v1/shipping/policy")
+def get_shipping_policy():
+    """Return the validated deployment shipping policy version."""
+    return dict(shipping_policy)
+
+
+from app.contract_support import configure_contract_support
+configure_contract_support(app)

@@ -1,0 +1,22 @@
+{
+  "globs": [
+    "README.md",
+    "CONTRIBUTING.md",
+    "CHANGELOG.md",
+    "docs/**/*.md"
+  ],
+  "ignores": [
+    "docs/lab6/**",
+    "docs/lab7/**",
+    "docs/lab10/**"
+  ],
+  "config": {
+    "default": true,
+    "MD013": false,
+    "MD024": {
+      "siblings_only": true
+    },
+    "MD033": false,
+    "MD041": false
+  }
+}

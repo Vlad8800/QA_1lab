@@ -1,0 +1,68 @@
+{
+  "validator": "local subset: type, required, enum, properties, items, bounds; full OpenAPI CI validation remains separate",
+  "checks": [
+    {
+      "method": "GET",
+      "path": "/api/v1/shipping/policy",
+      "status": 200,
+      "result": "PASS",
+      "response": {
+        "schema_version": "1.0",
+        "policy_version": "demo-2026-11"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/orders/calculate",
+      "status": 200,
+      "result": "PASS",
+      "response": {
+        "status": "success",
+        "subtotal": 50.0,
+        "discounted_price": 50.0,
+        "shipping": {
+          "final_cost": 2.0,
+          "is_fallback": false,
+          "attempts": 1,
+          "mode": "domestic"
+        },
+        "final_total": 52.0
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/policy-gate/check",
+      "status": 200,
+      "result": "PASS",
+      "response": {
+        "decision": "DENY",
+        "reason": "No consent record found for purpose 'MARKETING_EMAIL' (GDPR Art. 6(1)(a) requirement not met).",
+        "user_id": "demo-user",
+        "purpose": "MARKETING_EMAIL",
+        "policy_version_checked": null,
+        "evaluated_at": "2026-11-20T13:06:47.214905+00:00",
+        "correlation_id": "000980a7-1a00-4fbc-85c4-3613ea0f4527"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/orders/calculate",
+      "status": 422,
+      "result": "PASS",
+      "response": {
+        "code": "VALIDATION_ERROR",
+        "detail": "Request validation failed"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/policy-gate/check",
+      "status": 422,
+      "result": "PASS",
+      "response": {
+        "code": "VALIDATION_ERROR",
+        "detail": "Request validation failed"
+      }
+    }
+  ]
+}
