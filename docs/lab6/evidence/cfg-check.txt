@@ -1,0 +1,3 @@
+cfg-baseline.mmd: V=25, E=33, CC=E-V+2=10
+cfg-fail.mmd: V=37, E=51, CC=E-V+2=16
+cfg-pass.mmd: V=7, E=6, CC=E-V+2=1

@@ -1,0 +1,7 @@
+flowchart TD
+  start([Start]) --> source[Lookup rate source]
+  source --> weight[Lookup weight surcharge]
+  weight --> express[Lookup express multiplier]
+  express --> formula[Lookup cost formula]
+  formula --> mode[Lookup return mode]
+  mode --> finish([Exit])

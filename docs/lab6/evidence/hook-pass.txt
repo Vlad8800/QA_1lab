@@ -1,0 +1,8 @@
+PASS attempt: git commit -m "refactor: replace branches with lookup table"
+[PASS] 2 staged Python file(s); all methods have CC <= 10.
+[master (root-commit) 7ab2cb5] refactor: replace branches with lookup table
+ 2 files changed, 57 insertions(+)
+ create mode 100644 quality_gate.py
+ create mode 100644 sample.py
+exit=0
+git_log=7ab2cb5 refactor: replace branches with lookup table

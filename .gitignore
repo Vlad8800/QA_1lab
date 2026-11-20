@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+coverage.xml
+.scannerwork/
+venv/
+.env
+runtime/
+
+site/
+.venv*/
+node_modules/
+sdk-client/
+Lab11/evidence/screenshots/
+.lab11-pnpm-store/

@@ -1,0 +1,47 @@
+extends: [spectral:oas]
+rules:
+  operation-description:
+    description: Every HTTP operation has a nonempty description.
+    given: $.paths[*][get,post,put,patch,delete,options,head,trace]
+    severity: error
+    then:
+      field: description
+      function: pattern
+      functionOptions:
+        match: '\S'
+  schema-example:
+    description: Every named schema has a usable example.
+    given: $.components.schemas[*]
+    severity: error
+    then:
+      field: example
+      function: defined
+  common-errors:
+    description: Error responses must use the shared Error schema.
+    given: $.paths[*][*].responses
+    severity: error
+    resolved: false
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          patternProperties:
+            '^[45][0-9]{2}$':
+              type: object
+              required: [content]
+              properties:
+                content:
+                  type: object
+                  required: [application/json]
+                  properties:
+                    application/json:
+                      type: object
+                      required: [schema]
+                      properties:
+                        schema:
+                          type: object
+                          required: [$ref]
+                          properties:
+                            $ref:
+                              const: '#/components/schemas/Error'
