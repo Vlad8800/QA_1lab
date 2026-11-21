@@ -11,7 +11,7 @@ tags: [lab12, report, hub]
 
 ## 1. Завдання 1 — експлуатаційний пакет SRE
 
-- **Операція:** експорт персональних даних `GET /api/users/{id}/personal-data` та `/api/v1/users/{id}/personal-data`.
+- **Операція:** експорт персональних даних `GET /api/users/{id}/personal-data` та `/api/v1/users/{id}/personal-data`. Специфікацію та опис операцій наведено в [`docs/api/export-operations.md`](../api/export-operations.md).
 - **Runbook, алерти та ISD:** регламент відновлення наведено в [`docs/runbooks/RB-001.md`](../runbooks/RB-001.md), правила моніторингу — у [`docs/operations/alerts.md`](../operations/alerts.md), архітектуру розгортання, процедури відновлення та `RTO`/`RPO` — у [`docs/architecture/isd.md`](../architecture/isd.md).
 - **Backup та restore drill:** політику копіювання описано в [`docs/operations/backup-policy.md`](../operations/backup-policy.md); перевірку відновлення підтверджено [`scripts/lab12_restore_drill.py`](../../scripts/lab12_restore_drill.py) і [`Lab12/evidence/restore-drill.json`](../../Lab12/evidence/restore-drill.json).
 - **SLI / SLO / SLA:** три індикатори, цільові пороги, бюджет помилок і політику його витрачання зафіксовано в [`docs/slo.yaml`](../slo.yaml) та [`docs/operations/service-levels.md`](../operations/service-levels.md).
