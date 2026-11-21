@@ -1,3 +1,9 @@
+---
+owner: Vlad8800
+status: published
+review_date: 2027-02-19
+tags: [lab12, report, hub]
+---
 # Звіт з лабораторної роботи №12 (Project Hub)
 
 - **Проєкт:** `Lab12_QA` (`app/export`) | **Автор:** `Vlad8800` | **Дата здачі:** `21.11.2026`
