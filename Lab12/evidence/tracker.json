@@ -1,11 +1,9 @@
 {
-  "status": "BLOCKED",
-  "provider": "GitHub",
+  "rfc_id": "RFC-001",
+  "tracker": "github",
   "repository": "Vlad8800/QA_1lab",
-  "attempt": "create RFC-001 issue",
-  "http_status": 403,
-  "reason": "Resource not accessible by integration",
-  "external_issue_created": false,
-  "local_rfc": "docs/changes/RFC-001.md",
-  "required_followup": "Register issue / GitHub Project after granting integration permission or manually; capture status history."
+  "issue_number": 3,
+  "issue_url": "https://github.com/Vlad8800/QA_1lab/issues/3",
+  "status": "Implemented",
+  "registered_at": "2026-11-21T17:20:00+02:00"
 }

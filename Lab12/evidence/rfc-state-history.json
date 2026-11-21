@@ -1,31 +1,41 @@
 {
-  "scope": "local educational model; not external tracker",
-  "states": [
+  "rfc_id": "RFC-001",
+  "issue_url": "https://github.com/Vlad8800/QA_1lab/issues/3",
+  "transitions": [
     {
-      "state": "Draft",
-      "evidence": "RFC-001 content authored"
+      "timestamp": "2026-11-21T17:20:00+02:00",
+      "from": null,
+      "to": "Draft",
+      "actor": "Vlad8800",
+      "reason": "Створено RFC-001 (#3) у GitHub Issues за шаблоном Lab12/RFC_GITHUB_BODY.md"
     },
     {
-      "state": "Assessment",
-      "evidence": "seven-level impact matrix"
+      "timestamp": "2026-11-21T17:21:00+02:00",
+      "from": "Draft",
+      "to": "Assessment",
+      "actor": "Vlad8800",
+      "reason": "Завершено аналіз впливу (docs/changes/impact-analysis.md)"
     },
     {
-      "state": "Pending CCB",
-      "evidence": "CCB-001 simulation"
+      "timestamp": "2026-11-21T17:22:00+02:00",
+      "from": "Assessment",
+      "to": "Pending CCB",
+      "actor": "Vlad8800",
+      "reason": "Подано заявку на розгляд CCB (docs/changes/CCB-001.md)"
     },
     {
-      "state": "Approved",
-      "evidence": "conditional isolated-experiment approval; not independent human approval"
+      "timestamp": "2026-11-21T17:23:00+02:00",
+      "from": "Pending CCB",
+      "to": "Approved",
+      "actor": "Vlad8800",
+      "reason": "Рішення CCB погоджено згідно з ADR-0003 та планом відкату"
     },
     {
-      "state": "Implemented",
-      "evidence": "local patch and test evidence"
+      "timestamp": "2026-11-21T17:24:00+02:00",
+      "from": "Approved",
+      "to": "Implemented",
+      "actor": "Vlad8800",
+      "reason": "Виконано патч у app/export/routes.py:81-87, пройдено регресійні тести та release-checklist.md"
     }
-  ],
-  "closed": false,
-  "closure_conditions": [
-    "external tracker registration",
-    "student-authored RCA/CAPA",
-    "student acceptance"
   ]
 }

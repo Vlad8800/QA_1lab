@@ -21,7 +21,7 @@ tags: [lab12, report, hub]
 
 - **Зміна:** перехоплення `OSError` у `app/export/routes.py:81-87` із поверненням `HTTP 503` та `Retry-After: 30` без витоку PII чи діагностики сховища ([`ADR-0003`](../architecture/adr/0003-export-storage-unavailability.md)).
 - **Документи змін:** [`RFC-001.md`](../changes/RFC-001.md), [`impact-analysis.md`](../changes/impact-analysis.md), [`CCB-001.md`](../changes/CCB-001.md) та [`release-checklist.md`](../changes/release-checklist.md).
-- **Перевірки та межі:** локально пройдено `pytest`, `markdownlint-cli2` і `mkdocs build --strict`. Зовнішню реєстрацію RFC у GitHub не завершено через `HTTP 403` токену, стан зафіксовано локально в [`Lab12/RFC_GITHUB_BODY.md`](../../Lab12/RFC_GITHUB_BODY.md) та [`Lab12/evidence/rfc-state-history.json`](../../Lab12/evidence/rfc-state-history.json).
+- **Реєстрація та перевірки:** зареєстровано в GitHub Issues ([`RFC-001 #3`](https://github.com/Vlad8800/QA_1lab/issues/3)) та проведено через стани `Draft → Assessment → Pending CCB → Approved → Implemented` у GitHub Project ([`tracker.json`](../../Lab12/evidence/tracker.json), [`rfc-state-history.json`](../../Lab12/evidence/rfc-state-history.json)); локально пройдено `pytest`, `markdownlint-cli2` і `mkdocs build --strict`.
 
 ## 3. Завдання 3 — інцидент, RCA/CAPA та супровід
 
