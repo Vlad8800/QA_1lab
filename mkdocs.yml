@@ -6,6 +6,7 @@ theme:
   language: uk
   features: [navigation.sections, content.code.copy]
 nav:
+  - Звіт ЛР12: lab12/REPORT.md
   - Початок: index.md
   - Розробнику:
       - Онбординг: developer/index.md
