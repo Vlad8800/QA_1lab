@@ -1,0 +1,143 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "QA_1lab export operational addendum",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/users/{id}/personal-data": {
+      "get": {
+        "operationId": "exportPersonalDataLegacy",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Actor-ID",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Complete minimized personal data export"
+          },
+          "401": {
+            "description": "Missing demo identity"
+          },
+          "403": {
+            "description": "Cross-user access denied"
+          },
+          "404": {
+            "description": "Subject not found"
+          },
+          "503": {
+            "description": "Storage temporarily unavailable; retry without changing subject",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds before retry",
+                "schema": {
+                  "type": "integer",
+                  "enum": [
+                    30
+                  ]
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "detail"
+                  ],
+                  "properties": {
+                    "detail": {
+                      "type": "string",
+                      "const": "Personal data store temporarily unavailable"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/{id}/personal-data": {
+      "get": {
+        "operationId": "exportPersonalDataV1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Actor-ID",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Complete minimized personal data export"
+          },
+          "401": {
+            "description": "Missing demo identity"
+          },
+          "403": {
+            "description": "Cross-user access denied"
+          },
+          "404": {
+            "description": "Subject not found"
+          },
+          "503": {
+            "description": "Storage temporarily unavailable; retry without changing subject",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds before retry",
+                "schema": {
+                  "type": "integer",
+                  "enum": [
+                    30
+                  ]
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "detail"
+                  ],
+                  "properties": {
+                    "detail": {
+                      "type": "string",
+                      "const": "Personal data store temporarily unavailable"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

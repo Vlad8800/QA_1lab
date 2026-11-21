@@ -28,6 +28,22 @@ nav:
   - Сумісність посилань:
       - Попереднє розташування SDD: sdd.md
       - Попереднє розташування ISD: isd.md
+  - "Lab12 Operations":
+      - "RB-001": runbooks/RB-001.md
+      - "Alerts": operations/alerts.md
+      - "Backup": operations/backup-policy.md
+      - "SLO": operations/service-levels.md
+      - "RFC-001": changes/RFC-001.md
+      - "Impact": changes/impact-analysis.md
+      - "CCB": changes/CCB-001.md
+      - "Release checklist": changes/release-checklist.md
+      - "Legacy export": legacy/export-component.md
+      - "Incident": incidents/INC-001.md
+      - "RCA workbook": incidents/INC-001-rca-workbook.md
+      - "Maintenance plan": maintenance-plan.md
+      - "ADR-0003": architecture/adr/0003-export-storage-unavailability.md
+      - "Export operations": api/export-operations.md
+      - "Lab12 results": operations/lab12-results.md
 exclude_docs: |
   lab6/
   lab7/

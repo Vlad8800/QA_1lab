@@ -4,6 +4,8 @@ import json
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from unittest.mock import patch
 from fastapi.testclient import TestClient
 from app.main import app

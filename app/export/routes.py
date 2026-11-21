@@ -78,6 +78,13 @@ def export_personal_data_endpoint(
         )
         return export_package
 
+    except OSError:
+        # Never return storage diagnostics or a partial personal-data export.
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Personal data store temporarily unavailable",
+            headers={"Retry-After": "30"},
+        ) from None
     except AccessDeniedException as exc:
         # IDOR violation: Controlled rejection without body data or leak
         raise HTTPException(

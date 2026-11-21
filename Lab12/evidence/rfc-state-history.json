@@ -1,0 +1,31 @@
+{
+  "scope": "local educational model; not external tracker",
+  "states": [
+    {
+      "state": "Draft",
+      "evidence": "RFC-001 content authored"
+    },
+    {
+      "state": "Assessment",
+      "evidence": "seven-level impact matrix"
+    },
+    {
+      "state": "Pending CCB",
+      "evidence": "CCB-001 simulation"
+    },
+    {
+      "state": "Approved",
+      "evidence": "conditional isolated-experiment approval; not independent human approval"
+    },
+    {
+      "state": "Implemented",
+      "evidence": "local patch and test evidence"
+    }
+  ],
+  "closed": false,
+  "closure_conditions": [
+    "external tracker registration",
+    "student-authored RCA/CAPA",
+    "student acceptance"
+  ]
+}

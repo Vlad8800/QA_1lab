@@ -1,0 +1,31 @@
+
+ \u2502  Material for MkDocs reaches end of life on May 5, 2027.
+ \u2502  Critical fixes and security updates continue until that date.
+ \u2502
+ \u2502  Zensical is its maintained successor, built by the same team.
+ \u2502  Try it alongside MkDocs with your existing mkdocs.yml:
+ \u2502  https://zensical.org/docs/compatibility/mkdocs/migration/
+
+  To disable this warning, set NO_MKDOCS_2_WARNING=1.
+
+INFO    -  MERMAID2  - Initialization arguments: {}
+INFO    -  MERMAID2  - Using javascript library (10.4.0):
+   https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs
+INFO    -  Cleaning site directory
+INFO    -  Building documentation to directory: C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\site
+mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\docs\api\export-operations.md' has no git logs, using current timestamp
+mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\docs\incidents\INC-001.md' has no git logs, using current timestamp
+mkdocs_git_revision_date_localized_plugin: 'C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\docs\operations\lab12-results.md' has no git logs, using current timestamp
+INFO    -  mkdocs_swagger_ui_tag: Processing file 'api/index.md'
+INFO    -  MERMAID2  - Found superfences config: {'custom_fences': [{'name': 'mermaid', 'class': 'mermaid', 'format': functools.partial(<function fence_mermaid at 0x0000014AF9E52200>, custom=True)}]}
+INFO    -  MERMAID2  - Found 'fence_mermaid_custom' function: activate custom loader for superfences
+INFO    -  MERMAID2  - Custom loader activated
+INFO    -  MERMAID2  - Page '▓эЇЁрёЄЁєъЄєЁр ISD': found 1 diagrams, adding scripts
+INFO    -  MERMAID2  - Custom loader activated
+INFO    -  MERMAID2  - Page '╧Ёю║ъЄєтрээ  SDD': found 3 diagrams, adding scripts
+INFO    -  MERMAID2  - Custom loader activated
+INFO    -  MERMAID2  - Page 'RCA workbook': found 1 diagrams, adding scripts
+INFO    -  MERMAID2  - Custom loader activated
+INFO    -  MERMAID2  - Page 'Legacy export': found 1 diagrams, adding scripts
+INFO    -  mkdocs_swagger_ui_tag: Copying swagger ui assets.
+INFO    -  Documentation built in 38.47 seconds

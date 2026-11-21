@@ -18,7 +18,7 @@ tags: [ops]
 - [ ] CCB прийняв результати; budget не вичерпаний або погоджено emergency change.
 
 Production NO-GO до підключення алертів, приймання людиною та перевірки staging.
-Результати локальних перевірок: [звіт](../../Lab12/REPORT.md).
+Результати локальних перевірок: [звіт](../operations/lab12-results.md).
 
 Простежуваність: REQ-OPS-001 → RFC-001 → FAIL/PASS Git commits
 → tests/test_lab12_storage_failure.py → CHANGELOG → lab12-local-pass
