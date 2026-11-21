@@ -1,0 +1,278 @@
+FF                                                                       [100%]
+================================== FAILURES ===================================
+_________ test_storage_failure_is_retryable_without_leak[/api/users] __________
+
+prefix = '/api/users'
+
+    @pytest.mark.parametrize('prefix',['/api/users','/api/v1/users'])
+    def test_storage_failure_is_retryable_without_leak(prefix):
+        client=TestClient(app,raise_server_exceptions=False)
+        url=f'{prefix}/usr_101/personal-data'
+        with patch.object(UserDataRepository,'get_user_by_id',side_effect=OSError('secret-store-password')):
+            assert client.get(url).status_code==401
+            assert client.get(url,headers={'X-Actor-ID':'usr_102'}).status_code==403
+            response=client.get(url,headers={'X-Actor-ID':'usr_101'})
+>           assert response.status_code==503
+E           assert 500 == 503
+E            +  where 500 = <Response [500 Internal Server Error]>.status_code
+
+tests\test_lab12_storage_failure.py:16: AssertionError
+---------------------------- Captured stdout call -----------------------------
+{"timestamp": "2026-11-20T20:22:04.905486+00:00", "level": "INFO", "correlation_id": "3498ab8d-264e-4c3d-b85a-cc915d4bce2d", "logger": "app.access", "message": "Inbound HTTP request started", "event_type": "HTTP_REQUEST_START", "details": {"taskName": "a***c", "method": "GET", "path": "/api/users/usr_101/personal-data", "client_ip": "***"}}
+{"timestamp": "2026-11-20T20:22:04.919195+00:00", "level": "INFO", "correlation_id": "3498ab8d-264e-4c3d-b85a-cc915d4bce2d", "logger": "app.access", "message": "Inbound HTTP request finished", "event_type": "HTTP_REQUEST_FINISH", "details": {"taskName": "a***c", "method": "GET", "path": "/api/users/usr_101/personal-data", "status_code": 401, "duration_ms": 12.66}}
+{"timestamp": "2026-11-20T20:22:04.919195+00:00", "level": "INFO", "correlation_id": "none", "logger": "httpx", "message": "HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/users/usr_101/personal-data', query=None, fragment=None)} \"HTTP/1.1 401 Unauthorized\"", "details": {"taskName": null}}
+{"timestamp": "2026-11-20T20:22:04.947420+00:00", "level": "INFO", "correlation_id": "42ef22ac-4e35-4ac1-86f5-43a2e67fd2b2", "logger": "app.access", "message": "Inbound HTTP request started", "event_type": "HTTP_REQUEST_START", "details": {"taskName": "a***c", "method": "GET", "path": "/api/users/usr_101/personal-data", "client_ip": "***"}}
+{"timestamp": "2026-11-20T20:22:04.948610+00:00", "level": "INFO", "correlation_id": "42ef22ac-4e35-4ac1-86f5-43a2e67fd2b2", "logger": "app.export", "message": "Personal data export initiated", "event_type": "PERSONAL_DATA_EXPORT_INIT", "actor_id": "usr_102", "details": {"taskName": null, "subject_id": "usr_101", "actor_role": "user"}}
+{"timestamp": "2026-11-20T20:22:04.948610+00:00", "level": "WARNING", "correlation_id": "42ef22ac-4e35-4ac1-86f5-43a2e67fd2b2", "logger": "app.export", "message": "Personal data export blocked: IDOR violation attempt", "event_type": "PERSONAL_DATA_EXPORT_DENIED", "actor_id": "usr_102", "status": "forbidden", "details": {"taskName": null, "subject_id": "usr_101"}}
+{"timestamp": "2026-11-20T20:22:04.948610+00:00", "level": "INFO", "correlation_id": "42ef22ac-4e35-4ac1-86f5-43a2e67fd2b2", "logger": "app.access", "message": "Inbound HTTP request finished", "event_type": "HTTP_REQUEST_FINISH", "details": {"taskName": "a***c", "method": "GET", "path": "/api/users/usr_101/personal-data", "status_code": 403, "duration_ms": 3.87}}
+{"timestamp": "2026-11-20T20:22:04.948610+00:00", "level": "INFO", "correlation_id": "none", "logger": "httpx", "message": "HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/users/usr_101/personal-data', query=None, fragment=None)} \"HTTP/1.1 403 Forbidden\"", "details": {"taskName": null}}
+{"timestamp": "2026-11-20T20:22:04.953686+00:00", "level": "INFO", "correlation_id": "1d54a946-788e-4009-b43b-5c3883859889", "logger": "app.access", "message": "Inbound HTTP request started", "event_type": "HTTP_REQUEST_START", "details": {"taskName": "a***c", "method": "GET", "path": "/api/users/usr_101/personal-data", "client_ip": "***"}}
+{"timestamp": "2026-11-20T20:22:04.964367+00:00", "level": "INFO", "correlation_id": "1d54a946-788e-4009-b43b-5c3883859889", "logger": "app.export", "message": "Personal data export initiated", "event_type": "PERSONAL_DATA_EXPORT_INIT", "actor_id": "usr_101", "details": {"taskName": null, "subject_id": "usr_101", "actor_role": "user"}}
+{"timestamp": "2026-11-20T20:22:04.964367+00:00", "level": "ERROR", "correlation_id": "1d54a946-788e-4009-b43b-5c3883859889", "logger": "app.access", "message": "Unhandled error during HTTP request execution", "event_type": "HTTP_REQUEST_ERROR", "details": {"taskName": "a***c", "method": "GET", "path": "/api/users/usr_101/personal-data", "duration_ms": 4.3, "error_type": "OSError"}, "exception": "Traceback (most recent call last):\n  File \"C:\\Users\\Vlad\\.codex\\.chatgpt-projects\\g-p-6adcb6e82138819185a99f16c74a16e5\\Lab12_QA\\app\\privacy\\middleware.py\", line 49, in dispatch\n    response = await call_next(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\middleware\\base.py\", line 179, in call_next\n    raise app_exc from app_exc.__cause__ or app_exc.__context__\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\middleware\\base.py\", line 149, in coro\n    await self.app(scope, receive_or_disconnect, send_no_error)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\middleware\\exceptions.py\", line 63, in __call__\n    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\_exception_handler.py\", line 53, in wrapped_app\n    raise exc\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\_exception_handler.py\", line 42, in wrapped_app\n    await app(scope, receive, sender)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\middleware\\asyncexitstack.py\", line 18, in __call__\n    await self.app(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\routing.py\", line 683, in __call__\n    await self.middleware_stack(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 2929, in app\n    await route.handle(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 1916, in handle\n    await self.original_router.handle(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 3015, in handle\n    await included_router._handle_selected(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 1945, in _handle_selected\n    await original_route.handle(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 1373, in handle\n    await effective_context.app(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 175, in app\n    await wrap_app_handling_exceptions(app, request)(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\_exception_handler.py\", line 53, in wrapped_app\n    raise exc\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\_exception_handler.py\", line 42, in wrapped_app\n    await app(scope, receive, sender)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 161, in app\n    response = await f(request)\n               ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 762, in app\n    raw_response = await run_endpoint_function(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 383, in run_endpoint_function\n    return await run_in_threadpool(\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\concurrency.py\", line 34, in run_in_threadpool\n    return await anyio.to_thread.run_sync(func)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\anyio\\to_thread.py\", line 65, in run_sync\n    return await get_async_backend().run_sync_in_worker_thread(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\anyio\\_backends\\_asyncio.py\", line 2779, in run_sync_in_worker_thread\n    return await future\n           ^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\anyio\\_backends\\_asyncio.py\", line 1124, in run\n    result = context.run(func, *args)\n             ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\telemetry\\_api.py\", line 244, in _run_sync_endpoint\n    return function(**arguments)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\.codex\\.chatgpt-projects\\g-p-6adcb6e82138819185a99f16c74a16e5\\Lab12_QA\\app\\export\\routes.py\", line 74, in export_personal_data_endpoint\n    export_package = export_service.export_user_data(\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\.codex\\.chatgpt-projects\\g-p-6adcb6e82138819185a99f16c74a16e5\\Lab12_QA\\app\\export\\service.py\", line 92, in export_user_data\n    raw_user = self.repository.get_user_by_id(subject_id)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1139, in __call__\n    return self._mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1143, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1198, in _execute_mock_call\n    raise effect\nOSError: secret-store-password\n"}
+{"timestamp": "2026-11-20T20:22:05.441533+00:00", "level": "INFO", "correlation_id": "none", "logger": "httpx", "message": "HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/users/usr_101/personal-data', query=None, fragment=None)} \"HTTP/1.1 500 Internal Server Error\"", "details": {"taskName": null}}
+------------------------------ Captured log call ------------------------------
+INFO     app.access:middleware.py:37 Inbound HTTP request started
+INFO     app.access:middleware.py:53 Inbound HTTP request finished
+INFO     httpx:_client.py:1025 HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/users/usr_101/personal-data', query=None, fragment=None)} "HTTP/1.1 401 Unauthorized"
+INFO     app.access:middleware.py:37 Inbound HTTP request started
+INFO     app.export:service.py:64 Personal data export initiated
+WARNING  app.export:service.py:80 Personal data export blocked: IDOR violation attempt
+INFO     app.access:middleware.py:53 Inbound HTTP request finished
+INFO     httpx:_client.py:1025 HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/users/usr_101/personal-data', query=None, fragment=None)} "HTTP/1.1 403 Forbidden"
+INFO     app.access:middleware.py:37 Inbound HTTP request started
+INFO     app.export:service.py:64 Personal data export initiated
+ERROR    app.access:middleware.py:70 Unhandled error during HTTP request execution
+Traceback (most recent call last):
+  File "C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\app\privacy\middleware.py", line 49, in dispatch
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\middleware\base.py", line 179, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\routing.py", line 683, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 2929, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 1916, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 3015, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 1945, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 1373, in handle
+    await effective_context.app(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 175, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 161, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 762, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 383, in run_endpoint_function
+    return await run_in_threadpool(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\anyio\_backends\_asyncio.py", line 2779, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\anyio\_backends\_asyncio.py", line 1124, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\telemetry\_api.py", line 244, in _run_sync_endpoint
+    return function(**arguments)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\app\export\routes.py", line 74, in export_personal_data_endpoint
+    export_package = export_service.export_user_data(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\app\export\service.py", line 92, in export_user_data
+    raw_user = self.repository.get_user_by_id(subject_id)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\unittest\mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\unittest\mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\unittest\mock.py", line 1198, in _execute_mock_call
+    raise effect
+OSError: secret-store-password
+
+INFO     httpx:_client.py:1025 HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/users/usr_101/personal-data', query=None, fragment=None)} "HTTP/1.1 500 Internal Server Error"
+________ test_storage_failure_is_retryable_without_leak[/api/v1/users] ________
+
+prefix = '/api/v1/users'
+
+    @pytest.mark.parametrize('prefix',['/api/users','/api/v1/users'])
+    def test_storage_failure_is_retryable_without_leak(prefix):
+        client=TestClient(app,raise_server_exceptions=False)
+        url=f'{prefix}/usr_101/personal-data'
+        with patch.object(UserDataRepository,'get_user_by_id',side_effect=OSError('secret-store-password')):
+            assert client.get(url).status_code==401
+            assert client.get(url,headers={'X-Actor-ID':'usr_102'}).status_code==403
+            response=client.get(url,headers={'X-Actor-ID':'usr_101'})
+>           assert response.status_code==503
+E           assert 500 == 503
+E            +  where 500 = <Response [500 Internal Server Error]>.status_code
+
+tests\test_lab12_storage_failure.py:16: AssertionError
+---------------------------- Captured stdout call -----------------------------
+{"timestamp": "2026-11-20T20:22:06.289265+00:00", "level": "INFO", "correlation_id": "03423875-f1e6-40ee-a05e-c56724bc161b", "logger": "app.access", "message": "Inbound HTTP request started", "event_type": "HTTP_REQUEST_START", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "client_ip": "***"}}
+{"timestamp": "2026-11-20T20:22:06.293985+00:00", "level": "INFO", "correlation_id": "03423875-f1e6-40ee-a05e-c56724bc161b", "logger": "app.access", "message": "Inbound HTTP request finished", "event_type": "HTTP_REQUEST_FINISH", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "status_code": 401, "duration_ms": 6.54}}
+{"timestamp": "2026-11-20T20:22:06.293985+00:00", "level": "INFO", "correlation_id": "none", "logger": "httpx", "message": "HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/v1/users/usr_101/personal-data', query=None, fragment=None)} \"HTTP/1.1 401 Unauthorized\"", "details": {"taskName": null}}
+{"timestamp": "2026-11-20T20:22:06.309063+00:00", "level": "INFO", "correlation_id": "30799c90-e5e9-4c93-8a28-a31015546dd8", "logger": "app.access", "message": "Inbound HTTP request started", "event_type": "HTTP_REQUEST_START", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "client_ip": "***"}}
+{"timestamp": "2026-11-20T20:22:06.315584+00:00", "level": "INFO", "correlation_id": "30799c90-e5e9-4c93-8a28-a31015546dd8", "logger": "app.export", "message": "Personal data export initiated", "event_type": "PERSONAL_DATA_EXPORT_INIT", "actor_id": "usr_102", "details": {"taskName": null, "subject_id": "usr_101", "actor_role": "user"}}
+{"timestamp": "2026-11-20T20:22:06.315584+00:00", "level": "WARNING", "correlation_id": "30799c90-e5e9-4c93-8a28-a31015546dd8", "logger": "app.export", "message": "Personal data export blocked: IDOR violation attempt", "event_type": "PERSONAL_DATA_EXPORT_DENIED", "actor_id": "usr_102", "status": "forbidden", "details": {"taskName": null, "subject_id": "usr_101"}}
+{"timestamp": "2026-11-20T20:22:06.315584+00:00", "level": "INFO", "correlation_id": "30799c90-e5e9-4c93-8a28-a31015546dd8", "logger": "app.access", "message": "Inbound HTTP request finished", "event_type": "HTTP_REQUEST_FINISH", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "status_code": 403, "duration_ms": 4.79}}
+{"timestamp": "2026-11-20T20:22:06.315584+00:00", "level": "INFO", "correlation_id": "none", "logger": "httpx", "message": "HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/v1/users/usr_101/personal-data', query=None, fragment=None)} \"HTTP/1.1 403 Forbidden\"", "details": {"taskName": null}}
+{"timestamp": "2026-11-20T20:22:06.322608+00:00", "level": "INFO", "correlation_id": "335f65d7-4841-4a77-81c4-2adc1292245c", "logger": "app.access", "message": "Inbound HTTP request started", "event_type": "HTTP_REQUEST_START", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "client_ip": "***"}}
+{"timestamp": "2026-11-20T20:22:06.322608+00:00", "level": "INFO", "correlation_id": "335f65d7-4841-4a77-81c4-2adc1292245c", "logger": "app.export", "message": "Personal data export initiated", "event_type": "PERSONAL_DATA_EXPORT_INIT", "actor_id": "usr_101", "details": {"taskName": null, "subject_id": "usr_101", "actor_role": "user"}}
+{"timestamp": "2026-11-20T20:22:06.322608+00:00", "level": "ERROR", "correlation_id": "335f65d7-4841-4a77-81c4-2adc1292245c", "logger": "app.access", "message": "Unhandled error during HTTP request execution", "event_type": "HTTP_REQUEST_ERROR", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "duration_ms": 3.35, "error_type": "OSError"}, "exception": "Traceback (most recent call last):\n  File \"C:\\Users\\Vlad\\.codex\\.chatgpt-projects\\g-p-6adcb6e82138819185a99f16c74a16e5\\Lab12_QA\\app\\privacy\\middleware.py\", line 49, in dispatch\n    response = await call_next(request)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\middleware\\base.py\", line 179, in call_next\n    raise app_exc from app_exc.__cause__ or app_exc.__context__\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\middleware\\base.py\", line 149, in coro\n    await self.app(scope, receive_or_disconnect, send_no_error)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\middleware\\exceptions.py\", line 63, in __call__\n    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\_exception_handler.py\", line 53, in wrapped_app\n    raise exc\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\_exception_handler.py\", line 42, in wrapped_app\n    await app(scope, receive, sender)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\middleware\\asyncexitstack.py\", line 18, in __call__\n    await self.app(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\routing.py\", line 683, in __call__\n    await self.middleware_stack(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 2929, in app\n    await route.handle(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 1916, in handle\n    await self.original_router.handle(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 3015, in handle\n    await included_router._handle_selected(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 1945, in _handle_selected\n    await original_route.handle(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 1373, in handle\n    await effective_context.app(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 175, in app\n    await wrap_app_handling_exceptions(app, request)(scope, receive, send)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\_exception_handler.py\", line 53, in wrapped_app\n    raise exc\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\_exception_handler.py\", line 42, in wrapped_app\n    await app(scope, receive, sender)\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 161, in app\n    response = await f(request)\n               ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 762, in app\n    raw_response = await run_endpoint_function(\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\routing.py\", line 383, in run_endpoint_function\n    return await run_in_threadpool(\n           ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\starlette\\concurrency.py\", line 34, in run_in_threadpool\n    return await anyio.to_thread.run_sync(func)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\anyio\\to_thread.py\", line 65, in run_sync\n    return await get_async_backend().run_sync_in_worker_thread(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\anyio\\_backends\\_asyncio.py\", line 2779, in run_sync_in_worker_thread\n    return await future\n           ^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\anyio\\_backends\\_asyncio.py\", line 1124, in run\n    result = context.run(func, *args)\n             ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\Documents\\Навчання\\Тестування\\1\\.venv-lab11\\Lib\\site-packages\\fastapi\\telemetry\\_api.py\", line 244, in _run_sync_endpoint\n    return function(**arguments)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\.codex\\.chatgpt-projects\\g-p-6adcb6e82138819185a99f16c74a16e5\\Lab12_QA\\app\\export\\routes.py\", line 74, in export_personal_data_endpoint\n    export_package = export_service.export_user_data(\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\.codex\\.chatgpt-projects\\g-p-6adcb6e82138819185a99f16c74a16e5\\Lab12_QA\\app\\export\\service.py\", line 92, in export_user_data\n    raw_user = self.repository.get_user_by_id(subject_id)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1139, in __call__\n    return self._mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1143, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Vlad\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1198, in _execute_mock_call\n    raise effect\nOSError: secret-store-password\n"}
+{"timestamp": "2026-11-20T20:22:06.351117+00:00", "level": "INFO", "correlation_id": "none", "logger": "httpx", "message": "HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/v1/users/usr_101/personal-data', query=None, fragment=None)} \"HTTP/1.1 500 Internal Server Error\"", "details": {"taskName": null}}
+------------------------------ Captured log call ------------------------------
+INFO     app.access:middleware.py:37 Inbound HTTP request started
+INFO     app.access:middleware.py:53 Inbound HTTP request finished
+INFO     httpx:_client.py:1025 HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/v1/users/usr_101/personal-data', query=None, fragment=None)} "HTTP/1.1 401 Unauthorized"
+INFO     app.access:middleware.py:37 Inbound HTTP request started
+INFO     app.export:service.py:64 Personal data export initiated
+WARNING  app.export:service.py:80 Personal data export blocked: IDOR violation attempt
+INFO     app.access:middleware.py:53 Inbound HTTP request finished
+INFO     httpx:_client.py:1025 HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/v1/users/usr_101/personal-data', query=None, fragment=None)} "HTTP/1.1 403 Forbidden"
+INFO     app.access:middleware.py:37 Inbound HTTP request started
+INFO     app.export:service.py:64 Personal data export initiated
+ERROR    app.access:middleware.py:70 Unhandled error during HTTP request execution
+Traceback (most recent call last):
+  File "C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\app\privacy\middleware.py", line 49, in dispatch
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\middleware\base.py", line 179, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\routing.py", line 683, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 2929, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 1916, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 3015, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 1945, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 1373, in handle
+    await effective_context.app(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 175, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 161, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 762, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\routing.py", line 383, in run_endpoint_function
+    return await run_in_threadpool(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\anyio\_backends\_asyncio.py", line 2779, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\anyio\_backends\_asyncio.py", line 1124, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\telemetry\_api.py", line 244, in _run_sync_endpoint
+    return function(**arguments)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\app\export\routes.py", line 74, in export_personal_data_endpoint
+    export_package = export_service.export_user_data(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\app\export\service.py", line 92, in export_user_data
+    raw_user = self.repository.get_user_by_id(subject_id)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\unittest\mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\unittest\mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vlad\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\unittest\mock.py", line 1198, in _execute_mock_call
+    raise effect
+OSError: secret-store-password
+
+INFO     httpx:_client.py:1025 HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/v1/users/usr_101/personal-data', query=None, fragment=None)} "HTTP/1.1 500 Internal Server Error"
+============================== warnings summary ===============================
+..\..\..\..\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\Vlad\Documents\Навчання\Тестування\1\.venv-lab11\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+app\main.py:46
+  C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\app\main.py:46: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'example'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    name: str = Field(..., example="Wireless Mouse")
+
+app\main.py:47
+  C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\app\main.py:47: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'example'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    price: float = Field(..., gt=0, example=25.0)
+
+app\main.py:48
+  C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\app\main.py:48: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'example'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    quantity: int = Field(default=1, gt=0, example=2)
+
+app\main.py:52
+  C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\app\main.py:52: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'example'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    customer_tier: str = Field(default="regular", example="gold")
+
+app\main.py:53
+  C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\app\main.py:53: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'example'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    country_code: str = Field(default="UA", example="PL")
+
+app\main.py:54
+  C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\app\main.py:54: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'example'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    weight: float = Field(default=1.5, gt=0, example=3.2)
+
+app\main.py:55
+  C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\app\main.py:55: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'example'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    is_express: bool = Field(default=False, example=True)
+
+app\main.py:56
+  C:\Users\Vlad\.codex\.chatgpt-projects\g-p-6adcb6e82138819185a99f16c74a16e5\Lab12_QA\app\main.py:56: PydanticDeprecatedSince20: Using extra keyword arguments on `Field` is deprecated and will be removed. Use `json_schema_extra` instead. (Extra keys: 'example'). Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.14/migration/
+    is_holiday: bool = Field(default=False, example=False)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_lab12_storage_failure.py::test_storage_failure_is_retryable_without_leak[/api/users]
+FAILED tests/test_lab12_storage_failure.py::test_storage_failure_is_retryable_without_leak[/api/v1/users]
+2 failed, 9 warnings in 4.82s

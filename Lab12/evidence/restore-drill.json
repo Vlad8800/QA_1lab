@@ -1,0 +1,15 @@
+{
+  "utc": "2026-11-20T20:19:32.580950+00:00",
+  "scope": "configuration only; not RAM user data",
+  "status": "PASS",
+  "sha256": "97c138fdf0499a86b3f291fff77b542e30b4cd5251a38537b0256b9b110b0392",
+  "policy": {
+    "schema_version": "1.0",
+    "policy_version": "demo-2026-11"
+  },
+  "corruption_detected": true,
+  "elapsed_seconds": 0.06381909999981872,
+  "rto_target_seconds": 900,
+  "within_rto": true,
+  "offsite_encryption_exercised": false
+}

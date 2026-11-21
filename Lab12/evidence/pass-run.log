@@ -1,0 +1,116 @@
+C:\Users\Vlad\Documents\═ртўрээ \╥хёЄєтрээ \1\.venv-lab11\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+{"timestamp": "2026-11-20T20:19:31.178250+00:00", "level": "INFO", "correlation_id": "0808f029-ed2f-4fad-a8ff-8ee17611477b", "logger": "app.access", "message": "Inbound HTTP request started", "event_type": "HTTP_REQUEST_START", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "client_ip": "***"}}
+{"timestamp": "2026-11-20T20:19:31.225431+00:00", "level": "INFO", "correlation_id": "0808f029-ed2f-4fad-a8ff-8ee17611477b", "logger": "app.export", "message": "Personal data export initiated", "event_type": "PERSONAL_DATA_EXPORT_INIT", "actor_id": "usr_101", "details": {"taskName": null, "subject_id": "usr_101", "actor_role": "user"}}
+{"timestamp": "2026-11-20T20:19:31.225431+00:00", "level": "INFO", "correlation_id": "0808f029-ed2f-4fad-a8ff-8ee17611477b", "logger": "app.export", "message": "Personal data export package generated successfully", "event_type": "PERSONAL_DATA_EXPORT_SUCCESS", "actor_id": "usr_101", "status": "success", "details": {"taskName": null, "export_id": "exp_5556a1797293", "subject_id": "usr_101", "categories_count": 5, "omissions_count": 0}}
+{"timestamp": "2026-11-20T20:19:31.227444+00:00", "level": "INFO", "correlation_id": "0808f029-ed2f-4fad-a8ff-8ee17611477b", "logger": "app.access", "message": "Inbound HTTP request finished", "event_type": "HTTP_REQUEST_FINISH", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "status_code": 200, "duration_ms": 47.36}}
+{"timestamp": "2026-11-20T20:19:31.229455+00:00", "level": "INFO", "correlation_id": "none", "logger": "httpx", "message": "HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/v1/users/usr_101/personal-data', query=None, fragment=None)} \"HTTP/1.1 200 OK\"", "details": {"taskName": null}}
+{"timestamp": "2026-11-20T20:19:31.239453+00:00", "level": "INFO", "correlation_id": "b128d0e4-6fb2-43d5-b21a-6bfea2801a41", "logger": "app.access", "message": "Inbound HTTP request started", "event_type": "HTTP_REQUEST_START", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "client_ip": "***"}}
+{"timestamp": "2026-11-20T20:19:31.240205+00:00", "level": "INFO", "correlation_id": "b128d0e4-6fb2-43d5-b21a-6bfea2801a41", "logger": "app.export", "message": "Personal data export initiated", "event_type": "PERSONAL_DATA_EXPORT_INIT", "actor_id": "usr_101", "details": {"taskName": null, "subject_id": "usr_101", "actor_role": "user"}}
+{"timestamp": "2026-11-20T20:19:31.240205+00:00", "level": "INFO", "correlation_id": "b128d0e4-6fb2-43d5-b21a-6bfea2801a41", "logger": "app.access", "message": "Inbound HTTP request finished", "event_type": "HTTP_REQUEST_FINISH", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "status_code": 503, "duration_ms": 3.17}}
+{"timestamp": "2026-11-20T20:19:31.240205+00:00", "level": "INFO", "correlation_id": "none", "logger": "httpx", "message": "HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/v1/users/usr_101/personal-data', query=None, fragment=None)} \"HTTP/1.1 503 Service Unavailable\"", "details": {"taskName": null}}
+{"timestamp": "2026-11-20T20:19:31.254822+00:00", "level": "INFO", "correlation_id": "8e071d5b-3660-4c84-b576-1bc9c36b6a8b", "logger": "app.access", "message": "Inbound HTTP request started", "event_type": "HTTP_REQUEST_START", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "client_ip": "***"}}
+{"timestamp": "2026-11-20T20:19:31.260535+00:00", "level": "INFO", "correlation_id": "8e071d5b-3660-4c84-b576-1bc9c36b6a8b", "logger": "app.export", "message": "Personal data export initiated", "event_type": "PERSONAL_DATA_EXPORT_INIT", "actor_id": "usr_101", "details": {"taskName": null, "subject_id": "usr_101", "actor_role": "user"}}
+{"timestamp": "2026-11-20T20:19:31.263593+00:00", "level": "INFO", "correlation_id": "8e071d5b-3660-4c84-b576-1bc9c36b6a8b", "logger": "app.access", "message": "Inbound HTTP request finished", "event_type": "HTTP_REQUEST_FINISH", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "status_code": 503, "duration_ms": 7.47}}
+{"timestamp": "2026-11-20T20:19:31.263593+00:00", "level": "INFO", "correlation_id": "none", "logger": "httpx", "message": "HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/v1/users/usr_101/personal-data', query=None, fragment=None)} \"HTTP/1.1 503 Service Unavailable\"", "details": {"taskName": null}}
+{"timestamp": "2026-11-20T20:19:31.273673+00:00", "level": "INFO", "correlation_id": "fd005950-3a37-4ddb-bb5e-5732231dc4b0", "logger": "app.access", "message": "Inbound HTTP request started", "event_type": "HTTP_REQUEST_START", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "client_ip": "***"}}
+{"timestamp": "2026-11-20T20:19:31.284277+00:00", "level": "INFO", "correlation_id": "fd005950-3a37-4ddb-bb5e-5732231dc4b0", "logger": "app.export", "message": "Personal data export initiated", "event_type": "PERSONAL_DATA_EXPORT_INIT", "actor_id": "usr_101", "details": {"taskName": null, "subject_id": "usr_101", "actor_role": "user"}}
+{"timestamp": "2026-11-20T20:19:31.284277+00:00", "level": "INFO", "correlation_id": "fd005950-3a37-4ddb-bb5e-5732231dc4b0", "logger": "app.access", "message": "Inbound HTTP request finished", "event_type": "HTTP_REQUEST_FINISH", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "status_code": 503, "duration_ms": 6.21}}
+{"timestamp": "2026-11-20T20:19:31.287798+00:00", "level": "INFO", "correlation_id": "none", "logger": "httpx", "message": "HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/v1/users/usr_101/personal-data', query=None, fragment=None)} \"HTTP/1.1 503 Service Unavailable\"", "details": {"taskName": null}}
+{"timestamp": "2026-11-20T20:19:31.302215+00:00", "level": "INFO", "correlation_id": "1d068a72-ca0a-4665-ab93-41641fa605b0", "logger": "app.access", "message": "Inbound HTTP request started", "event_type": "HTTP_REQUEST_START", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "client_ip": "***"}}
+{"timestamp": "2026-11-20T20:19:31.302215+00:00", "level": "INFO", "correlation_id": "1d068a72-ca0a-4665-ab93-41641fa605b0", "logger": "app.export", "message": "Personal data export initiated", "event_type": "PERSONAL_DATA_EXPORT_INIT", "actor_id": "usr_101", "details": {"taskName": null, "subject_id": "usr_101", "actor_role": "user"}}
+{"timestamp": "2026-11-20T20:19:31.308680+00:00", "level": "INFO", "correlation_id": "1d068a72-ca0a-4665-ab93-41641fa605b0", "logger": "app.access", "message": "Inbound HTTP request finished", "event_type": "HTTP_REQUEST_FINISH", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "status_code": 503, "duration_ms": 5.09}}
+{"timestamp": "2026-11-20T20:19:31.309481+00:00", "level": "INFO", "correlation_id": "none", "logger": "httpx", "message": "HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/v1/users/usr_101/personal-data', query=None, fragment=None)} \"HTTP/1.1 503 Service Unavailable\"", "details": {"taskName": null}}
+{"timestamp": "2026-11-20T20:19:31.323690+00:00", "level": "INFO", "correlation_id": "5f00210a-8a62-4b16-8269-a925c4f7edfa", "logger": "app.access", "message": "Inbound HTTP request started", "event_type": "HTTP_REQUEST_START", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "client_ip": "***"}}
+{"timestamp": "2026-11-20T20:19:31.327936+00:00", "level": "INFO", "correlation_id": "5f00210a-8a62-4b16-8269-a925c4f7edfa", "logger": "app.export", "message": "Personal data export initiated", "event_type": "PERSONAL_DATA_EXPORT_INIT", "actor_id": "usr_101", "details": {"taskName": null, "subject_id": "usr_101", "actor_role": "user"}}
+{"timestamp": "2026-11-20T20:19:31.327936+00:00", "level": "INFO", "correlation_id": "5f00210a-8a62-4b16-8269-a925c4f7edfa", "logger": "app.access", "message": "Inbound HTTP request finished", "event_type": "HTTP_REQUEST_FINISH", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "status_code": 503, "duration_ms": 4.52}}
+{"timestamp": "2026-11-20T20:19:31.330750+00:00", "level": "INFO", "correlation_id": "none", "logger": "httpx", "message": "HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/v1/users/usr_101/personal-data', query=None, fragment=None)} \"HTTP/1.1 503 Service Unavailable\"", "details": {"taskName": null}}
+{"timestamp": "2026-11-20T20:19:31.347581+00:00", "level": "INFO", "correlation_id": "c91b183a-f598-43ff-90ba-b353f499cc40", "logger": "app.access", "message": "Inbound HTTP request started", "event_type": "HTTP_REQUEST_START", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "client_ip": "***"}}
+{"timestamp": "2026-11-20T20:19:31.352368+00:00", "level": "INFO", "correlation_id": "c91b183a-f598-43ff-90ba-b353f499cc40", "logger": "app.export", "message": "Personal data export initiated", "event_type": "PERSONAL_DATA_EXPORT_INIT", "actor_id": "usr_101", "details": {"taskName": null, "subject_id": "usr_101", "actor_role": "user"}}
+{"timestamp": "2026-11-20T20:19:31.352368+00:00", "level": "INFO", "correlation_id": "c91b183a-f598-43ff-90ba-b353f499cc40", "logger": "app.export", "message": "Personal data export package generated successfully", "event_type": "PERSONAL_DATA_EXPORT_SUCCESS", "actor_id": "usr_101", "status": "success", "details": {"taskName": null, "export_id": "exp_f0a4f91c5edc", "subject_id": "usr_101", "categories_count": 5, "omissions_count": 0}}
+{"timestamp": "2026-11-20T20:19:31.355869+00:00", "level": "INFO", "correlation_id": "c91b183a-f598-43ff-90ba-b353f499cc40", "logger": "app.access", "message": "Inbound HTTP request finished", "event_type": "HTTP_REQUEST_FINISH", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "status_code": 200, "duration_ms": 7.28}}
+{"timestamp": "2026-11-20T20:19:31.357742+00:00", "level": "INFO", "correlation_id": "none", "logger": "httpx", "message": "HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/v1/users/usr_101/personal-data', query=None, fragment=None)} \"HTTP/1.1 200 OK\"", "details": {"taskName": null}}
+{"timestamp": "2026-11-20T20:19:31.376109+00:00", "level": "INFO", "correlation_id": "8e80e4ca-1110-4070-ba19-0b1325ffd33a", "logger": "app.access", "message": "Inbound HTTP request started", "event_type": "HTTP_REQUEST_START", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "client_ip": "***"}}
+{"timestamp": "2026-11-20T20:19:31.379112+00:00", "level": "INFO", "correlation_id": "8e80e4ca-1110-4070-ba19-0b1325ffd33a", "logger": "app.export", "message": "Personal data export initiated", "event_type": "PERSONAL_DATA_EXPORT_INIT", "actor_id": "usr_101", "details": {"taskName": null, "subject_id": "usr_101", "actor_role": "user"}}
+{"timestamp": "2026-11-20T20:19:31.379112+00:00", "level": "INFO", "correlation_id": "8e80e4ca-1110-4070-ba19-0b1325ffd33a", "logger": "app.export", "message": "Personal data export package generated successfully", "event_type": "PERSONAL_DATA_EXPORT_SUCCESS", "actor_id": "usr_101", "status": "success", "details": {"taskName": null, "export_id": "exp_48d169d836cf", "subject_id": "usr_101", "categories_count": 5, "omissions_count": 0}}
+{"timestamp": "2026-11-20T20:19:31.382605+00:00", "level": "INFO", "correlation_id": "8e80e4ca-1110-4070-ba19-0b1325ffd33a", "logger": "app.access", "message": "Inbound HTTP request finished", "event_type": "HTTP_REQUEST_FINISH", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "status_code": 200, "duration_ms": 6.1}}
+{"timestamp": "2026-11-20T20:19:31.385123+00:00", "level": "INFO", "correlation_id": "none", "logger": "httpx", "message": "HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/v1/users/usr_101/personal-data', query=None, fragment=None)} \"HTTP/1.1 200 OK\"", "details": {"taskName": null}}
+{"timestamp": "2026-11-20T20:19:31.398994+00:00", "level": "INFO", "correlation_id": "ca04f836-3f76-49b0-8ece-f0a3c86baeaa", "logger": "app.access", "message": "Inbound HTTP request started", "event_type": "HTTP_REQUEST_START", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "client_ip": "***"}}
+{"timestamp": "2026-11-20T20:19:31.398994+00:00", "level": "INFO", "correlation_id": "ca04f836-3f76-49b0-8ece-f0a3c86baeaa", "logger": "app.export", "message": "Personal data export initiated", "event_type": "PERSONAL_DATA_EXPORT_INIT", "actor_id": "usr_101", "details": {"taskName": null, "subject_id": "usr_101", "actor_role": "user"}}
+{"timestamp": "2026-11-20T20:19:31.398994+00:00", "level": "INFO", "correlation_id": "ca04f836-3f76-49b0-8ece-f0a3c86baeaa", "logger": "app.export", "message": "Personal data export package generated successfully", "event_type": "PERSONAL_DATA_EXPORT_SUCCESS", "actor_id": "usr_101", "status": "success", "details": {"taskName": null, "export_id": "exp_a99fd58a91ce", "subject_id": "usr_101", "categories_count": 5, "omissions_count": 0}}
+{"timestamp": "2026-11-20T20:19:31.405897+00:00", "level": "INFO", "correlation_id": "ca04f836-3f76-49b0-8ece-f0a3c86baeaa", "logger": "app.access", "message": "Inbound HTTP request finished", "event_type": "HTTP_REQUEST_FINISH", "details": {"taskName": "a***c", "method": "GET", "path": "/api/v1/users/usr_101/personal-data", "status_code": 200, "duration_ms": 7.27}}
+{"timestamp": "2026-11-20T20:19:31.407269+00:00", "level": "INFO", "correlation_id": "none", "logger": "httpx", "message": "HTTP Request: GET {'_uri_reference': ParseResult(scheme='http', userinfo='', host='testserver', port=None, path='/api/v1/users/usr_101/personal-data', query=None, fragment=None)} \"HTTP/1.1 200 OK\"", "details": {"taskName": null}}
+{
+  "phase": "PASS",
+  "scope": "isolated ASGI TestClient; repository read fault; no production users",
+  "started_utc": "2026-11-20T20:19:31.095818+00:00",
+  "timeline": [
+    {
+      "utc": "2026-11-20T20:19:31.095818+00:00",
+      "event": "baseline probe"
+    },
+    {
+      "utc": "2026-11-20T20:19:31.231467+00:00",
+      "event": "block repository reads using OSError injection"
+    },
+    {
+      "utc": "2026-11-20T20:19:31.337323+00:00",
+      "event": "fault observed; no automatic restart of live API"
+    },
+    {
+      "utc": "2026-11-20T20:19:31.337323+00:00",
+      "event": "restore dependency by exiting isolated fault context"
+    },
+    {
+      "utc": "2026-11-20T20:19:31.413465+00:00",
+      "event": "three recovery probes complete"
+    }
+  ],
+  "requests": [
+    {
+      "utc": "2026-11-20T20:19:31.248601+00:00",
+      "status": 503,
+      "duration_ms": 13.217,
+      "retry_after": "30",
+      "pii_in_error": false
+    },
+    {
+      "utc": "2026-11-20T20:19:31.271642+00:00",
+      "status": 503,
+      "duration_ms": 23.387,
+      "retry_after": "30",
+      "pii_in_error": false
+    },
+    {
+      "utc": "2026-11-20T20:19:31.294688+00:00",
+      "status": 503,
+      "duration_ms": 22.148,
+      "retry_after": "30",
+      "pii_in_error": false
+    },
+    {
+      "utc": "2026-11-20T20:19:31.315837+00:00",
+      "status": 503,
+      "duration_ms": 22.197,
+      "retry_after": "30",
+      "pii_in_error": false
+    },
+    {
+      "utc": "2026-11-20T20:19:31.337323+00:00",
+      "status": 503,
+      "duration_ms": 21.588,
+      "retry_after": "30",
+      "pii_in_error": false
+    }
+  ],
+  "recovery_statuses": [
+    200,
+    200,
+    200
+  ],
+  "finished_utc": "2026-11-20T20:19:31.413465+00:00",
+  "elapsed_seconds": 0.317928,
+  "affected_requests": 5,
+  "affected_subjects": 1,
+  "production_sla_breach": "not inferred; isolated drill, not a 30-day production window"
+}

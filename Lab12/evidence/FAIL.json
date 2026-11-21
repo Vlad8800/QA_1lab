@@ -1,0 +1,74 @@
+{
+  "phase": "FAIL",
+  "scope": "isolated ASGI TestClient; repository read fault; no production users",
+  "started_utc": "2026-11-20T20:18:46.315818+00:00",
+  "timeline": [
+    {
+      "utc": "2026-11-20T20:18:46.315818+00:00",
+      "event": "baseline probe"
+    },
+    {
+      "utc": "2026-11-20T20:18:46.477251+00:00",
+      "event": "block repository reads using OSError injection"
+    },
+    {
+      "utc": "2026-11-20T20:18:47.133690+00:00",
+      "event": "fault observed; no automatic restart of live API"
+    },
+    {
+      "utc": "2026-11-20T20:18:47.133690+00:00",
+      "event": "restore dependency by exiting isolated fault context"
+    },
+    {
+      "utc": "2026-11-20T20:18:47.212955+00:00",
+      "event": "three recovery probes complete"
+    }
+  ],
+  "requests": [
+    {
+      "utc": "2026-11-20T20:18:46.539128+00:00",
+      "status": 500,
+      "duration_ms": 63.395,
+      "retry_after": null,
+      "pii_in_error": false
+    },
+    {
+      "utc": "2026-11-20T20:18:46.644521+00:00",
+      "status": 500,
+      "duration_ms": 106.053,
+      "retry_after": null,
+      "pii_in_error": false
+    },
+    {
+      "utc": "2026-11-20T20:18:46.762980+00:00",
+      "status": 500,
+      "duration_ms": 120.849,
+      "retry_after": null,
+      "pii_in_error": false
+    },
+    {
+      "utc": "2026-11-20T20:18:46.920241+00:00",
+      "status": 500,
+      "duration_ms": 152.669,
+      "retry_after": null,
+      "pii_in_error": false
+    },
+    {
+      "utc": "2026-11-20T20:18:47.133690+00:00",
+      "status": 500,
+      "duration_ms": 212.001,
+      "retry_after": null,
+      "pii_in_error": false
+    }
+  ],
+  "recovery_statuses": [
+    200,
+    200,
+    200
+  ],
+  "finished_utc": "2026-11-20T20:18:47.212955+00:00",
+  "elapsed_seconds": 0.894255,
+  "affected_requests": 5,
+  "affected_subjects": 1,
+  "production_sla_breach": "not inferred; isolated drill, not a 30-day production window"
+}

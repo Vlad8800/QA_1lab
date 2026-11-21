@@ -209,3 +209,18 @@ git switch --detach 8545112ad2e693517b45ec15ff6c3c03e7438363
 Workflow: .github/workflows/docs.yml. PR та навчальна гілка лише перевіряються; deploy виконується з main.
 Змінна DOCS_CORS_ORIGINS дозволяє звернення Swagger до локального API з <http://127.0.0.1:8001>.
 MkDocs працює окремим процесом на порту 8001; це інструмент документації, а не сервіс бізнес-системи.
+
+
+## Експлуатація — ЛР12
+
+Розгортання: `python -m uvicorn app.main:app --host 127.0.0.1 --port 8012`;
+health probe: GET `/api/v1/shipping/policy`, очікується 200 та затверджена версія.
+Конкретні команди, відкат і ескалація: [RB-001](../runbooks/RB-001.md).
+Оновлення: перевірити [CHANGELOG](../../CHANGELOG.md), тести й go/no-go,
+підготувати новий артефакт, зупинити власний процес, замінити версію й перевірити.
+Схема даних цього релізу не змінюється; SQL-міграції N/A, бо БД відсутня.
+Для persistent deployment спочатку restore БД та міграції з backup, потім API.
+У поточному demo спочатку policy, потім in-memory repository, API, health/export probes.
+[RTO/RPO, 3-2-1 і restore drill](../operations/backup-policy.md),
+[SLO та error budget](../operations/service-levels.md),
+[release checklist](../changes/release-checklist.md).

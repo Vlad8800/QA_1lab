@@ -1,0 +1,46 @@
+{
+  "service": "QA_1lab",
+  "window": {
+    "days": 30,
+    "minutes": 43200,
+    "timezone": "UTC",
+    "mode": "model; no production telemetry supplied"
+  },
+  "exclusions": [
+    "planned isolated drill is not production traffic"
+  ],
+  "indicators": [
+    {
+      "id": "availability",
+      "eligible": "All syntactically valid authorized export requests; client 4xx excluded; all 5xx including 503 count as bad",
+      "good": "HTTP 2xx",
+      "slo_percent": 99.9,
+      "sla_percent": 99.5,
+      "budget_minutes": 43.2
+    },
+    {
+      "id": "latency",
+      "eligible": "Same valid export attempts; failures and requests >300 ms are bad",
+      "good": "HTTP 2xx AND duration <=300 ms (end-to-end, monotonic clock)",
+      "slo_percent": 99.0,
+      "sla_percent": 98.0,
+      "budget_minutes": 432.0
+    },
+    {
+      "id": "completeness",
+      "eligible": "Same valid export attempts; failures included",
+      "good": "HTTP 2xx AND schema valid AND expected categories present or documented omissions AND no prohibited security fields",
+      "slo_percent": 99.5,
+      "sla_percent": 99.0,
+      "budget_minutes": 216.0
+    }
+  ],
+  "formula": "(1 - slo_percent/100) * 43200",
+  "policy": {
+    "warning_burn_percent": 50,
+    "freeze_burn_percent": 100,
+    "freeze": "normal releases blocked; only incident remediation with CCB emergency approval",
+    "unfreeze": "rolling 30-day budget positive AND corrective validation green AND CCB approval"
+  },
+  "sla_remedy": "Hypothetical contract: monthly review and 5% service credit on affected month; no real customer contract."
+}
