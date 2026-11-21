@@ -10,7 +10,7 @@ tags: [ops]
 ## Вибір та довіра
 
 **verified:** аудит ЛР10, F019, F020, F021, F022, F023,
-показує для app/export/* ratio=2.0 та один code commit після останнього doc update.
+показує для app/export/\*ratio=2.0 та один code commit після останнього doc update.
 Це найвищий ненульовий ratio серед app/*. Вибрано весь компонент export, а не shipping,
 у якого ratio=1.06. Метрика ratio не доводить якість тексту: це критерій пріоритету рев'ю.
 Точний extract та рядки коду — Lab12/evidence/legacy-analysis.json.
@@ -39,7 +39,7 @@ service повертає їх allowlist-модель, а не сирий dict.
 | --- | --- | --- |
 | _users | dict user_id → profile плюс внутрішні security fields | verified |
 | _settings | dict user_id → locale/theme/notification preferences | verified |
-| _activity / _orders / _consents | списки записів із user_id | verified |
+| \_activity /\_orders / \_consents | списки записів із user\_id | verified |
 | get_user_by_id | знаходить профіль або None | verified |
 | get_*_by_user_id | вибірки пов'язаних категорій | verified |
 | get_default_repository / reset_default_repository | singleton / ізольований reset | verified |

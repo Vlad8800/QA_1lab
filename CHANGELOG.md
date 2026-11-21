@@ -15,7 +15,6 @@ tags: [architecture]
 - CODEOWNERS, перевірка дат перегляду, strict build та GitHub Pages workflow.
 - CORS для локальної демонстрації Swagger; SHIPPING_POLICY_FILE з ЛР10.
 
-
 ## Lab12 — 2026-11-20
 
 - Add controlled HTTP 503/Retry-After for export repository OSError.
