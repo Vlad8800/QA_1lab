@@ -21,4 +21,3 @@ SDK генерується командою:
 ```shell
 openapi-generator-cli generate -i docs/api/openapi.yaml -g python -o sdk-client --additional-properties=packageName=qa1lab_client
 ```
-
